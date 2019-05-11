@@ -10,14 +10,15 @@ body {
 }
 
 body>div{
-  box-sizing: border-box;
+  
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   min-height: 80vh;
     position: absolute;
-    top:120px;
+    top:140px;
     left:0;
     display: flex;
     flex-flow: row nowrap;
@@ -36,11 +37,11 @@ span.site_name{
 
 
 main {
-  box-sizing: border-box;
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   flex: 1 1 50%;
   padding: 10px;  
   margin:auto 0;
@@ -81,26 +82,42 @@ main > div> button{
 
 
 
-nav, nav span,nav span>div.form-group{
+nav span>div.form-group{
 
   display: flex;
   flex-flow: row nowrap;
 }
 
 nav {
-  box-sizing: border-box;
+  flex-flow: column nowrap;
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   flex: 0 0 auto;
   height:100px;
   padding: 20px;
+}
+nav span:nth-child(2)>form{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav span:nth-child(2)>form button{
+  padding:5px;
+  width:50px;
+  height: 25px;
+  margin-bottom: -12px;
 }
 
 nav>span.site-name{
   flex: 1 0 0;
   margin-right: auto;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 button#get-started{
@@ -109,11 +126,17 @@ button#get-started{
 }
 
 aside {
-  box-sizing: border-box;
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  -o-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  -ms-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -4px -4px 5px 10px rgba(50, 50, 50, 0.75);
+  box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   flex: 1 1 50%;
   flex-flow: column nowrap;
   background-color: white;
@@ -121,6 +144,7 @@ aside {
   padding: 10px;
   align-items: flex-end;
    display: none; 
+   
 }
 
 
@@ -147,6 +171,7 @@ div.form-group > label{
 label {
 
   margin: 4px 2px;
+  color:rgba(217, 30, 24, 1);
 }
 
 
