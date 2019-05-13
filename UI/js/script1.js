@@ -3,7 +3,7 @@ const mainDiv = document.querySelector('main');
 const inputFields = document.querySelectorAll('input, textarea');
 const openSignUpPage = () => {
         
-    console.log('opening sign up page');
+    
     if (window.matchMedia('(max-width: 700px)').matches) {
         mainDiv.style.display = 'none';
       }
@@ -14,11 +14,11 @@ const openSignUpPage = () => {
 
 const closeSignUpPage = () => {
         
-    console.log('closing sign up page');
+    
     signUpDiv.style.display = 'none';
     if (window.matchMedia('(max-width: 700px)').matches) {
         mainDiv.style.display = 'block';
-      }
+    }
     
 };
 

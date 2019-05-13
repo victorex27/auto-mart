@@ -1,32 +1,28 @@
 @import url("general.css");
-
-body{
-    
+body {
     min-height: 100vh;
 }
 
-
-aside{
+aside {
     position: fixed;
-    top:0;
-    left:0;
-    width:30%;
-    height:100vh;
-    box-shadow: 4px 6px 5px 2px rgba( 50, 50, 50, 1);
-    -o-box-shadow: 4px 6px 5px 2px rgba( 50, 50, 50, 1);
-    -ms-box-shadow: 4px 6px 5px 2px rgba( 50, 50, 50, 1);
-    -moz-box-shadow: 4px 6px 5px 2px rgba( 50, 50, 50, 1);
-    -webkitbox-shadow: 4px 6px 5px 2px rgba( 50, 50, 50, 1);
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100vh;
+    box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
+    -o-box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
+    -ms-box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
+    -moz-box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
+    -webkitbox-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
     background-image: url(../img/img2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-color:  rgba(50,50,50,0.9);
+    background-color: rgba(50, 50, 50, 0.9);
     color: white;
-
+    z-index: 2;
 }
 
-aside > div{
-
+aside>div {
     -webkit-box-sizing: border-box;
     -o-box-sizing: border-box;
     -ms-box-sizing: border-box;
@@ -35,126 +31,281 @@ aside > div{
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    padding:10px;
-    background-color: rgba(0,0,0,0.3);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-aside > div > span{
+aside>div>span {
     font-size: 3em;
     font-weight: bolder;
+    margin-bottom: 10px;
 }
-aside > div > nav{
-    
+
+aside>div>span:first-child {
+    display: none;
+}
+
+aside>div>div {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+aside>div>div>span {
+    flex: 1 0 15px;
+}
+
+aside>div>div>div {
+    flex: 1 0 15px;
+}
+
+aside>div>div>div>span::after {
+    content: '>';
+}
+
+aside>div>nav {
     display: block;
-    height:200px;
-    margin:auto 0;
-
+    height: 200px;
+    margin: auto 0;
 }
 
-aside > div > nav>li{
-    
+aside>div>nav>li {
     list-style-type: none;
+    overflow: hidden;
 }
-aside > div > nav> li> a{
+
+aside>div>nav>li>a {
     display: block;
     text-decoration: none;
     color: white;
     font-weight: bolder;
     text-align: center;
-    padding:5px;
+    padding: 5px;
     margin: 15px;
 }
-aside > div > nav> li> a:active{
-    color:blue;
+
+aside>div>nav>li>a.current {
     transform: scale(2);
 }
 
-main{
+aside>div>nav>li>a:active {
+    color: blue;
+    transform: scale(2);
+}
+
+main {
     -webkit-box-sizing: border-box;
     -o-box-sizing: border-box;
     -ms-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding-left:35px;
-    margin-left:30%;
-    width:70%;
-
+    padding-left: 35px;
+    margin-left: 30%;
+    width: 70%;
+    color: rgba(217, 30, 24, 1);
 }
 
-main > section{
-
-    height:150px;
+body>nav {
+    display: none;
 }
 
-main > div{
+main>h1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: inline;
+    box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
+    border-radius: 5px;
+    background-color: rgb(206, 230, 231);
+}
+
+main>section {
+    box-sizing: border-box;
+    position: fixed;
+    top: 10px;
+    right: 5px;
+    border: 1px solid rgb(206, 230, 231);
+    border-top: 3px solid rgba(217, 30, 24, 1);
+    background-color: white;
+    padding: 10px;
+    width: 18%;
+}
+
+main>div {
+    margin-top: 10px;
     display: flex;
     flex-flow: row wrap;
-    min-height: 100%;
-    align-items: center;
-
+    width: 75%;
 }
 
-.card{
+main>section>div>form {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+main>section>div>form>li {
+    list-style-type: none;
+    margin: 15px 5px;
+    color: black;
+}
+
+main>section>div>form>li>label {
+    display: flex;
+    flex-flow: column wrap;
+    font-weight: lighter;
+    margin-right: 25px;
+}
+
+main>section>div>form>li>select {
+    cursor: pointer;
+    color: black;
+    font-weight: lighter;
+    height: 30px;
+    width: 100%;
+    background-color: rgb(206, 230, 231);
+    border-bottom: 1px solid black;
+}
+
+main>section>div>form>li>select>option {
+    background-color: white;
+    cursor: pointer;
+}
+
+.card {
     box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -o-box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -ms-box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -moz-box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -webkitbox-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
-    flex: 0 0 200px;
-    height: 240px;
-    margin:0 15px 15px 0;
+    flex: 0 0 140px;
+    height: 200px;
+    margin: 0 15px 15px 0;
     cursor: pointer;
 }
 
-.card > div:nth-child(1){
-    width:200px;
-    height:200px;
+.card>div:nth-child(1) {
+    width: 140px;
+    height: 140px;
     overflow: hidden;
 }
-.card > div:nth-child(2){
 
+.card>div:nth-child(2) {
     display: flex;
     flex-flow: column wrap;
-
+    padding: 2px;
 }
-.card > div:nth-child(2)>span:nth-child(1){
-    color:rgba(217, 30, 24, 1);
+
+.card>div:nth-child(2)>span:nth-child(1) {
+    color: rgba(217, 30, 24, 1);
     font-weight: bolder;
 }
-.card > div:nth-child(2)>span:nth-child(2){
 
+.card>div:nth-child(2)>span:nth-child(2) {
     font-size: 0.6em;
 }
 
-.card > div > img{
+.card>div>img {
     width: 100%;
     height: auto;
 }
 
-
 /* Responsive design*/
+
+@media screen and (max-width: 1024px) {
+    .card {
+        flex: 0 0 100px;
+        height: 150px;
+        margin: 0 15px 15px 0;
+        cursor: pointer;
+    }
+    .card>div:nth-child(1) {
+        width: 100px;
+        height: 100px;
+        /* overflow: hidden; */
+    }
+}
+
 @media screen and (max-width: 600px) {
- 
-    aside{
+    aside {
         display: none;
     }
-    main{
+    aside>div>span:first-child {
+        display: block;
+        align-self: flex-end;
+        margin-right: 20px;
+    }
+    main {
         -webkit-box-sizing: border-box;
         -o-box-sizing: border-box;
         -ms-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        padding-left:0;
-        margin-left:0;
-        width:100%;
-    
+        padding-left: 0;
+        margin-left: 0;
+        margin-top: 130px;
+        width: 100%;
     }
+    body>nav {
+        background-color: white;
+        display: flex;
+        flex-flow: row nowrap;
+        position: fixed;
+        top: 0px;
+        right: 10px;
+        width: 100%;
+        padding: 10px;
+    }
+    body>nav>span {
+        display: block;
+        margin-left: 10px;
+        padding: 20px;
+        color: rgba(217, 30, 24, 1);
+        font-weight: bolder;
+        font-size: 2em;
+    }
+    body>nav>button {
+        border: 3px solid rgba(217, 30, 24, 1);
+        border-radius: 0.5em;
+        margin-right: 16px;
+        margin-left: auto;
+        cursor: pointer;
+    }
+    main>section {
+        display: none;
+    }
+    main>div {
+        box-sizing: border-box;
+        width: 100%;
+        margin-left: 10px;
+    }
+    .card {
+        flex: 0 0 120px;
+        margin-left: 10px;
+        height: 160px;
+        align-content: flex-start;
+    }
+    .card>div:nth-child(1) {
+        width: 120px;
+        height: 120px;
+    }
+}
 
-    main > section{
-        width:100%;
+@media screen and (max-width: 420px) {
+    main>div {
+        justify-content: center;
+    }
+    .card {
+        flex: 0 0 250px;
+        height: 300px;
+        margin: 0 15px 15px 0;
+        cursor: pointer;
+    }
+    .card>div:nth-child(1) {
+        width: 250px;
+        height: 250px;
+        /* overflow: hidden; */
     }
 }

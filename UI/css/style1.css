@@ -1,39 +1,33 @@
 @import url("general.css");
-
 body {
   background-image: url(../img/img4.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: linear-gradient(  rgba(0,0,0,0.2) , rgba(255,255,255,0.2) );
+  background-color: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
   color: white;
 }
 
-body>div{
-  
+body>div {
   -o-box-sizing: border-box;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   min-height: 80vh;
-    position: absolute;
-    top:140px;
-    left:0;
-    display: flex;
-    flex-flow: row nowrap;
-    width:100%;
-     align-items: center; 
-    background-image: linear-gradient(  rgba(0,0,0,0.2) , rgba(255,255,255,0.2) );
+  position: absolute;
+  top: 140px;
+  left: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  align-items: center;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
 }
 
-
-
-span.site_name{
-    color:black;
-    margin-right:auto;
+span.site_name {
+  color: black;
+  margin-right: auto;
 }
-
-
 
 main {
   -o-box-sizing: border-box;
@@ -42,47 +36,39 @@ main {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   flex: 1 1 50%;
-  padding: 10px;  
-  margin:auto 0;
+  padding: 10px;
+  margin: auto 0;
 }
 
-main > div{
-
+main>div {
   display: flex;
   flex-flow: column nowrap;
-  padding-left:20px;
-  
-  
+  padding-left: 20px;
 }
 
-main > div> span:nth-child(1),main > div> span:nth-child(2){
+main>div>span:nth-child(1), main>div>span:nth-child(2) {
   flex: 1 1 auto;
   font-size: 5em;
-  
 }
-main > div> span:nth-child(3),main > div> div{
+
+main>div>span:nth-child(3), main>div>div {
   flex: 1 1 auto;
-  
-}
-main > div> div{
-
-  width:70%;
-  
 }
 
-main > div> span:nth-child(3){
-  font-size:0.8em;
-  width:60%;
+main>div>div {
+  width: 70%;
 }
-main > div> button{
+
+main>div>span:nth-child(3) {
+  font-size: 0.8em;
+  width: 60%;
+}
+
+main>div>button {
   flex: 1 1 auto;
-  
 }
 
-
-
-nav span>div.form-group{
-
+nav span>div.form-group {
   display: flex;
   flex-flow: row nowrap;
 }
@@ -95,32 +81,32 @@ nav {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   flex: 0 0 auto;
-  height:100px;
+  height: 100px;
   padding: 20px;
 }
-nav span:nth-child(2)>form{
+
+nav span:nth-child(2)>form {
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-end;
   align-items: center;
 }
 
-nav span:nth-child(2)>form button{
-  padding:5px;
-  width:50px;
+nav span:nth-child(2)>form button {
+  padding: 5px;
+  width: 50px;
   height: 25px;
   margin-bottom: -12px;
 }
 
-nav>span.site-name{
+nav>span.site-name {
   flex: 1 0 0;
   margin-right: auto;
   font-size: 2em;
   font-weight: bold;
 }
 
-button#get-started{
-
+button#get-started {
   float: right;
 }
 
@@ -130,7 +116,6 @@ aside {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-
   -webkit-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -o-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -ms-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
@@ -139,80 +124,46 @@ aside {
   flex: 1 1 50%;
   flex-flow: column nowrap;
   background-color: white;
-  color:rgba(217, 30, 24, 1);
+  color: rgba(217, 30, 24, 1);
   padding: 10px;
   align-items: flex-end;
-   display: none; 
-   
+  display: none;
 }
 
-
-aside > div{
-    
-  width:70%;
-  margin:auto;
+aside>div {
+  width: 70%;
+  margin: auto;
 }
 
 div.form-group {
   display: flex;
   flex-flow: column nowrap;
 }
-div.form-group > label{
-  font-size:0.8em;
-  transform:translateY(130%);
-  -ms-transform:translateY(130%);
-  -moz-transform:translateY(130%);
-  -o-transform:translateY(130%);
-  -webkit-transform:translateY(130%);
-}
 
+div.form-group>label {
+  font-size: 0.8em;
+  transform: translateY(130%);
+  -ms-transform: translateY(130%);
+  -moz-transform: translateY(130%);
+  -o-transform: translateY(130%);
+  -webkit-transform: translateY(130%);
+}
 
 label {
-
   margin: 4px 2px;
-  color:rgba(217, 30, 24, 1);
+  color: rgba(217, 30, 24, 1);
 }
 
-
 button {
-  background-color: rgba(217, 30, 24, 1);
-  width:150px;
-  border: none;
-  color: white;
+  width: 150px;
   padding: 16px 32px;
-  text-decoration: none;
   margin: 6px 6px;
 }
 
-
-.am{
-  
-  background-color: transparent;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  
-}
-
-.am-50{
-  width:50px;
-  height:50px;
-}
-
-.am-close{
-  background-image: url(../img/Delete.ico)
-}
-
-.am-long-arrow{
-  background-image: url(../img/Long_Arrow_Right.ico)
-}
-
-
 /* Responsive design*/
-@media screen and (max-width: 558px) {
 
-  main > div> span:nth-child(3),main > div> div{
-    width:100%;
-    
+@media screen and (max-width: 558px) {
+  main>div>span:nth-child(3), main>div>div {
+    width: 100%;
   }
 }
