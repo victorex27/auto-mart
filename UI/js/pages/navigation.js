@@ -8,11 +8,11 @@ class Navigation{
         this.backlog = [];
         
         // parent div
-        this.container = document.querySelector('main');
+        // this.container = document.querySelector('main');
         
-        this.adTab = document.getElementById('ad_tab');
-        this.poTab = document.getElementById('po_tab');
-        this.adminTab = document.getElementById('admin_tab');
+        // this.adTab = document.getElementById('ad_tab');
+        // this.poTab = document.getElementById('po_tab');
+        // this.adminTab = document.getElementById('admin_tab');
     
     }
 

@@ -31,12 +31,13 @@ input[type="file"] {
   background-color: rgb(84, 0, 50);
   color: white;
   display: inline-block;
+  width: 90%;
 }
 
-input[type="email"], input[type="text"], input[type="password"] {
+input[type="email"], input[type="text"], input[type="password"] , input[type="number"] {
   padding: 12px 20px;
   width: 90%;
-  height: 25px;
+  height: 30px;
   line-height: 1.15;
   background-color: rgb(206, 230, 231);
   color: black;
@@ -58,19 +59,53 @@ textarea {
   resize: none;
 }
 
+div.form-group {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+div.form-group>label {
+  font-size: 0.8em;
+  transform: translateY(130%);
+  -ms-transform: translateY(130%);
+  -moz-transform: translateY(130%);
+  -o-transform: translateY(130%);
+  -webkit-transform: translateY(130%);
+}
+
+label {
+  margin: 4px 2px;
+  color: rgba(217, 30, 24, 1);
+}
+
+
 button {
   cursor: pointer;
   background-color: rgba(217, 30, 24, 1);
   border: none;
   color: white;
   text-decoration: none;
+  width: 150px;
+  padding: 16px 32px;
+  margin: 6px 6px;
 }
+
+
 
 .am {
   background-color: transparent;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  
+  
+}
+
+.am-no-margin{
+  margin: 0px;
+}
+.am-no-padding{
+  padding: 0px;
 }
 
 .am-small{
@@ -123,6 +158,14 @@ button {
 
 .am-next-white {
   background-image: url(../img/Forward.ico)
+}
+
+.am-plus-white {
+  background-image: url(../img/Plus_3.ico)
+}
+
+.am-minus-white {
+  background-image: url(../img/Minus_2.ico)
 }
 
 .is-not-visible {

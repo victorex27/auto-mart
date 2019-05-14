@@ -1,4 +1,5 @@
 import Car  from './car.js';
+import Advertisement  from './advertisement.js';
 import Common  from './common.js';
 class HomePage extends Common{
 
@@ -7,13 +8,18 @@ class HomePage extends Common{
         navigation.setFirstPage( this );
         this.navigation = navigation;
 
+        
+
         this.car = new Car(navigation);
+        this.advertisement = new Advertisement(navigation);
         this.menuButton = document.getElementById('menu-button');
         this.closeButton = document.getElementById('close-button');
         this.homeDiv = document.querySelector('main > div#gallery');
         this.filterDiv = document.querySelector('main > section');
         this.homeTab = document.getElementById('home_tab');
+        this.advTab = document.getElementById('adv_tab');
 
+        this.activeTab = this.homeTab;
         
         this.aside = document.querySelector('aside');
         this.cards = document.querySelectorAll('.card');
@@ -24,22 +30,38 @@ class HomePage extends Common{
 
         // when home tab is clicked
         this.homeTab.addEventListener('click',(ev) => { 
-            this.navigation.setCurrentPage( this );
-
-            if (window.matchMedia('(max-width: 700px)').matches) {
-                this.oncloseButtonClicked(ev);
-            }
-            
+           
+            this.onSetCurrentPage(ev,this);  
+            this.onChangeActiveTab(ev.srcElement);      
         
         });
 
         this.cards.forEach(
 
             (card)=>{
-                card.addEventListener('click',() => { this.onCardItemClicked(event); });
+                card.addEventListener('click',(ev) => { this.onSetCurrentPage(ev,this.car); });
             }
 
         );
+
+        this.advTab.addEventListener('click',(ev) => { 
+            this.onSetCurrentPage(ev,this.advertisement);
+            this.onChangeActiveTab(ev.srcElement);
+        });
+    }
+
+    onChangeActiveTab( newTab ){
+
+        this.activeTab.classList.remove('current');
+        this.activeTab = newTab;
+        this.activeTab.classList.add('current');
+    }
+
+    onSetCurrentPage(ev,obj){
+        this.navigation.setCurrentPage( obj );
+        if (window.matchMedia('(max-width: 700px)').matches) {
+            this.oncloseButtonClicked(ev);
+        }
     }
 
     onmenuButtonClicked(ev){
@@ -53,11 +75,6 @@ class HomePage extends Common{
         
         this.aside.style.display = 'none';
         this.aside.style.width = '30%';
-        ev.preventDefault();
-    }
-
-    onCardItemClicked(ev){
-        this.navigation.setCurrentPage(this.car);
         ev.preventDefault();
     }
 

@@ -1,7 +1,7 @@
 class Common{
     
     constructor(){
-        this.backlog = [];
+        
     }
     
     removePage(){
