@@ -1,11 +1,16 @@
+* {
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 html {
   margin: 0px;
 }
 
 body {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
   min-height: 100vh;
   margin: 0px;
   font-family: Lato, Helvetica, sans-serif;
@@ -29,7 +34,6 @@ input[type="file"] {
 }
 
 input[type="email"], input[type="text"], input[type="password"] {
-  box-sizing: border-box;
   padding: 12px 20px;
   width: 90%;
   height: 25px;
@@ -48,7 +52,6 @@ textarea {
   width: 90%;
   height: 50px;
   padding: 12px 20px;
-  box-sizing: border-box;
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
@@ -70,14 +73,32 @@ button {
   background-repeat: no-repeat;
 }
 
+.am-small{
+  background-size: 10px;
+}
+
+.am-primary-color{
+
+  background-color:rgba(217, 30, 24, 1); 
+  border-radius: 50%;
+  -webkit-box-shadow: 2px 2px 3px #000;
+    -moz-box-shadow: 0px 0px 3px #000;
+    box-shadow: 2px 2px 3px #000;
+}
+
+.am-40 {
+  width: 40px;
+  height: 40px;
+}
+
 .am-50 {
   width: 50px;
   height: 50px;
 }
 
 .am-100 {
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
 }
 
 .am-menu {
@@ -92,6 +113,18 @@ button {
   background-image: url(../img/Delete_1.ico)
 }
 
-.am-long-arrow {
+.am-long-arrow-white {
   background-image: url(../img/Long_Arrow_Right.ico)
+}
+
+.am-prev-white {
+  background-image: url(../img/Back.ico)
+}
+
+.am-next-white {
+  background-image: url(../img/Forward.ico)
+}
+
+.is-not-visible {
+  display: none;
 }
