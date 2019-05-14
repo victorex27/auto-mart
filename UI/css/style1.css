@@ -115,30 +115,7 @@ aside>div {
   margin: auto;
 }
 
-div.form-group {
-  display: flex;
-  flex-flow: column nowrap;
-}
 
-div.form-group>label {
-  font-size: 0.8em;
-  transform: translateY(130%);
-  -ms-transform: translateY(130%);
-  -moz-transform: translateY(130%);
-  -o-transform: translateY(130%);
-  -webkit-transform: translateY(130%);
-}
-
-label {
-  margin: 4px 2px;
-  color: rgba(217, 30, 24, 1);
-}
-
-button {
-  width: 150px;
-  padding: 16px 32px;
-  margin: 6px 6px;
-}
 
 /* Responsive design*/
 

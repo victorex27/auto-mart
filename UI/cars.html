@@ -14,7 +14,7 @@
 
 </head>
 
-<body >
+<body>
 
     <aside>
 
@@ -36,8 +36,8 @@
 
             <nav>
                 <li> <a href="javascript:void(0)" class='current' id='home_tab'>Home</a> </li>
-                <li> <a href="javascript:void(0)" id='ad_tab'>Your Ads</a> </li>
-                <li> <a href="javascript:void(0)" id='po_tab' >Purchase Orders</a> </li>
+                <li> <a href="javascript:void(0)" id='adv_tab'>Your Ads</a> </li>
+                <li> <a href="javascript:void(0)" id='po_tab'>Purchase Orders</a> </li>
                 <li> <a href="javascript:void(0)" id='admin_tab'>Admin</a> </li>
             </nav>
 
@@ -171,7 +171,7 @@
 
         </div>
 
-        <div id='single-car' >
+        <div id='single-car'>
             <div>
                 <div> <img src="https://via.placeholder.com/150" alt="slide position 1"></div>
                 <div> <img src="https://via.placeholder.com/150" alt="slide position 2"></div>
@@ -179,37 +179,95 @@
             </div>
 
             <div>
-                
+
                 <span> By Okolie Nnaemeka</span>
                 <span>
-                    <button class='am am-small am-primary-color am-prev-white  am-40' id='menu-button'></button>
-                    <button class='am am-small am-primary-color am-next-white am-40' id='menu-button'></button>
+                    <button class='am am-small am-primary-color am-prev-white am-no-margin am-no-padding am-40' id='menu-button'></button>
+                    <button class='am am-small am-primary-color am-next-white am-no-margin am-no-padding am-40' id='menu-button'></button>
                 </span>
 
             </div>
 
             <div>
-                
-                <div><label for="">Name</label> <span>Bugatti au Noir</span></div> 
-                <div><label for="">Manufacturer</label> <span> Bugatti</span></div> 
-                <div><label for="">Body Type</label> <span>Sedan</span></div> 
-                <div><label for="">Color</label> <span>Blue</span></div> 
-                <div><label for="">Price</label> <span>34,000,000</span></div> 
-                <div><label for="">Mileage</label> <span>New</span></div> 
-            
-                
-                
-                
-                
-                
-                
+
+                <div><label for="">Name</label> <span>Bugatti au Noir</span></div>
+                <div><label for="">Manufacturer</label> <span> Bugatti</span></div>
+                <div><label for="">Body Type</label> <span>Sedan</span></div>
+                <div><label for="">Color</label> <span>Blue</span></div>
+                <div><label for="">Price</label> <span>34,000,000</span></div>
+                <div><label for="">Mileage</label> <span>New</span></div>
+
+
+
+
+
+
+
             </div>
 
+
+        </div>
+
+        <div id='advertisement' >
+            <header>
+                <label for=""> Create New Advert</label> 
+                <button class='am   am-plus-white  am-40' id='open-form'></button>
+                <button class='am   am-minus-white  am-40 is-not-visible' id='close-form'></button>
+            </header>
+
+            <form class='is-not-visible'>
+                <div class='form-group'>
+                    <label for="name">Name</label> 
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class='form-group'>
+                        <label for="model"> Model</label> 
+                        <input type="text" name="model" id="model">
+                    </div>
+                    <div class='form-group'>
+                        <label for="price">Price</label> 
+                        <input type="text" name="price" id="price4">
+                     </div>
+                <div class='form-group'>
+                    <span>Manufacturer</span>
+                    <select name="manufacturer" id="manufacturer">
+                        <option value="any">Any</option>
+                        <option value="toyota"> Toyota</option>
+                        <option value="honda"> Honda</option>
+                        <option value="mercedes"> Mercedes</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+
+                    <span>Body type</span>
+                    <select name="body_type" id="body_type">
+                        <option value="any">Any</option>
+                        <option value="suv"> SUV</option>
+                        <option value="wagon"> Wagon</option>
+                        <option value="sedan"> Sedan</option>
+                        <option value="convertible"> Convertible</option>
+                        <option value="crossover"> Crossover</option>
+                    </select>
+
+                </div>
+                
+
+                <div class='form-group'>
+                    <span >Used</span>
+                    <input type="checkbox" name="mileage" id='mileage' value="1" checked>
+                </div>
+                <div class='form-group'>
+
+                    <input type="file" name="file" id='file'>
+                </div>
+                <div class='form-group'> <button> Create ad </button></div>
+            </form>
 
         </div>
     </main>
 
 
+    <script src="js/general.js"></script>
 
     <script src="js/script2.js" type="module"></script>
 

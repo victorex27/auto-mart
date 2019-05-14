@@ -149,7 +149,7 @@ main>section>div>form>li>label {
     margin-right: 25px;
 }
 
-main>section>div>form>li>select {
+main>section>div>form>li>select ,main > div#advertisement select{
     cursor: pointer;
     color: black;
     font-weight: lighter;
@@ -274,6 +274,45 @@ main>div#single-car>div:nth-child(3)>div>label::after {
 main>div#single-car>div:nth-child(3)>div>span {
     font-weight: 300;
 }
+
+/* Style for posting adv */
+main > div#advertisement{
+
+    display: none;
+    flex-flow: column;
+    width:100%;
+    padding:15px;
+}
+
+main > div#advertisement > header{
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height:50px;
+    color:white;
+    background-color:  rgba(217, 30, 24, 1);
+    cursor: pointer;
+} 
+
+main > div#advertisement > header> label{
+    
+    color: white;
+    font-weight: bolder;
+    padding-left:10px;
+    
+    /* border:1px solid black; */
+}
+
+main > div#advertisement select{
+
+    width: 90%;
+}
+
+
+
 
 /* Responsive design*/
 
