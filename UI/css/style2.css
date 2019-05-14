@@ -23,11 +23,6 @@ aside {
 }
 
 aside>div {
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     position: relative;
     display: flex;
     flex-flow: column nowrap;
@@ -97,11 +92,6 @@ aside>div>nav>li>a:active {
 }
 
 main {
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
     padding-left: 35px;
     margin-left: 30%;
     width: 70%;
@@ -110,6 +100,7 @@ main {
 
 body>nav {
     display: none;
+    
 }
 
 main>h1 {
@@ -123,7 +114,6 @@ main>h1 {
 }
 
 main>section {
-    box-sizing: border-box;
     position: fixed;
     top: 10px;
     right: 5px;
@@ -207,14 +197,87 @@ main>section>div>form>li>select>option {
     font-size: 0.6em;
 }
 
-.card>div>img {
+img {
     width: 100%;
-    height: auto;
+    height: 100%;
+}
+
+/* Style for viewing a particular car */
+
+main>div#single-car {
+    display: none;
+    margin-top: 15px;
+    width: 100%;
+    justify-content: center;
+    
+    flex-flow: column nowrap;
+}
+
+main>div#single-car>div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+main>div#single-car>div:nth-child(1)>div:first-child, main>div#single-car>div:nth-child(1)>div:last-child {
+    flex: 1 0 auto;
+    height: 250px;
+    overflow: hidden;
+}
+
+main>div#single-car>div:nth-child(1)>div:nth-child(2) {
+    flex: 1 0 300px;
+    height: 300px;
+    margin: 0 5px;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 0px 10px #000;
+    -moz-box-shadow: 0px 0px 10px #000;
+    box-shadow: 0px 0px 10px #000;
+}
+
+main>div#single-car>div:nth-child(2) {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 10px;
+}
+
+main>div#single-car>div:nth-child(2)>span:first-child {
+    flex: 1 0 auto;
+    align-self: center;
+}
+
+main>div#single-car>div:nth-child(2)>span:last-child {
+    margin-right: 15px;
+}
+
+main>div#single-car>div:nth-child(3) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+main>div#single-car>div:nth-child(3)>div {
+    flex: 1 0 50%;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+main>div#single-car>div:nth-child(3)>div>label {
+    font-weight: bolder;
+}
+
+main>div#single-car>div:nth-child(3)>div>label::after {
+    content: ':';
+}
+
+main>div#single-car>div:nth-child(3)>div>span {
+    font-weight: 300;
 }
 
 /* Responsive design*/
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1150px) {
     .card {
         flex: 0 0 100px;
         height: 150px;
@@ -226,7 +289,90 @@ main>section>div>form>li>select>option {
         height: 100px;
         /* overflow: hidden; */
     }
+    
+    /* Style for viewing a particular car */
+    main>div#single-car {
+        width: 100%;
+        justify-content: center;
+        flex-flow: column nowrap;
+    }
+    main>div#single-car>div:first-child {
+        display: flex;
+        flex-flow: row nowrap;
+        
+    }
+    main>div#single-car>div:nth-child(1)>div:first-child, main>div#single-car>div:nth-child(1)>div:last-child {
+        flex: 1 0 auto;
+        height: 250px;
+        border: 1px solid black;
+        overflow: hidden;
+    }
+    main>div#single-car>div:nth-child(1)>div:nth-child(2) {
+        flex: 1 0 300px;
+        height: 300px;
+        margin: 0 5px;
+        overflow: hidden;
+        -webkit-box-shadow: 0px 0px 10px #000;
+        -moz-box-shadow: 0px 0px 10px #000;
+        box-shadow: 0px 0px 10px #000;
+    }
+    main>div#single-car>div:nth-child(2) {
+        display: flex;
+        flex-flow: column nowrap;
+        margin-top: 10px;
+    }
+    main>div#single-car>div:nth-child(2)>span:first-child {
+        flex: 1 0 auto;
+        align-self: center;
+    }
+    main>div#single-car>div:nth-child(2)>span:last-child {
+        margin-right: 15px;
+    }
+    main>div#single-car>div:nth-child(3) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    main>div#single-car>div:nth-child(3)>div {
+        flex: 1 0 50%;
+        margin-top: 20px;
+    }
+    /* End of style for a single car*/
 }
+
+
+
+@media screen and (max-width: 800px) {
+    
+    
+    /* Style for viewing a particular car */
+    main>div#single-car {
+        width: 100%;
+        justify-content: center;
+
+        flex-flow: column nowrap;
+    }
+    main>div#single-car>div:first-child {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-top:15px;
+        
+    }
+    main>div#single-car>div:nth-child(1)>div:first-child, main>div#single-car>div:nth-child(1)>div:last-child {
+        display: none;
+    }
+    main>div#single-car>div:nth-child(1)>div:nth-child(2) {
+        flex: 1 0 auto;
+        height: 300px;
+        
+        overflow: hidden;
+        -webkit-box-shadow: 0px 0px 10px #000;
+        -moz-box-shadow: 0px 0px 10px #000;
+        box-shadow: 0px 0px 10px #000;
+    }
+    /* End of style for a single car*/
+}
+
 
 @media screen and (max-width: 600px) {
     aside {
@@ -238,24 +384,21 @@ main>section>div>form>li>select>option {
         margin-right: 20px;
     }
     main {
-        -webkit-box-sizing: border-box;
-        -o-box-sizing: border-box;
-        -ms-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
         padding-left: 0;
         margin-left: 0;
         margin-top: 130px;
         width: 100%;
     }
     body>nav {
+        
         background-color: white;
         display: flex;
         flex-flow: row nowrap;
         position: fixed;
         top: 0px;
-        right: 10px;
+        
         width: 100%;
+        width: calc( 100% - 10px);
         padding: 10px;
     }
     body>nav>span {
@@ -277,7 +420,6 @@ main>section>div>form>li>select>option {
         display: none;
     }
     main>div {
-        box-sizing: border-box;
         width: 100%;
         margin-left: 10px;
     }

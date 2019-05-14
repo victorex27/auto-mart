@@ -1,9 +1,10 @@
 import HomePage from './pages/home.js';
+import Navigation from './pages/navigation.js';
 
 const startApp = () => {
     
-    let a = new HomePage();
-
+    let homePage = new HomePage(new Navigation());
+    
 };
 
 
