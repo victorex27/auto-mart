@@ -1,24 +1,60 @@
 import Common  from './common.js';
+import HomePage from './home.js';
 class Car extends Common{
 
-    constructor(navigation){
+    constructor(){
         super();
-        this.navigation = navigation;
+        // this.navigation = navigation;
+        
+        this.makePurchaseOrderButton = document.getElementById('make-purchase-order-button');
+        this.updatePurchaseOrderButton = document.getElementById('update-purchase-order-button');
+        this.currentPurchaseOrderDiv = document.getElementById('current-purchase-order-div');
         
         this.carDiv = document.getElementById('single-car');
+
         
     }
 
+
     showPage(){
 
+        
         this.carDiv.style.display = 'flex';
         this.carDiv.classList.remove('is-not-visible');
+
+        
+        if( HomePage.Type === 'home'){
+            
+            this.makePurchaseOrderButton.classList.remove('is-not-visible');
+            this.updatePurchaseOrderButton.classList.add('is-not-visible')
+            this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+        }else if (HomePage.Type === 'po'){
+            
+            this.makePurchaseOrderButton.classList.add('is-not-visible');
+            this.updatePurchaseOrderButton.classList.remove('is-not-visible');
+            this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
+
+        }
+
+        
 
     }
 
     removePage(){
         this.carDiv.style.display = 'none';
         this.carDiv.classList.add('is-not-visible');
+        if( HomePage.Type === 'home'){
+
+            this.makePurchaseOrderButton.classList.add('is-not-visible');
+            this.updatePurchaseOrderButton.classList.remove('is-not-visible');
+            this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
+
+        }else if (HomePage.Type === 'po'){
+            this.makePurchaseOrderButton.classList.remove('is-not-visible');
+            this.updatePurchaseOrderButton.classList.add('is-not-visible')
+            this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+        }
+
     }
 
 }
