@@ -213,7 +213,7 @@ main>div#single-car {
     flex-flow: column nowrap;
 }
 
-main>div#single-car>div {
+main>div#single-car>div:nth-child(1),main>div#single-car>div:nth-child(2) {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -309,6 +309,32 @@ main > div#advertisement > header> label{
 main > div#advertisement select{
 
     width: 90%;
+}
+
+
+/* Style for Purchase order div */
+div#make-purchase-order{
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top:15px;
+}
+
+div#make-purchase-order input[type=number]{
+
+    width:200px;
+    height: 100%;
+    padding: 16px 32px;
+    margin: 6px 6px;
+    
+}
+
+div#make-purchase-order button{
+
+    width:200px;
+
 }
 
 
