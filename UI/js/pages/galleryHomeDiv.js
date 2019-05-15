@@ -15,7 +15,10 @@ class GalleryHomeDiv{
         this.cards.forEach(
 
             (card)=>{
-                card.addEventListener('click',(ev) => { this.onSetCurrentPage(ev,this.car); });
+                card.addEventListener('click',(ev) => { 
+            
+                    HomePage.Navigation.setCurrentPage( this.car );
+                 });
             }
 
         );
@@ -54,6 +57,17 @@ class GalleryHomeDiv{
                 }
             );
         }
+
+        if(HomePage.Type === 'adv'){
+
+            
+            this.filterDiv.style.display = 'none';
+            this.notes.forEach(
+                (note)=>{
+                    note.style.display = 'block';
+                }
+            );
+        }
         
         
     }
@@ -68,12 +82,7 @@ class GalleryHomeDiv{
     }
 
 
-    onSetCurrentPage(ev,obj){
-        HomePage.Navigation.setCurrentPage( obj );
-        // if (window.matchMedia('(max-width: 700px)').matches) {
-        //     this.oncloseButtonClicked(ev);
-        // }
-    }
+  
 
 
 

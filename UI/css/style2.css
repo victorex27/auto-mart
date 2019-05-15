@@ -345,6 +345,7 @@ div#make-purchase-order> div:last-child{
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-end;
+    align-self: flex-end;
     align-items: center;
     margin-top:15px;
 }
