@@ -16,16 +16,18 @@ class Navigation{
     
     }
 
-    setFirstPage(value ){
+    setFirstPage(currentPage ){
         // value here is the first page
-        this.backlog.push(value);
+        if( currentPage instanceof Common){
+            currentPage.showPage();
+            this.backlog.push(currentPage);
+        }
         
     }
 
 
 
     setCurrentPage(currentPage){
-        
         const sizeOfBacklog = this.backlog.length;
         if( sizeOfBacklog  > 0){
             const lastPage = this.backlog[ sizeOfBacklog  - 1];

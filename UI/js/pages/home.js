@@ -1,28 +1,38 @@
-import Car  from './car.js';
 import Advertisement  from './advertisement.js';
+import PurchaseOrderPage  from './purchaseOrderPage.js';
+import GalleryHomeDiV  from './galleryHomeDiV.js';
 import Common  from './common.js';
+
+let purchaseOrderPage = new PurchaseOrderPage();
 class HomePage extends Common{
 
     constructor(navigation){
         super();
-        navigation.setFirstPage( this );
-        this.navigation = navigation;
-
+        
         
 
-        this.car = new Car(navigation);
+        // HomePage.Navigation = navigation ;
+
+        
         this.advertisement = new Advertisement(navigation);
+    
         this.menuButton = document.getElementById('menu-button');
         this.closeButton = document.getElementById('close-button');
-        this.homeDiv = document.querySelector('main > div#gallery');
-        this.filterDiv = document.querySelector('main > section');
+        // this.homeDiv = document.querySelector('main > div#gallery');
+        // this.filterDiv = document.querySelector('main > section');
+        
+        // tabs in the aside block
         this.homeTab = document.getElementById('home_tab');
         this.advTab = document.getElementById('adv_tab');
+        this.poTab = document.getElementById('po_tab');
 
         this.activeTab = this.homeTab;
+
+        // Get gallery plus filter div
+        this.galleryHomeDiV = new GalleryHomeDiV('home',navigation);
         
         this.aside = document.querySelector('aside');
-        this.cards = document.querySelectorAll('.card');
+        
 
 
         this.menuButton.addEventListener('click',() => { this.onmenuButtonClicked(event); });
@@ -36,18 +46,21 @@ class HomePage extends Common{
         
         });
 
-        this.cards.forEach(
-
-            (card)=>{
-                card.addEventListener('click',(ev) => { this.onSetCurrentPage(ev,this.car); });
-            }
-
-        );
+        
 
         this.advTab.addEventListener('click',(ev) => { 
             this.onSetCurrentPage(ev,this.advertisement);
             this.onChangeActiveTab(ev.srcElement);
         });
+
+        this.poTab.addEventListener('click',(ev) => { 
+            
+            this.onSetCurrentPage(ev,purchaseOrderPage);
+            this.onChangeActiveTab(ev.srcElement);
+        });
+        HomePage.Navigation = navigation;
+        navigation.setFirstPage( this );
+        
     }
 
     onChangeActiveTab( newTab ){
@@ -56,9 +69,9 @@ class HomePage extends Common{
         this.activeTab = newTab;
         this.activeTab.classList.add('current');
     }
-
+    // refactor this with that in galleryHomeDiv
     onSetCurrentPage(ev,obj){
-        this.navigation.setCurrentPage( obj );
+        HomePage.Navigation.setCurrentPage( obj );
         if (window.matchMedia('(max-width: 700px)').matches) {
             this.oncloseButtonClicked(ev);
         }
@@ -72,25 +85,49 @@ class HomePage extends Common{
 
     oncloseButtonClicked(ev){
         
-        
         this.aside.style.display = 'none';
         this.aside.style.width = '30%';
         ev.preventDefault();
     }
 
-    showPage(){
-        this.homeDiv.style.display = 'flex';
-        if (!window.matchMedia('(max-width: 700px)').matches) {
-            this.filterDiv.style.display = 'flex';
-          }
+
+    static set Navigation( navigation ){
+        this._navigation = navigation;
+    }
+
+    static get Navigation (){
+
+        return this._navigation;
+    }
+
+    static set Type( type ){
         
+        this._type = type;
+    }
+
+    static get Type(){
+
+        return this._type;
+    }
+
+    showPage(){
+        // this.homeDiv.style.display = 'flex';
+        // if (!window.matchMedia('(max-width: 700px)').matches) {
+        //     this.filterDiv.style.display = 'flex';
+        //   }
+
+        HomePage.Type = 'home';
+        
+          this.galleryHomeDiV.showPage();
         
     }
 
     removePage(){
         
-        this.homeDiv.style.display = 'none';
-        this.filterDiv.style.display = 'none';
+        // this.homeDiv.style.display = 'none';
+        // this.filterDiv.style.display = 'none';
+
+        this.galleryHomeDiV.removePage();
     }
 
 }

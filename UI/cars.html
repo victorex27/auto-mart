@@ -123,6 +123,7 @@
                     <span>Bugatti au noire</span>
                     <span>$144, 735</span>
                 </div>
+                <span class='notification'> 3</span>
             </div>
 
             <div class='card'>
@@ -134,6 +135,7 @@
                     <span>Bugatti au noire</span>
                     <span>$144, 735</span>
                 </div>
+                <span class='notification'> 3</span>
             </div>
 
             <div class='card'>
@@ -145,6 +147,7 @@
                     <span>Bugatti au noire</span>
                     <span>$144, 735</span>
                 </div>
+                <span class='notification'> 3</span>
             </div>
             <div class='card'>
                 <div>
@@ -155,6 +158,7 @@
                     <span>Bugatti au noire</span>
                     <span>$144, 735</span>
                 </div>
+                <span class='notification'> 3</span>
             </div>
 
             <div class='card'>
@@ -166,8 +170,9 @@
                     <span>Bugatti au noire</span>
                     <span>$144, 735</span>
                 </div>
+                <span class='notification'> 3</span>
             </div>
-
+        
 
         </div>
 
@@ -202,12 +207,21 @@
 
             <div id='make-purchase-order'>
 
-                 
-                    <span> Price( &#8358; ) </span> <input type='number' name='po-price' id='po-price'>
+                <div id='current-purchase-order-div' class='is-not-visible'>
+                        <span> Purcahse Order:( &#8358; )</span> <span> 14 000</span>
+                </div>
+
+                <div>
+                    
+                        <span> Price( &#8358; ) </span> <input type='number' name='po-price' id='po-price'>
                     
                 
-                 <button> Make Purchase Order </button> 
-                
+                        <button id='make-purchase-order-button' class='is-not-visible'> Make Purchase Order </button> 
+                        <button id='update-purchase-order-button' class='is-not-visible'> Update Purchase Order </button> 
+                       
+                </div>
+
+                 
             </div>
 
 
