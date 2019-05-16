@@ -1,7 +1,7 @@
 import Advertisement  from './advertisement.js';
-import PurchaseOrderPage  from './purchaseOrderPage.js';
+import PurchaseOrderPage  from './purchaseorderpage.js';
 import AdminPage  from './AdminPage.js';
-import GalleryHomeDiV  from './galleryHomeDiV.js';
+import GalleryHomeDiV  from './galleryhomediV.js';
 import Common  from './common.js';
 
 let purchaseOrderPage = new PurchaseOrderPage();

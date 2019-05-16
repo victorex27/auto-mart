@@ -1,5 +1,5 @@
 import Common  from './common.js';
-import GalleryHomeDiV  from './galleryHomeDiV.js';
+import GalleryHomeDiV  from './galleryhomediV.js';
 import HomePage from './home.js';
 class Advertisement extends Common{
 
