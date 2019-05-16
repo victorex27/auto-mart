@@ -227,7 +227,7 @@ main>div#single-car {
     margin-top: 15px;
     width: 100%;
     justify-content: center;
-    
+    padding: 20px;
     flex-flow: column nowrap;
 }
 
@@ -369,6 +369,20 @@ div#make-purchase-order button{
 
     width:200px;
 
+}
+
+
+div#delete-post-div{
+
+    display: none;
+    flex-flow: column wrap;
+    padding: 20px;
+    justify-content: flex-start;
+}
+
+
+div#delete-post-div > span.report{
+    text-align: justify;
 }
 
 

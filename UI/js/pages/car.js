@@ -12,6 +12,10 @@ class Car extends Common{
         this.currentPurchaseOrderDiv = document.getElementById('current-purchase-order-div');
         this.isSoldDiv = document.getElementById('is-sold-div');
         this.carDiv = document.getElementById('single-car');
+        // div for making puchase order, and updating price for both seller and user
+        this.makePurchaseOrderDiv = document.getElementById('make-purchase-order');
+        this.deletePostDiv = document.getElementById('delete-post-div');
+        
 
         
     }
@@ -22,32 +26,42 @@ class Car extends Common{
         
         this.carDiv.style.display = 'flex';
         this.carDiv.classList.remove('is-not-visible');
+        this.deletePostDiv.style.display = 'none';
+
+        switch (HomePage.Type) {
+            case 'home':
+                this.makePurchaseOrderButton.classList.remove('is-not-visible');
+                this.updatePurchaseOrderButton.classList.add('is-not-visible')
+                this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+                this.updateAdvertButton.classList.add('is-not-visible');
+                this.isSoldDiv.style.display = 'none';
+                
+            break;
+
+            case 'po':
+                this.makePurchaseOrderButton.classList.add('is-not-visible');
+                this.updatePurchaseOrderButton.classList.remove('is-not-visible');
+                this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
+                this.updateAdvertButton.classList.add('is-not-visible');
+                this.isSoldDiv.style.display = 'none';
+            break;
 
         
-        if( HomePage.Type === 'home'){
+            case 'adv':
+                this.makePurchaseOrderButton.classList.add('is-not-visible');
+                this.updatePurchaseOrderButton.classList.add('is-not-visible')
+                this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+                this.updateAdvertButton.classList.remove('is-not-visible');
+                this.isSoldDiv.style.display = 'flex';
+            break;
+            case 'admin':
+                this.makePurchaseOrderDiv.style.display = 'none';
+                this.deletePostDiv.style.display = 'flex';
+            break;
             
-            this.makePurchaseOrderButton.classList.remove('is-not-visible');
-            this.updatePurchaseOrderButton.classList.add('is-not-visible')
-            this.currentPurchaseOrderDiv.classList.add('is-not-visible');
-            this.updateAdvertButton.classList.add('is-not-visible');
-            this.isSoldDiv.style.display = 'none';
-        }else if (HomePage.Type === 'po'){
-            
-            this.makePurchaseOrderButton.classList.add('is-not-visible');
-            this.updatePurchaseOrderButton.classList.remove('is-not-visible');
-            this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
-            this.updateAdvertButton.classList.add('is-not-visible');
-            this.isSoldDiv.style.display = 'none';
 
-        }else if (HomePage.Type === 'adv'){
-
-             
-            this.makePurchaseOrderButton.classList.add('is-not-visible');
-            this.updatePurchaseOrderButton.classList.add('is-not-visible')
-            this.currentPurchaseOrderDiv.classList.add('is-not-visible');
-            this.updateAdvertButton.classList.remove('is-not-visible');
-            this.isSoldDiv.style.display = 'flex';
         }
+
 
         
 
@@ -56,17 +70,34 @@ class Car extends Common{
     removePage(){
         this.carDiv.style.display = 'none';
         this.carDiv.classList.add('is-not-visible');
-        if( HomePage.Type === 'home'){
+        this.makePurchaseOrderDiv.style.display = 'block';
 
-            this.makePurchaseOrderButton.classList.add('is-not-visible');
-            this.updatePurchaseOrderButton.classList.remove('is-not-visible');
-            this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
 
-        }else if (HomePage.Type === 'po'){
-            this.makePurchaseOrderButton.classList.remove('is-not-visible');
-            this.updatePurchaseOrderButton.classList.add('is-not-visible')
-            this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+        switch (HomePage.Type) {
+            case 'home':
+                this.makePurchaseOrderButton.classList.add('is-not-visible');
+                this.updatePurchaseOrderButton.classList.remove('is-not-visible');
+                this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
+                    
+            break;
+
+            case 'po':
+                this.makePurchaseOrderButton.classList.remove('is-not-visible');
+                this.updatePurchaseOrderButton.classList.add('is-not-visible')
+                this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+            break;
+
+            case '':
+                this.deletePostDiv.style.display = 'none';
+            break;
+
+            case 'admin':
+                this.makePurchaseOrderDiv.style.display = 'none';
+            break
+
         }
+
+       
 
     }
 
