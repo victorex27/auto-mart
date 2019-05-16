@@ -46,7 +46,7 @@ class Car extends Common{
                 this.currentPurchaseOrderDiv.classList.add('is-not-visible');
                 this.updateAdvertButton.classList.add('is-not-visible');
                 this.isSoldDiv.style.display = 'none';
-                this.reportPostButton.style.display = 'block';
+                this.reportPostButton.style.display = 'none';
                 
             break;
 
