@@ -1,5 +1,6 @@
 import Advertisement  from './advertisement.js';
 import PurchaseOrderPage  from './purchaseOrderPage.js';
+import AdminPage  from './AdminPage.js';
 import GalleryHomeDiV  from './galleryHomeDiV.js';
 import Common  from './common.js';
 
@@ -25,6 +26,7 @@ class HomePage extends Common{
         this.homeTab = document.getElementById('home_tab');
         this.advTab = document.getElementById('adv_tab');
         this.poTab = document.getElementById('po_tab');
+        this.adminTab = document.getElementById('admin_tab');
 
         this.activeTab = this.homeTab;
 
@@ -56,6 +58,12 @@ class HomePage extends Common{
         this.poTab.addEventListener('click',(ev) => { 
             
             this.onSetCurrentPage(ev,purchaseOrderPage);
+            this.onChangeActiveTab(ev.srcElement);
+        });
+
+        this.adminTab.addEventListener('click',(ev) => { 
+            
+            this.onSetCurrentPage(ev,new AdminPage() );
             this.onChangeActiveTab(ev.srcElement);
         });
         HomePage.Navigation = navigation;
