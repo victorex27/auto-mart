@@ -10,7 +10,7 @@ class Car extends Common{
         this.updatePurchaseOrderButton = document.getElementById('update-purchase-order-button');
         this.updateAdvertButton = document.getElementById('update-advert-button');
         this.currentPurchaseOrderDiv = document.getElementById('current-purchase-order-div');
-        
+        this.isSoldDiv = document.getElementById('is-sold-div');
         this.carDiv = document.getElementById('single-car');
 
         
@@ -30,12 +30,14 @@ class Car extends Common{
             this.updatePurchaseOrderButton.classList.add('is-not-visible')
             this.currentPurchaseOrderDiv.classList.add('is-not-visible');
             this.updateAdvertButton.classList.add('is-not-visible');
+            this.isSoldDiv.style.display = 'none';
         }else if (HomePage.Type === 'po'){
             
             this.makePurchaseOrderButton.classList.add('is-not-visible');
             this.updatePurchaseOrderButton.classList.remove('is-not-visible');
             this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
             this.updateAdvertButton.classList.add('is-not-visible');
+            this.isSoldDiv.style.display = 'none';
 
         }else if (HomePage.Type === 'adv'){
 
@@ -44,6 +46,7 @@ class Car extends Common{
             this.updatePurchaseOrderButton.classList.add('is-not-visible')
             this.currentPurchaseOrderDiv.classList.add('is-not-visible');
             this.updateAdvertButton.classList.remove('is-not-visible');
+            this.isSoldDiv.style.display = 'flex';
         }
 
         

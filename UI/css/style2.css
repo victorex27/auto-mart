@@ -281,6 +281,11 @@ main>div#single-car>div:nth-child(3)>div {
     padding: 10px;
 }
 
+div#is-sold-div{
+    display:none;
+    justify-content: flex-end;
+}
+
 main>div#single-car>div:nth-child(3)>div>label {
     font-weight: bolder;
 }
@@ -348,6 +353,7 @@ div#make-purchase-order> div:last-child{
     align-self: flex-end;
     align-items: center;
     margin-top:15px;
+    margin-left:auto;
 }
 
 div#make-purchase-order input[type=number]{

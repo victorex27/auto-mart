@@ -93,6 +93,7 @@ nav>span.site-name {
 
 button#get-started {
   float: right;
+  width:210px;
 }
 
 aside {
