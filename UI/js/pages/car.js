@@ -11,6 +11,7 @@ class Car extends Common{
         this.currentPurchaseOrderDiv = document.getElementById('current-purchase-order-div');
         this.isSoldDiv = document.getElementById('is-sold-div');
         this.carDiv = document.getElementById('single-car');
+        this.verifyPurchaseOrderDiv = document.getElementById('verify-purchase-order');
 
         // div for making puchase order, and updating price for both seller and user
         this.makePurchaseOrderDiv = document.getElementById('make-purchase-order');
@@ -38,6 +39,7 @@ class Car extends Common{
         this.carDiv.style.display = 'flex';
         this.carDiv.classList.remove('is-not-visible');
         this.deletePostDiv.style.display = 'none';
+        this.verifyPurchaseOrderDiv.style.display = 'none';
 
         switch (HomePage.Type) {
             case 'home':
@@ -67,6 +69,7 @@ class Car extends Common{
                 this.updateAdvertButton.classList.remove('is-not-visible');
                 this.isSoldDiv.style.display = 'flex';
                 this.reportPostButton.style.display = 'none';
+                this.verifyPurchaseOrderDiv.style.display = 'block';
             break;
             case 'admin':
                 this.makePurchaseOrderDiv.style.display = 'none';
