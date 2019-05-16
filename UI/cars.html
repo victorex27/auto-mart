@@ -52,6 +52,7 @@
 
 
 
+
         <!--<h1> SUV </h1>-->
         <section>
             <div>
@@ -173,14 +174,24 @@
             </div>
 
             <div id='delete-post-div'>
-                
-                    <label for="report"> Report- Obi Amaobi </label>
-                    <span class='report'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                
 
-                <button id='delete-adv' class='btn'> <span>Delete Post</span> <img src="img/Delete_2.ico" alt="delete adv"></button>
+                <label for="report"> Report- Obi Amaobi </label>
+                <div><label> Reason: </label> <span>weird demands</span></div>
                 
+                <span class='report'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+
+
+                <button id='delete-adv' class='btn'> <span>Delete Post</span> <img src="img/Delete_2.ico"
+                        alt="delete adv"></button>
+
             </div>
+
+            <button class='btn' id='report-post'> <span>Report</span> <img src="img/Comments.ico" alt="report post">
+            </button>
 
 
         </div>
@@ -253,9 +264,9 @@
                     <span>$144, 735</span>
                     <span class='is-sold-span'> Sold </span>
                 </div>
-                
+
                 <span class='notification'> 3</span>
-                
+
             </div>
 
             <div class='card'>
@@ -312,6 +323,36 @@
 
         </div>
 
+        <div class='modal'>
+
+            <div>
+                    <span> <button class='am am-close am-50 close-modal' ></button></span>
+                <div>
+
+                    <h2>Report</h2>
+                    <form>
+                        <div class='form-group'>
+                            <span> Reason</span>
+                            <select name="report-option" id="report-option">
+                                <option value="pricing"> Pricing</option>
+                                <option value="weird demand">Weird Demand</option>
+                                <option value="delay"> Delay</option>
+                            </select>
+                            
+                        </div>
+
+            
+                        <div class='form-group'><label for="report">Report</label> <textarea name="report"
+                                id="report" cols="10" rows="10"></textarea></div>
+                        <div class='form-group'> <button id='submit-report'> Submit </button></div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="overlay"> </div>
 
     </main>
 
