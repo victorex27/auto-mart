@@ -1,4 +1,4 @@
-import GalleryHomeDiV  from './galleryhomediV.js';
+import GalleryHomeDiV  from './gallerydiv.js';
 import Common  from './common.js';
 import HomePage from './home.js';
 class AdminPage extends Common{
