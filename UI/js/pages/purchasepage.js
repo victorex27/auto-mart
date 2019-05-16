@@ -1,4 +1,4 @@
-import GalleryHomeDiV  from './galleryHomeDiV.js';
+import GalleryHomeDiV  from './gallerydiv.js';
 import Common  from './common.js';
 import HomePage from './home.js';
 class PurchaseOrderPage extends Common{
