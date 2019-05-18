@@ -27,14 +27,14 @@ h2 {
 input[type="file"] {
   cursor: pointer;
   font-size: 1.5em;
-  font-weight: 700;
-  background-color: rgb(84, 0, 50);
+  font-weight: 200;
+  background-color: transparent;
   color: white;
   display: inline-block;
-  width: 90%;
+  width: 150px;
 }
 
-input[type="email"], input[type="text"], input[type="password"] , input[type="number"] {
+input[type="email"], input[type="text"], input[type="password"], input[type="number"] {
   padding: 12px 20px;
   width: 90%;
   height: 30px;
@@ -46,7 +46,7 @@ input[type="email"], input[type="text"], input[type="password"] , input[type="nu
 }
 
 input[type="email"]:focus, input[type="text"]:focus, input[type="password"]:focus {
-  border: 2px solid rgba(217, 30, 24, 1);
+  border: 2px solid rgba(144, 12, 63);
 }
 
 textarea {
@@ -75,52 +75,48 @@ div.form-group>label {
 
 label {
   margin: 4px 2px;
-  color: rgba(217, 30, 24, 1);
+  color: rgba(144, 12, 63);
   font-weight: bolder;
 }
 
-
 button {
   cursor: pointer;
-  background-color: rgba(217, 30, 24, 1);
+  background-image: linear-gradient(white, rgba(144, 12, 63), rgba(144, 12, 63));
+  background-color: rgba(144, 12, 63);
   border: none;
   color: white;
   text-decoration: none;
   width: 150px;
-  height:50px;
+  height: 50px;
   padding: 4px 8px;
   margin: 10px 0px;
 }
-
-
 
 .am {
   background-color: transparent;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
-  
 }
 
-.am-no-margin{
+.am-no-margin {
   margin: 0px;
 }
-.am-no-padding{
+
+.am-no-padding {
   padding: 0px;
 }
 
-.am-small{
+.am-small {
   background-size: 10px;
 }
 
-.am-primary-color{
-
-  background-color:rgba(217, 30, 24, 1); 
+.am-primary-color {
+  background-color: rgba(144, 12, 63);
   border-radius: 50%;
   -webkit-box-shadow: 2px 2px 3px #000;
-    -moz-box-shadow: 0px 0px 3px #000;
-    box-shadow: 2px 2px 3px #000;
+  -moz-box-shadow: 0px 0px 3px #000;
+  box-shadow: 2px 2px 3px #000;
 }
 
 .am-40 {
@@ -170,13 +166,12 @@ button {
   background-image: url(../img/Minus_2.ico)
 }
 
-.btn{
-  
+.btn {
   font-weight: bolder;
   max-width: 250px;
 }
 
-.btn img {  
+.btn img {
   display: inline-block;
   vertical-align: middle;
   background: transparent;
@@ -187,28 +182,30 @@ button {
   height: 25px;
 }
 
-.btn-small{
-  width:100px;
+.btn-small {
+  width: 100px;
 }
+
 .is-not-visible {
   display: none;
 }
 
-
 /* Modal styling */
+
 /*  help from https://css-tricks.com/considerations-styling-modal/ */
-.overlay{
+
+.overlay {
   display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(10, 10, 10,0.5);
+  background-color: rgba(10, 10, 10, 0.5);
   z-index: 2;
 }
 
-.modal{
+.modal {
   display: none;
   flex-flow: column wrap;
   justify-content: center;
@@ -223,8 +220,7 @@ button {
   z-index: 3;
 }
 
-.modal > div {
-  
+.modal>div {
   background-color: white;
   width: 300px;
   height: 400px;
@@ -232,8 +228,6 @@ button {
   margin: auto;
 }
 
-.modal select, .modal textarea{
-
-  width:100%;
-
+.modal select, .modal textarea {
+  width: 100%;
 }

@@ -11,7 +11,7 @@ class AdminPage extends Common{
     }
 
     showPage(){
-        
+        document.querySelector('h1').innerHTML = 'Admin';
         HomePage.Type = 'admin';
         this.galleryHomeDiV.showPage();
 
