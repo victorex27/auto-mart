@@ -15,7 +15,7 @@ class PurchaseOrderPage extends Common{
     showPage(){
         
         
-        
+        document.querySelector('h1').innerHTML = 'Purchase Orders';        
         HomePage.Type = 'po';
         this.galleryHomeDiV.showPage();
 

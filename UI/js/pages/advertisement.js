@@ -6,6 +6,7 @@ class Advertisement extends Common{
     constructor(){
         super();
     
+        
         this.advDiv = document.getElementById('advertisement');
 
         this.header = document.querySelector('div#advertisement > header');
@@ -32,6 +33,7 @@ class Advertisement extends Common{
     }
 
     showPage(){
+        document.querySelector('h1').innerHTML = 'Your Ads';
         HomePage.Type = 'adv';
 
         this.advDiv.style.display = 'flex';

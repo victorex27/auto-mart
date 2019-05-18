@@ -17,6 +17,13 @@ class Car extends Common{
         this.makePurchaseOrderDiv = document.getElementById('make-purchase-order');
         this.deletePostDiv = document.getElementById('delete-post-div');
         this.reportPostButton = document.getElementById('report-post');
+
+        // purchase order status
+        this.status = document.querySelector('div#current-purchase-order-div > div:nth-child(2)');
+
+        //main div
+        this.main = document.querySelector('main');
+        
         
         /* modal */
         this.modalDiv = document.querySelector('.modal');
@@ -35,14 +42,17 @@ class Car extends Common{
 
     showPage(){
 
-        
+        window.scroll(0,0);
+
         this.carDiv.style.display = 'flex';
         this.carDiv.classList.remove('is-not-visible');
         this.deletePostDiv.style.display = 'none';
         this.verifyPurchaseOrderDiv.style.display = 'none';
+        this.status.style.display = 'none';
 
         switch (HomePage.Type) {
             case 'home':
+                document.querySelector('h1').innerHTML = 'Make Purchase Order';
                 this.makePurchaseOrderButton.classList.remove('is-not-visible');
                 this.updatePurchaseOrderButton.classList.add('is-not-visible')
                 this.currentPurchaseOrderDiv.classList.add('is-not-visible');
@@ -53,12 +63,14 @@ class Car extends Common{
             break;
 
             case 'po':
+                document.querySelector('h1').innerHTML = 'Purchase Order';
                 this.makePurchaseOrderButton.classList.add('is-not-visible');
                 this.updatePurchaseOrderButton.classList.remove('is-not-visible');
                 this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
                 this.updateAdvertButton.classList.add('is-not-visible');
                 this.isSoldDiv.style.display = 'none';
                 this.reportPostButton.style.display = 'block';
+                this.status.style.display = 'block';
             break;
 
         
