@@ -28,6 +28,7 @@ class GalleryHomeDiv{
     }
 
     showPage(){
+        window.scroll(0,0);
         this.homeDiv.style.display = 'flex';
 
         if (!window.matchMedia('(max-width: 700px)').matches && HomePage.Type === 'home') {
@@ -37,14 +38,24 @@ class GalleryHomeDiv{
             
         }
 
+        
+
         switch(HomePage.Type){
             case 'home':{
+                
+                if (window.matchMedia('(max-width: 700px)').matches) {
+                    this.homeDiv.style.width = '100%';
+                }else{
+                    this.homeDiv.style.width = '75%';
+                }
                 this.removeNotificationDiv();
                 this.removeSoldStatus();
+
             }
             break;
 
             case 'po':{
+                this.homeDiv.style.width = '100%';
                 this.removeSoldStatus();
                 this.removeFilterDiv();
                 this.showNotificationDiv();
@@ -53,6 +64,7 @@ class GalleryHomeDiv{
             break;
 
             case 'adv':{
+                this.homeDiv.style.width = '100%';
                 this.removeSoldStatus();
                 this.removeFilterDiv();
                 this.showNotificationDiv();
@@ -62,6 +74,7 @@ class GalleryHomeDiv{
             break;
 
             case 'admin' :{
+                this.homeDiv.style.width = '100%';
                 this.showSoldStatus();
                 this.removeFilterDiv();
                 this.removeNotificationDiv();
@@ -91,7 +104,7 @@ class GalleryHomeDiv{
     showNotificationDiv(){
         this.notes.forEach(
             (span)=>{
-                span.style.display = 'block';
+                span.style.display = 'inline';
             }
         );
     }

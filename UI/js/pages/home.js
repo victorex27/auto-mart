@@ -119,6 +119,7 @@ class HomePage extends Common{
     }
 
     showPage(){
+        document.querySelector('h1').innerHTML = 'Home';
         // this.homeDiv.style.display = 'flex';
         // if (!window.matchMedia('(max-width: 700px)').matches) {
         //     this.filterDiv.style.display = 'flex';
