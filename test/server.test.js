@@ -17,7 +17,7 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('User Account already exists');
           done();
         });
@@ -34,7 +34,7 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Email Field cannot be empty');
           done();
         });
@@ -50,7 +50,7 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid Email Format');
           done();
         });
@@ -67,7 +67,7 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Password must be between 6 to 40 characters');
           done();
         });
@@ -84,7 +84,7 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Password Field must contain at least one number');
           done();
         });
@@ -101,7 +101,7 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Password Field must contain at least an alphabet');
           done();
         });
@@ -118,8 +118,8 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
-          expect(res.body).to.have.property('error').to.be.a('string').equals('firstName Field cannot be empty');
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('First Name Field cannot be empty');
           done();
         });
     });
@@ -134,8 +134,8 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
-          expect(res.body).to.have.property('error').to.be.a('string').equals('lastName Field cannot be empty');
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Last Name Field cannot be empty');
           done();
         });
     });
@@ -151,13 +151,97 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Address Field cannot be empty');
           done();
         });
     });
   });
 
+  describe('When a new User Signs Up with no email field ', () => {
+    it('should return an object with the status and error', (done) => {
+      const user = {
+        firstName: 'Amaobi', lastName: 'Victor', password: 'password54', address: '',
+      };
+
+      chai.request(server)
+        .post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Email Field is missing');
+          done();
+        });
+    });
+  });
+
+  describe('When a new User Signs Up with no first name field ', () => {
+    it('should return an object with the status and error', (done) => {
+      const user = {
+        email: 'aobikobe11@gmail.com', lastName: 'Victor', password: 'password54', address: '',
+      };
+
+      chai.request(server)
+        .post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('First Name Field is missing');
+          done();
+        });
+    });
+  });
+
+  describe('When a new User Signs Up with no last name field ', () => {
+    it('should return an object with the status and error', (done) => {
+      const user = {
+        email: 'aobikobe11@gmail.com', firstName: 'Amaobi', password: 'password54', address: '',
+      };
+
+      chai.request(server)
+        .post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Last Name Field is missing');
+          done();
+        });
+    });
+  });
+
+  describe('When a new User Signs Up with no password field ', () => {
+    it('should return an object with the status and error', (done) => {
+      const user = {
+        email: 'aobikobe11@gmail.com', firstName: 'Amaobi', lastName: 'Victor', address: '',
+      };
+
+      chai.request(server)
+        .post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Password Field is missing');
+          done();
+        });
+    });
+  });
+
+  describe('When a new User Signs Up with no address field ', () => {
+    it('should return an object with the status and error', (done) => {
+      const user = {
+        email: 'aobikobe11@gmail.com', firstName: 'Amaobi', lastName: 'Victor', password: 'password54',
+      };
+
+      chai.request(server)
+        .post('/api/v1/auth/signup')
+        .send(user)
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Address Field is missing');
+          done();
+        });
+    });
+  });
 
   describe('When a new User Signs Up with an acceptable detail', () => {
     it('should return an object with the status and data', (done) => {
@@ -169,7 +253,7 @@ describe('POST /api/v1/auth/signup', () => {
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status');
+          expect(res.body).to.have.property('status').to.equals(201);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('token');
           expect(res.body).to.have.property('data').to.have.property('email');

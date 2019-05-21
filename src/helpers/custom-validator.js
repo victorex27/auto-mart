@@ -2,12 +2,10 @@ import checkAPIs from 'express-validator/check';
 
 const { check } = checkAPIs;
 
-const checkLengthGreaterThanOne = (name => check(name).exists().isLength({ min: 1 })
-  .withMessage(`${name} Field cannot be empty`)
-  .trim());
 
-
-export const emailCheck = check('email').exists().isLength({ min: 1 })
+export const emailCheck = check('email').exists()
+  .withMessage('Email Field is missing')
+  .isLength({ min: 1 })
   .withMessage('Email Field cannot be empty')
   .isEmail()
   .withMessage('Invalid Email Format')
@@ -15,6 +13,7 @@ export const emailCheck = check('email').exists().isLength({ min: 1 })
 
 
 export const passwordCheck = check('password').exists()
+  .withMessage('Password Field is missing')
   .isLength({ min: 6, max: 40 })
   .withMessage('Password must be between 6 to 40 characters')
   .not()
@@ -26,11 +25,16 @@ export const passwordCheck = check('password').exists()
   .trim();
 
 export const lastNameCheck = check('lastName').exists()
+  .withMessage('Last Name Field is missing')
   .isLength({ min: 1 })
-  .withMessage('lastName Field cannot be empty');
+  .withMessage('Last Name Field cannot be empty');
 
-export const firstNameCheck = checkLengthGreaterThanOne('firstName');
+export const firstNameCheck = check('firstName').exists()
+  .withMessage('First Name Field is missing')
+  .isLength({ min: 1 })
+  .withMessage('First Name Field cannot be empty');
 
 export const addressCheck = check('address').exists()
+  .withMessage('Address Field is missing')
   .isLength({ min: 1 })
   .withMessage('Address Field cannot be empty');

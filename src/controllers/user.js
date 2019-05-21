@@ -10,11 +10,11 @@ class User {
 
     if (!errors.isEmpty()) {
       const error = errors.array();
-      return res.status(404).json({ status: 404, error: error[0].msg });
+      return res.status(404).json({ status: 400, error: error[0].msg });
     }
 
     if (newUser.error) {
-      return res.status(403).json({ status: 403, error: newUser.error });
+      return res.status(403).json({ status: 400, error: newUser.error });
     }
 
 
