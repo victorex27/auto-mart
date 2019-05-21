@@ -18,9 +18,10 @@ class User {
     }
 
 
-    // const token = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.YOUR_SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.YOUR_SECRET_KEY, { expiresIn: '1h' });
 
-    return res.status(201).json({ status: 201, data: { token: 'token', ...newUser } });
+    console.log('this is the token ', token);
+    return res.status(201).json({ status: 201, data: { token:'token', ...newUser } });
   }
 }
 
