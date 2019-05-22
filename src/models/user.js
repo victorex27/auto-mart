@@ -41,11 +41,10 @@ class User {
 
 
   create(data) {
-    const doesUserExist = this.users.find(user => user.email === data.email);
-    if (doesUserExist) {
-      const errorMessage = { error: 'User Account already exists' };
-      return errorMessage;
+    if (this.doesUserExist(data.email)) {
+      return { error: 'User Account already exists' };
     }
+
     const newId = this.lastInsertId + 1;
     this.lastInsertId = newId;
     const newUser = {
@@ -59,6 +58,27 @@ class User {
     };
     this.users.push(newUser);
     return newUser;
+  }
+
+  signIn(data) {
+    if (!this.doesUserExist(data.email)) {
+      return { error: 'User Account does not exist' };
+    }
+    const user = this.doCredentailsMatch(data.email, data.password);
+
+    if (!user) {
+      return { error: 'Invalid Password' };
+    }
+
+    return user;
+  }
+
+  doesUserExist(email) {
+    return this.users.find(user => user.email === email);
+  }
+
+  doCredentailsMatch(email, password) {
+    return this.users.find(user => user.email === email && user.password === password);
   }
 }
 export default new User();
