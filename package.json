@@ -51,7 +51,9 @@
     "lint": "eslint",
     "start": "cross-env NODE_ENV=production babel-node src/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon --exec babel-node src/server.js",
-    "test": "cross-env NODE_ENV=test mocha test  --require @babel/register --timeout 50000"
+    "test": "cross-env NODE_ENV=test mocha --exit test  --require @babel/register --timeout 50000",
+    "cover": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ./node_modules/mocha/bin/_mocha test",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
