@@ -18,5 +18,10 @@ router.post('/auth/signup', [
   addressCheck,
 ], User.create);
 
+router.post('/auth/signin', [
+  emailCheck,
+  passwordCheck,
+], User.signIn);
+
 
 export default router;
