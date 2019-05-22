@@ -1,7 +1,5 @@
-import checkAPIs from 'express-validator/check';
-
-const { check } = checkAPIs;
-
+import jwt from 'jsonwebtoken';
+import { check } from 'express-validator/check';
 
 export const emailCheck = check('email').exists()
   .withMessage('Email Field is missing')
@@ -38,3 +36,37 @@ export const addressCheck = check('address').exists()
   .withMessage('Address Field is missing')
   .isLength({ min: 1 })
   .withMessage('Address Field cannot be empty');
+
+export const carIdCheck = check('carId').exists()
+  .withMessage('No car id supplied')
+  .isInt({ min: 1 })
+  .withMessage('Car id must be a positive integer')
+  .trim();
+
+
+export const priceCheck = check('amount').exists()
+  .withMessage('Price is not supplied')
+  .isInt({ min: 1 })
+  .withMessage('Price must be a positive integer')
+  .trim();
+
+export const checkToken = (req, res, next) => {
+  const header = req.headers.authorization;
+
+  if (typeof header !== 'undefined') {
+    const bearer = header.split(' ');
+    const token = bearer[1];
+    req.token = token;
+    try {
+      const result = jwt.verify(token, process.env.YOUR_SECRET_KEY);
+      req.user = result;
+    } catch (e) {
+      return res.status(403).json({ status: 403, error: 'Forbidden' });
+    }
+
+    next();
+  } else {
+    // If header is undefined
+    return res.status(403).json({ status: 403, error: 'Forbidden' });
+  }
+};

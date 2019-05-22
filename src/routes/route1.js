@@ -1,10 +1,10 @@
 import express from 'express';
-import { check } from 'express-validator/check';
 import User from '../controllers/user';
+import Order from '../controllers/order';
 
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
-  addressCheck,
+  addressCheck, checkToken, priceCheck, carIdCheck,
 } from '../helpers/custom-validator';
 
 const router = express.Router();
@@ -22,6 +22,12 @@ router.post('/auth/signin', [
   emailCheck,
   passwordCheck,
 ], User.signIn);
+
+router.post('/order', [
+  checkToken,
+  priceCheck,
+  carIdCheck,
+], Order.makeOrder);
 
 
 export default router;
