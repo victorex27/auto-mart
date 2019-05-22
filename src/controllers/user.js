@@ -10,14 +10,14 @@ class User {
 
     if (!errors.isEmpty()) {
       const error = errors.array();
-      return res.status(404).json({ status: 400, error: error[0].msg });
+      return res.status(400).json({ status: 400, error: error[0].msg });
     }
 
     if (newUser.error) {
-      return res.status(403).json({ status: 400, error: newUser.error });
+      return res.status(400).json({ status: 400, error: newUser.error });
     }
 
-
+    console.log('this is the token ', process.env.YOUR_SECRET_KEY);
     const token = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.YOUR_SECRET_KEY, { expiresIn: '1h' });
 
     console.log('this is the token ', token);

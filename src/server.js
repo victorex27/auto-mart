@@ -3,8 +3,9 @@ import dotenv from 'dotenv';
 import router1 from './routes/route1';
 
 
-const app = express();
 dotenv.config();
+const app = express();
+
 const portNumber = process.env.PORT || 3000;
 
 app.use(express.json());
