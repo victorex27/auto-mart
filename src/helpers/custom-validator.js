@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { check } from 'express-validator/check';
+import { check, param } from 'express-validator/check';
+import { sanitizeParam } from 'express-validator/filter';
 
 export const emailCheck = check('email').exists()
   .withMessage('Email Field is missing')
@@ -49,6 +50,22 @@ export const priceCheck = check('amount').exists()
   .isInt({ min: 1 })
   .withMessage('Price must be a positive integer')
   .trim();
+
+export const orderIdParamCheck = param('orderId').exists()
+  .isInt({ min: 1 }).withMessage('Order id must be a positive integer')
+  .not()
+  .contains('.')
+  .withMessage('Order id must be a positive integer')
+  .trim();
+export const priceParamCheck = param('newPrice').exists()
+  .isFloat({ min: 1 })
+  .withMessage('New Price must be a positive number')
+  .trim();
+
+const sanitize = name => sanitizeParam(name).toInt();
+
+export const orderIdSanitizer = sanitize('orderId');
+export const newPriceSanitizer = sanitizeParam('newPrice').toFloat();
 
 export const checkToken = (req, res, next) => {
   const header = req.headers.authorization;

@@ -65,16 +65,23 @@ class Car {
       model: '2014',
       body_type: 'coupe',
     },
+    {
+      id: 7,
+      owner: 3,
+      createdOn: Date.now(),
+      state: 'used',
+      status: 'available',
+      price: 2.8,
+      manufacturer: 'buggati',
+      model: '2014',
+      body_type: 'coupe',
+    },
     ];
     this.lastInsertId = this.cars.length;
   }
 
   doesCarExist(id) {
     return this.cars.find(car => car.id === id);
-  }
-
-  doesCarBelongToBuyer(id, userId) {
-    return this.cars.find(car => car.id === id && car.owner === userId);
   }
 }
 export default new Car();
