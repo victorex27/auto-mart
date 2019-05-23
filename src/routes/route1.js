@@ -8,6 +8,7 @@ import {
   addressCheck, checkToken, priceCheck, carIdCheck,
   newPriceSanitizer, orderIdSanitizer, orderIdParamCheck,
   priceParamCheck, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
+  statusQueryCheck,
 } from '../helpers/custom-validator';
 
 const router = express.Router();
@@ -29,6 +30,10 @@ router.post('/auth/signin', [
 router.patch('/car/:carId/:carStatus', [
   checkToken, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
 ], Car.markAsSold);
+
+router.get('/car', [
+  checkToken, statusQueryCheck,
+], Car.getAllUnsoldAvailableCars);
 
 router.get('/car/:carId', [
   checkToken, carIdParamCheck, carIdSanitizer,
