@@ -56,6 +56,24 @@ class Order {
       status: 'pending',
       createdOn: Date.now(),
     },
+    {
+      id: 7,
+      buyer: 1,
+      carId: 5,
+      priceOffered: 470000,
+      price: 1400000,
+      status: 'approved',
+      createdOn: Date.now(),
+    },
+    {
+      id: 8,
+      buyer: 1,
+      carId: 6,
+      priceOffered: 470000,
+      price: 1400000,
+      status: 'pending',
+      createdOn: Date.now(),
+    },
     ];
 
 
@@ -63,22 +81,17 @@ class Order {
   }
 
   makeOrder(data, userId) {
-    // does car id exist
-    let { carId } = data;
-    carId = parseInt(carId);
-
+    const { carId } = data;
     const car = Car.doesCarExist(carId);
     if (!car) {
       return { error: 'Car id does not exist' };
     }
-    // does the car belong to current user
 
-    if (Car.doesCarBelongToBuyer(carId, userId)) {
+    if (car.id === carId && car.owner === userId) {
       return { error: 'You cannot make a purchase order for your stock' };
     }
 
-    const order = this.doesOrderExist(carId, userId);
-    // has the user made this order before
+    const order = this.doesOrderExistByCarId(carId, userId);
     if (order) {
       return { error: 'Purchase Order already exists' };
     }
@@ -100,8 +113,52 @@ class Order {
     return newOrder;
   }
 
-  doesOrderExist(id, userId) {
-    return this.orders.find(order => order.carId === id && order.buyer === userId);
+  updateOrder(params, userId) {
+    const { orderId, newPrice } = params;
+
+    const order = this.doesOrderExistByOrderId(orderId);
+
+    if (!order) {
+      return { error: 'Purchase order does not exist' };
+    }
+
+    if (order.buyer !== userId) {
+      return { error: 'This purchase order was not made by you' };
+    }
+
+    if (order.status !== 'pending') {
+      return { error: 'You cannot update the price a non pending purchase order' };
+    }
+
+    if (order.priceOffered === newPrice) {
+      return { error: 'Current Price is the same as supplied price' };
+    }
+    const oldPrice = order.priceOffered;
+    order.priceOffered = newPrice;
+    this.update(orderId, order);
+
+    return {
+      ...order,
+      oldPriceOffered: oldPrice,
+      newPriceOffered: newPrice,
+    };
+  }
+
+  doesOrderExistByCarId(carId, userId) {
+    return this.orders.find(order => order.carId === carId && order.buyer === userId);
+  }
+
+  doesOrderExistByOrderId(orderId) {
+    return this.orders.find(order => order.id === orderId);
+  }
+
+  update(orderId, newOrder) {
+    this.orders.map((order) => {
+      if (order.id === orderId) {
+        return newOrder;
+      }
+      return order;
+    });
   }
 }
 export default new Order();

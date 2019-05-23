@@ -5,6 +5,7 @@ import Order from '../controllers/order';
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
   addressCheck, checkToken, priceCheck, carIdCheck,
+  newPriceSanitizer, orderIdSanitizer, orderIdParamCheck, priceParamCheck,
 } from '../helpers/custom-validator';
 
 const router = express.Router();
@@ -28,6 +29,14 @@ router.post('/order', [
   priceCheck,
   carIdCheck,
 ], Order.makeOrder);
+
+router.patch('/order/:orderId/:newPrice', [
+  checkToken,
+  newPriceSanitizer,
+  orderIdParamCheck,
+  priceParamCheck,
+  orderIdSanitizer,
+], Order.updateOrder);
 
 
 export default router;
