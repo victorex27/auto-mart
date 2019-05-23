@@ -154,7 +154,7 @@ describe('POST /api/v1/order', () => {
   });
 
   describe('When a user tries to make a purchase order with valid detail', () => {
-    it('should return an object with the status and error', (done) => {
+    it('should return an object with the status and data', (done) => {
       const data = {
         carId: 7,
         amount: 1400000,

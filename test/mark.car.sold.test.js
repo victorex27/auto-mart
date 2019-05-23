@@ -5,7 +5,7 @@ import server from '../src/server';
 
 
 use(chaiHttp);
-describe('PACTH /api/v1/order/:orderId/:price', () => {
+describe('PACTH /api/v1/car/:carId/sold', () => {
   const userCredentials = {
     email: 'aobikobe@gmail.com',
     password: 'password70',
@@ -24,132 +24,136 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
       });
   });
 
-  describe('When a user tries to update a purchase order with an alphabetic orderId character', () => {
+  describe('When a user tries to update a car he/she did not post', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/house/20000000').set('Authorization', token)
+        .patch('/api/v1/car/2/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Order id must be a positive integer');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot update an ad you did not create');
           done();
         });
     });
   });
 
-  describe('When a user tries to update a purchase order with an negative orderId character', () => {
+  describe('When a user uses a negative carId', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/-50/20000000').set('Authorization', token)
+        .patch('/api/v1/car/-2/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Order id must be a positive integer');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id must be a positive integer');
           done();
         });
     });
   });
 
-  describe('When a user tries to update a purchase order with decimal orderId character', () => {
+  describe('When a user uses a float numeral id', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/30.5/20000000').set('Authorization', token)
+        .patch('/api/v1/car/2.5/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Order id must be a positive integer');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id must be a positive integer');
           done();
         });
     });
   });
-  describe('When a user tries to update a purchase order with an alphabetic price', () => {
+  describe('When a user uses an alphabetic price', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/1/amaobi').set('Authorization', token)
+        .patch('/api/v1/car/amaobi/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('New Price must be a positive number');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id must be a positive integer');
           done();
         });
     });
   });
-  describe('When a user tries to update a purchase order with a negative price', () => {
+  describe('When a user tries to use an a status that is not equal to sold', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/1/-10000').set('Authorization', token)
+        .patch('/api/v1/car/1/available').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('New Price must be a positive number');
+          expect(res.body).to.have.property('error').to.be.a('string').to.be.equals('You are only allowed to update Car status as sold');
           done();
         });
     });
   });
 
-  describe('When a user tries to update a purchase order that the user did not make', () => {
+  describe('When a user tries to update a car that is already sold', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/2/2000000').set('Authorization', token)
+        .patch('/api/v1/car/8/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('This purchase order was not made by you');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Status is sold. Update not performed');
           done();
         });
     });
   });
-  describe('When a user tries to update a purchase order with a non pending status', () => {
+
+  describe('When a user tries to update a car that has not been ordered', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/7/300000').set('Authorization', token)
+        .patch('/api/v1/car/9/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot update the price a non pending purchase order');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot mark an unordered ad as sold');
           done();
         });
     });
   });
-  describe('When a user tries to update a purchase order with an order id that does not exists', () => {
+
+  describe('When a user tries to update a car that has been ordered but is not accepted', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/900/470000').set('Authorization', token)
+        .patch('/api/v1/car/1/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Purchase order does not exist');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot mark an unaccepted ad as sold');
           done();
         });
     });
   });
-  describe('When a user tries to update a purchase order with the same price as the current price', () => {
+
+  describe('When a user tries to update a car with an id that does not exists', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/8/470000').set('Authorization', token)
+        .patch('/api/v1/car/90/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Current Price is the same as supplied price');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exists');
           done();
         });
     });
   });
+
   describe('When a user tries to update a purchase order with valid detail', () => {
     it('should return an object with the status and data', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/1/20000000').set('Authorization', token)
+        .patch('/api/v1/car/10/sold').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(201);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
-          expect(res.body).to.have.property('data').to.have.property('carId');
+          expect(res.body).to.have.property('data').to.have.property('owner');
           expect(res.body).to.have.property('data').to.have.property('createdOn');
-          expect(res.body).to.have.property('data').to.have.property('oldPriceOffered');
-          expect(res.body).to.have.property('data').to.have.property('newPriceOffered');
+          expect(res.body).to.have.property('data').to.have.property('state');
+          expect(res.body).to.have.property('data').to.have.property('status').to.equals('sold');
           expect(res.body).to.have.property('data').to.have.property('price');
-          expect(res.body).to.have.property('data').to.have.property('buyer');
+          expect(res.body).to.have.property('data').to.have.property('manufacturer');
           done();
         });
     });

@@ -1,11 +1,13 @@
 import express from 'express';
 import User from '../controllers/user';
+import Car from '../controllers/car';
 import Order from '../controllers/order';
 
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
   addressCheck, checkToken, priceCheck, carIdCheck,
-  newPriceSanitizer, orderIdSanitizer, orderIdParamCheck, priceParamCheck,
+  newPriceSanitizer, orderIdSanitizer, orderIdParamCheck,
+  priceParamCheck, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
 } from '../helpers/custom-validator';
 
 const router = express.Router();
@@ -23,6 +25,10 @@ router.post('/auth/signin', [
   emailCheck,
   passwordCheck,
 ], User.signIn);
+
+router.patch('/car/:carId/:carStatus', [
+  checkToken, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
+], Car.markAsSold);
 
 router.post('/order', [
   checkToken,
