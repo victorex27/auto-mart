@@ -75,18 +75,6 @@ describe('GET /api/v1/car/:carId', () => {
     });
   });
 
-  describe('When a user tries to retrieve a car id that has been sold', () => {
-    it('should return an object with the status and error', (done) => {
-      chai.request(server)
-        .get('/api/v1/car/8').set('Authorization', token)
-        .send()
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('This car is currently not available');
-          done();
-        });
-    });
-  });
 
   describe('When a user tries to retrieve a car with a proper carId that exists', () => {
     it('should return an object with the status and data', (done) => {

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { check, param } from 'express-validator/check';
+import { check, param, query } from 'express-validator/check';
 import { sanitizeParam } from 'express-validator/filter';
 
 export const emailCheck = check('email').exists()
@@ -69,6 +69,8 @@ export const carStatusParamCheck = param('carStatus').exists()
   .equals('sold')
   .withMessage('You are only allowed to update Car status as sold')
   .trim();
+
+export const statusQueryCheck = query('status').equals('available').withMessage('Invalid query parameter').trim().toString();
 
 
 export const priceParamCheck = param('newPrice').exists()

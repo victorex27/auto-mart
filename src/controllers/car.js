@@ -9,7 +9,7 @@ class Car {
       return res.status(400).json({ status: 400, error });
     }
     const car = CarModel.markAsSold(req.params, req.user.id);
-    return Car.getResult(res, car);
+    return Car.getResult(res, car, false);
   }
 
   static getSingleCar(req, res) {
@@ -18,7 +18,17 @@ class Car {
       return res.status(400).json({ status: 400, error });
     }
     const car = CarModel.getSingleCar(req.params.carId);
-    return Car.getResult(res, car);
+    return Car.getResult(res, car, false);
+  }
+
+  static getAllUnsoldAvailableCars(req, res) {
+    const error = Car.validate(req);
+    if (error) {
+      return res.status(400).json({ status: 400, error });
+    }
+
+    const car = CarModel.getAllUnsoldAvailableCars();
+    return Car.getResult(res, car, true); // is expected multiple
   }
 
   static validate(req) {
@@ -31,9 +41,13 @@ class Car {
     return error[0].msg;
   }
 
-  static getResult(res, car) {
+  static getResult(res, car, isArrayOfOutput) {
     if (car.error) {
       return res.status(400).json({ status: 400, error: car.error });
+    }
+
+    if (isArrayOfOutput) {
+      return res.status(201).json({ status: 201, data: [...car] });
     }
     return res.status(201).json({ status: 201, data: { ...car } });
   }

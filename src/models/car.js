@@ -151,11 +151,18 @@ class Car {
     if (!car) {
       return { error: 'Car id does not exists' };
     }
-    if (car.status === 'sold') {
-      return { error: 'This car is currently not available' };
-    }
     return car;
   }
+
+  getAllUnsoldAvailableCars() {
+    return this.cars.reduce((acc, car) => {
+      if (car.status === 'available') {
+        acc.push(car);
+      }
+      return acc;
+    }, []);
+  }
+
 
   doesCarExist(id) {
     return this.cars.find(car => car.id === id);
