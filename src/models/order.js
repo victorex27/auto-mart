@@ -1,7 +1,6 @@
-import Car from './car';
-
 class Order {
-  constructor() {
+  constructor(cars) {
+    this.cars = cars;
     this.orders = [{
       id: 1,
       buyer: 1,
@@ -62,7 +61,7 @@ class Order {
       carId: 5,
       priceOffered: 470000,
       price: 1400000,
-      status: 'approved',
+      status: 'accepted',
       createdOn: Date.now(),
     },
     {
@@ -74,6 +73,15 @@ class Order {
       status: 'pending',
       createdOn: Date.now(),
     },
+    {
+      id: 9,
+      buyer: 2,
+      carId: 10,
+      priceOffered: 470000,
+      price: 1400000,
+      status: 'accepted',
+      createdOn: Date.now(),
+    },
     ];
 
 
@@ -82,7 +90,7 @@ class Order {
 
   makeOrder(data, userId) {
     const { carId } = data;
-    const car = Car.doesCarExist(carId);
+    const car = this.getCars().doesCarExist(carId);
     if (!car) {
       return { error: 'Car id does not exist' };
     }
@@ -160,5 +168,17 @@ class Order {
       return order;
     });
   }
+
+  getOrdersByCarId(carId) {
+    return this.orders.reduce((acc, order) => {
+      if (order.carId === carId) {
+        acc.push(order);
+      } return acc;
+    }, []);
+  }
+
+  getCars() {
+    return this.cars;
+  }
 }
-export default new Order();
+export default Order;

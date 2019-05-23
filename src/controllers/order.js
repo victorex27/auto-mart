@@ -1,14 +1,17 @@
 import { validationResult } from 'express-validator/check';
 import OrderModel from '../models/order';
+import CarModel from '../models/car';
 
-
+const orderModel = new OrderModel(CarModel);
 class Order {
   static makeOrder(req, res) {
+
+
     const error = Order.validate(req);
     if (error) {
       return res.status(400).json({ status: 400, error });
     }
-    const order = OrderModel.makeOrder(req.body, req.user.id);
+    const order = orderModel.makeOrder(req.body, req.user.id);
     return Order.getResult(res, order);
   }
 
@@ -17,7 +20,7 @@ class Order {
     if (error) {
       return res.status(400).json({ status: 400, error });
     }
-    const order = OrderModel.updateOrder(req.params, req.user.id);
+    const order = orderModel.updateOrder(req.params, req.user.id);
 
     return Order.getResult(res, order);
   }

@@ -57,6 +57,20 @@ export const orderIdParamCheck = param('orderId').exists()
   .contains('.')
   .withMessage('Order id must be a positive integer')
   .trim();
+
+export const carIdParamCheck = param('carId').exists()
+  .isInt({ min: 1 }).withMessage('Car id must be a positive integer')
+  .not()
+  .contains('.')
+  .withMessage('Car id must be a positive integer')
+  .trim();
+
+export const carStatusParamCheck = param('carStatus').exists()
+  .equals('sold')
+  .withMessage('You are only allowed to update Car status as sold')
+  .trim();
+
+
 export const priceParamCheck = param('newPrice').exists()
   .isFloat({ min: 1 })
   .withMessage('New Price must be a positive number')
@@ -65,6 +79,7 @@ export const priceParamCheck = param('newPrice').exists()
 const sanitize = name => sanitizeParam(name).toInt();
 
 export const orderIdSanitizer = sanitize('orderId');
+export const carIdSanitizer = sanitize('carId');
 export const newPriceSanitizer = sanitizeParam('newPrice').toFloat();
 
 export const checkToken = (req, res, next) => {
