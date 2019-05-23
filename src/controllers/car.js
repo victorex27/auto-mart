@@ -12,6 +12,15 @@ class Car {
     return Car.getResult(res, car);
   }
 
+  static getSingleCar(req, res) {
+    const error = Car.validate(req);
+    if (error) {
+      return res.status(400).json({ status: 400, error });
+    }
+    const car = CarModel.getSingleCar(req.params.carId);
+    return Car.getResult(res, car);
+  }
+
   static validate(req) {
     const errors = validationResult(req);
 

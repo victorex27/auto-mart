@@ -30,6 +30,10 @@ router.patch('/car/:carId/:carStatus', [
   checkToken, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
 ], Car.markAsSold);
 
+router.get('/car/:carId', [
+  checkToken, carIdParamCheck, carIdSanitizer,
+], Car.getSingleCar);
+
 router.post('/order', [
   checkToken,
   priceCheck,

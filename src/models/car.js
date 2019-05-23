@@ -145,6 +145,18 @@ class Car {
     return car;
   }
 
+  getSingleCar(carId) {
+    const car = this.doesCarExist(carId);
+
+    if (!car) {
+      return { error: 'Car id does not exists' };
+    }
+    if (car.status === 'sold') {
+      return { error: 'This car is currently not available' };
+    }
+    return car;
+  }
+
   doesCarExist(id) {
     return this.cars.find(car => car.id === id);
   }
