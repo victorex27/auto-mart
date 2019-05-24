@@ -29,7 +29,7 @@ class User {
       return res.status(400).json({ status: 400, error: userModel.error });
     }
 
-    const token = jwt.sign({ id: userModel.id, email: userModel.email }, process.env.YOUR_SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: userModel.id, email: userModel.email, isAdmin: userModel.isAdmin }, process.env.YOUR_SECRET_KEY, { expiresIn: '1h' });
 
     return res.status(201).json({ status: 201, data: { token, ...userModel } });
   }
