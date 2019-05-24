@@ -70,17 +70,18 @@ export const carStatusParamCheck = param('carStatus').exists()
   .withMessage('You are only allowed to update Car status as sold')
   .trim();
 
-export const statusQueryCheck = query('status').equals('available').withMessage('Invalid status parameter').trim()
+export const statusQueryCheck = query('status').equals('available').withMessage('Invalid status parameter').optional('nullable')
+  .trim()
   .toString();
 export const minQueryCheck = query('min').isFloat({ min: 0 }).withMessage('Price range should be a positive number').optional('nullable')
-.trim()
-.toFloat();
+  .trim()
+  .toFloat();
 export const maxQueryCheck = query('max').isFloat({ min: 0 }).withMessage('Price range should be a positive number').optional('nullable')
-.trim()
-.toFloat();
+  .trim()
+  .toFloat();
 
 export const arefieldsTheSameQueryCheck = query('max').custom((value, { req }) => {
-  if (!req.query.max || !req.query.min  ) {
+  if (!req.query.max || !req.query.min) {
     throw new Error('A price range value is missing');
   }
 

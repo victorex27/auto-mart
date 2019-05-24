@@ -31,13 +31,25 @@ class Car {
 
     if (error) return error;
 
-    const { min, max } = req.query;
+    const { min, max, status } = req.query;
 
-    if (max && min) {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true); //  is expected multiple
+    const arrayQueryParameter = Object.keys(req.query);
+    const found = arrayQueryParameter.every(r => ['min', 'max', 'status'].indexOf(r) >= 0);
+
+
+    if (!found && arrayQueryParameter.length > 0) {
+      return res.status(400).json({ status: 403, error: 'Malformed Path' });
     }
 
-    return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(), true);
+    if (max && min) {
+      return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true);
+    }
+
+    if (status && status === 'available') {
+      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(), true);
+    }
+
+    return Result.getResult(res, CarModel.getAllCars(req.user.isAdmin), true);
   }
 }
 
