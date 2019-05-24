@@ -32,7 +32,7 @@ describe('GET /api/v1/car?status=available', () => {
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid query parameter');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid status parameter');
           done();
         });
     });
@@ -44,12 +44,7 @@ describe('GET /api/v1/car?status=available', () => {
         .get('/api/v1/car?status=available').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(201);
-          expect(res.body).to.have.property('data').to.be.a('array');
-
-          if (res.body.data.length === 0) {
-            expect(res.body).to.have.property('data').to.be.empty();
-          } else {
+          if (res.body.data.length !== 0) {
             res.body.data.forEach((element) => {
               expect(element).to.have.property('id');
               expect(element).to.have.property('owner');
@@ -60,6 +55,8 @@ describe('GET /api/v1/car?status=available', () => {
               expect(element).to.have.property('manufacturer');
             });
           }
+          expect(res.body).to.have.property('status').to.equals(201);
+          expect(res.body).to.have.property('data').to.be.a('array');
 
           done();
         });

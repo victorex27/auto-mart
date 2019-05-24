@@ -1,55 +1,36 @@
-import { validationResult } from 'express-validator/check';
 import CarModel from '../models/car';
+import Result from '../helpers/result';
+import Validator from '../helpers/validator';
 
 
 class Car {
   static markAsSold(req, res) {
-    const error = Car.validate(req);
-    if (error) {
-      return res.status(400).json({ status: 400, error });
-    }
-    const car = CarModel.markAsSold(req.params, req.user.id);
-    return Car.getResult(res, car, false);
+
+    const error = Validator.validate(req, res);
+    if (error) return error;
+    return Result.getResult(res, CarModel.markAsSold(req.params, req.user.id), false);
   }
 
   static getSingleCar(req, res) {
-    const error = Car.validate(req);
-    if (error) {
-      return res.status(400).json({ status: 400, error });
-    }
-    const car = CarModel.getSingleCar(req.params.carId);
-    return Car.getResult(res, car, false);
+    const error = Validator.validate(req, res);
+
+    if (error) return error;
+
+    return Result.getResult(res, CarModel.getSingleCar(req.params.carId), false);
   }
 
   static getAllUnsoldAvailableCars(req, res) {
-    const error = Car.validate(req);
-    if (error) {
-      return res.status(400).json({ status: 400, error });
+    const error = Validator.validate(req, res);
+
+    if (error) return error;
+
+    const { min, max } = req.query;
+
+    if (max && min) {
+      return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true); //  is expected multiple
     }
 
-    const car = CarModel.getAllUnsoldAvailableCars();
-    return Car.getResult(res, car, true); // is expected multiple
-  }
-
-  static validate(req) {
-    const errors = validationResult(req);
-
-    if (errors.isEmpty()) {
-      return '';
-    }
-    const error = errors.array();
-    return error[0].msg;
-  }
-
-  static getResult(res, car, isArrayOfOutput) {
-    if (car.error) {
-      return res.status(400).json({ status: 400, error: car.error });
-    }
-
-    if (isArrayOfOutput) {
-      return res.status(201).json({ status: 201, data: [...car] });
-    }
-    return res.status(201).json({ status: 201, data: { ...car } });
+    return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(), true);
   }
 }
 
