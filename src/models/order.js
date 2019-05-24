@@ -82,6 +82,15 @@ class Order {
       status: 'accepted',
       createdOn: Date.now(),
     },
+    {
+      id: 10,
+      buyer: 3,
+      carId: 13,
+      priceOffered: 470000,
+      price: 1400000,
+      status: 'accepted',
+      createdOn: Date.now(),
+    },
     ];
 
 

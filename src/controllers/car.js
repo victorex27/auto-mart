@@ -7,7 +7,16 @@ class Car {
   static markAsSold(req, res) {
     const error = Validator.validate(req, res);
     if (error) return error;
-    return Result.getResult(res, CarModel.markAsSold(req.params, req.user.id), false);
+
+    const { car, carId } = req.params;
+    const status = car;
+    const newPrice = Number(car);
+
+    if (Number.isNaN(newPrice)) {
+      return Result.getResult(res, CarModel.markAsSold(carId, req.user.id, status), false);
+    }
+
+    return Result.getResult(res, CarModel.updateCarPrice(carId, req.user.id, newPrice), false);
   }
 
   static getSingleCar(req, res) {

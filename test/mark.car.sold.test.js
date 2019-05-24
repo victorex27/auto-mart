@@ -62,7 +62,7 @@ describe('PACTH /api/v1/car/:carId/sold', () => {
         });
     });
   });
-  describe('When a user uses an alphabetic price', () => {
+  describe('When a user uses an alphabetic car is', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .patch('/api/v1/car/amaobi/sold').set('Authorization', token)
@@ -82,6 +82,19 @@ describe('PACTH /api/v1/car/:carId/sold', () => {
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').to.be.equals('You are only allowed to update Car status as sold');
+          done();
+        });
+    });
+  });
+
+  describe('When a user tries to use an a status that is not equal to sold', () => {
+    it('should return an object with the status and error', (done) => {
+      chai.request(server)
+        .patch('/api/v1/car/1/avai').set('Authorization', token)
+        .send()
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').to.be.equals('Malformed Path');
           done();
         });
     });
