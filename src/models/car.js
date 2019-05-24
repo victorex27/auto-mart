@@ -112,7 +112,7 @@ class Car {
       body_type: 'coupe',
     },
     {
-      id: 11, 
+      id: 11,
       owner: 1,
       createdOn: Date.now(),
       state: 'used',
@@ -123,7 +123,7 @@ class Car {
       body_type: 'coupe',
     },
     {
-      id: 12, 
+      id: 12,
       owner: 1,
       createdOn: Date.now(),
       state: 'used',
@@ -187,14 +187,14 @@ class Car {
       return { error: 'Only admins are allowed to delete car adverts' };
     }
 
-    
+
     for (let i = 0; i < this.cars.length; i += 1) {
       if (this.cars[i].id === carId) {
         this.cars.splice(i, 1);
         break;
       }
     }
-    
+
 
     return 'delete';
   }
@@ -206,6 +206,14 @@ class Car {
       }
       return acc;
     }, []);
+  }
+
+  getAllCars(isAdmin) {
+    if (!isAdmin) {
+      return { error: 'Only an admin is allowed retrieve all cars' };
+    }
+
+    return this.cars;
   }
 
   getAllUnsoldAvailableCarsByRange(min, max) {
