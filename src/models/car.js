@@ -111,6 +111,28 @@ class Car {
       model: '2016',
       body_type: 'coupe',
     },
+    {
+      id: 11, 
+      owner: 1,
+      createdOn: Date.now(),
+      state: 'used',
+      status: 'available',
+      price: 2.8,
+      manufacturer: 'volkswagen',
+      model: '2016',
+      body_type: 'coupe',
+    },
+    {
+      id: 12, 
+      owner: 1,
+      createdOn: Date.now(),
+      state: 'used',
+      status: 'available',
+      price: 2.8,
+      manufacturer: 'volkswagen',
+      model: '2016',
+      body_type: 'coupe',
+    },
     ];
     this.lastInsertId = this.cars.length;
   }
@@ -154,8 +176,30 @@ class Car {
     return car;
   }
 
-  getAllUnsoldAvailableCars() {
+  getDeleteCar(carId, isAdmin) {
+    const car = this.doesCarExist(carId);
+
+    if (!car) {
+      return { error: 'Car id does not exists' };
+    }
+
+    if (!isAdmin) {
+      return { error: 'Only admins are allowed to delete car adverts' };
+    }
+
     
+    for (let i = 0; i < this.cars.length; i += 1) {
+      if (this.cars[i].id === carId) {
+        this.cars.splice(i, 1);
+        break;
+      }
+    }
+    
+
+    return 'delete';
+  }
+
+  getAllUnsoldAvailableCars() {
     return this.cars.reduce((acc, car) => {
       if (car.status === 'available') {
         acc.push(car);
@@ -165,7 +209,6 @@ class Car {
   }
 
   getAllUnsoldAvailableCarsByRange(min, max) {
-
     return this.cars.reduce((acc, car) => {
       if (car.status === 'available' && car.price >= min && car.price <= max) {
         acc.push(car);

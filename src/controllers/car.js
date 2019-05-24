@@ -5,7 +5,6 @@ import Validator from '../helpers/validator';
 
 class Car {
   static markAsSold(req, res) {
-
     const error = Validator.validate(req, res);
     if (error) return error;
     return Result.getResult(res, CarModel.markAsSold(req.params, req.user.id), false);
@@ -17,6 +16,14 @@ class Car {
     if (error) return error;
 
     return Result.getResult(res, CarModel.getSingleCar(req.params.carId), false);
+  }
+
+  static getDeleteCar(req, res) {
+    const error = Validator.validate(req, res);
+
+    if (error) return error;
+
+    return Result.getResult(res, CarModel.getDeleteCar(req.params.carId, req.user.isAdmin), false);
   }
 
   static getAllUnsoldAvailableCars(req, res) {

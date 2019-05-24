@@ -80,5 +80,6 @@ class User {
   doCredentailsMatch(email, password) {
     return this.users.find(user => user.email === email && user.password === password);
   }
+
 }
 export default new User();

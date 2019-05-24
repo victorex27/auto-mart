@@ -39,6 +39,10 @@ router.get('/car/:carId', [
   checkToken, carIdParamCheck, carIdSanitizer,
 ], Car.getSingleCar);
 
+router.delete('/car/:carId', [
+  checkToken, carIdParamCheck, carIdSanitizer,
+], Car.getDeleteCar);
+
 router.post('/order', [
   checkToken,
   priceCheck,
