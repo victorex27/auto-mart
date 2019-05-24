@@ -155,8 +155,19 @@ class Car {
   }
 
   getAllUnsoldAvailableCars() {
+    
     return this.cars.reduce((acc, car) => {
       if (car.status === 'available') {
+        acc.push(car);
+      }
+      return acc;
+    }, []);
+  }
+
+  getAllUnsoldAvailableCarsByRange(min, max) {
+
+    return this.cars.reduce((acc, car) => {
+      if (car.status === 'available' && car.price >= min && car.price <= max) {
         acc.push(car);
       }
       return acc;
