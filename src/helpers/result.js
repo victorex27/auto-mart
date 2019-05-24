@@ -11,7 +11,6 @@ class Result {
     if (isArrayOfOutput) {
       return res.status(201).json({ status: 201, data: [...car] });
     }
-
     return res.status(201).json({ status: 201, data: { ...car } });
   }
 }

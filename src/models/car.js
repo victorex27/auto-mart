@@ -90,7 +90,7 @@ class Car {
       body_type: 'coupe',
     },
     {
-      id: 9, // this car id will not be ordered for during test
+      id: 9,
       owner: 1,
       createdOn: Date.now(),
       state: 'used',
@@ -101,7 +101,7 @@ class Car {
       body_type: 'coupe',
     },
     {
-      id: 10, // this car id be  for during test
+      id: 10,
       owner: 1,
       createdOn: Date.now(),
       state: 'used',
@@ -133,14 +133,43 @@ class Car {
       model: '2016',
       body_type: 'coupe',
     },
+    {
+      id: 13,
+      owner: 1,
+      createdOn: Date.now(),
+      state: 'used',
+      status: 'sold',
+      price: 2.8,
+      manufacturer: 'volkswagen',
+      model: '2016',
+      body_type: 'coupe',
+    },
+    {
+      id: 14,
+      owner: 1,
+      createdOn: Date.now(),
+      state: 'used',
+      status: 'available',
+      price: 2.8,
+      manufacturer: 'volkswagen',
+      model: '2016',
+      body_type: 'coupe',
+    },
     ];
     this.lastInsertId = this.cars.length;
   }
 
-  markAsSold(params, userId) {
-    const { carId } = params;
+  markAsSold(carId, userId, status) {
+    if (status === 'available') {
+      return { error: 'You are only allowed to update Car status as sold' };
+    }
+    if (status !== 'sold') {
+      return { error: 'Malformed Path' };
+    }
+
 
     const car = this.doesCarExist(carId);
+
     if (!car) {
       return { error: 'Car id does not exists' };
     }
@@ -163,6 +192,26 @@ class Car {
       return { error: 'You cannot mark an unaccepted ad as sold' };
     }
     car.status = 'sold';
+    this.update(carId, car);
+    return car;
+  }
+
+
+  updateCarPrice(carId, userId, newPrice) {
+    const car = this.doesCarExist(carId);
+    if (!car) {
+      return { error: 'Car id does not exists' };
+    }
+
+    if (car.owner !== userId) {
+      return { error: 'You cannot update an ad you did not create' };
+    }
+
+    if (car.status === 'sold') {
+      return { error: 'Car is already marked as sold. You cannot update price' };
+    }
+
+    car.price = newPrice;
     this.update(carId, car);
     return car;
   }

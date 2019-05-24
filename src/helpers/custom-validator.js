@@ -68,6 +68,14 @@ export const carIdParamCheck = param('carId').exists()
 export const carStatusParamCheck = param('carStatus').exists()
   .equals('sold')
   .withMessage('You are only allowed to update Car status as sold')
+  .optional('nullable')
+  .trim();
+
+export const priceOptionalCheck = check('amount').exists()
+  .withMessage('Price is not supplied')
+  .isFloat({ min: 1 })
+  .withMessage('Price must be a positive integer')
+  .optional('nullable')
   .trim();
 
 export const statusQueryCheck = query('status').equals('available').withMessage('Invalid status parameter').optional('nullable')
