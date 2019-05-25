@@ -55,8 +55,8 @@ class Car {
       return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true);
     }
 
-    if (state && state === 'used') {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars('used'), true);
+    if (state && (state === 'used' || state === 'new')) {
+      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(state), true);
     }
 
     if (status) {
