@@ -5,7 +5,7 @@ import server from '../src/server';
 
 
 use(chaiHttp);
-describe('GET /api/v1/car?status=available&min=xxxx&max=xxxx', () => {
+describe('GET /api/v1/car?status=available&state=used', () => {
   const userCredentials = {
     email: 'aobikobe@gmail.com',
     password: 'password70',
@@ -24,89 +24,50 @@ describe('GET /api/v1/car?status=available&min=xxxx&max=xxxx', () => {
       });
   });
 
-  describe('When a user tries to retrieve all cars but misplaced min and max value', () => {
+  describe('When a user tries to retrieve all used cars without putting the value of state', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .get('/api/v1/car?status=available&min=50000&max=1000').set('Authorization', token)
+        .get('/api/v1/car?status=available&state').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Min value is greater than Max value');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('No state value given');
           done();
         });
     });
   });
 
-  describe('When a user tries to retrieve all cars but min and max value are the same', () => {
+  describe('When a user tries to retrieve all used cars with wrong value for state', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .get('/api/v1/car?status=available&min=1000&max=1000').set('Authorization', token)
+        .get('/api/v1/car?status=available&state=uyjkh').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Max and Min values cannot be the same');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Incorrect state value');
           done();
         });
     });
   });
 
-  describe('When a user tries to retrieve all cars but one of the price range is not numeric', () => {
+  describe('When a user tries to retrieve all used cars ommiting status=available', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .get('/api/v1/car?status=available&min=amaobi&max=1000').set('Authorization', token)
+        .get('/api/v1/car?state=used').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Price range should be a positive number');
-          done();
-        });
-    });
-  });
-
-  describe('When a user tries to retrieve all cars but one of the price range is negative', () => {
-    it('should return an object with the status and error', (done) => {
-      chai.request(server)
-        .get('/api/v1/car?status=available&min=-12&max=1000').set('Authorization', token)
-        .send()
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Price range should be a positive number');
-          done();
-        });
-    });
-  });
-
-  describe('When a user tries to retrieve all cars but one of the price range values is missing', () => {
-    it('should return an object with the status and error', (done) => {
-      chai.request(server)
-        .get('/api/v1/car?status=available&max=1000').set('Authorization', token)
-        .send()
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Incorrect number of parameters');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Availability Status is not set');
           done();
         });
     });
   });
 
 
-  describe('When a user tries to retrieve a car id that has been sold', () => {
-    it('should return an object with the status and error', (done) => {
-      chai.request(server)
-        .get('/api/v1/car?status=8&min=500&max=100000').set('Authorization', token)
-        .send()
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid status parameter');
-          done();
-        });
-    });
-  });
-
-  describe('When a user tries to retrieve a car with a proper carId that exists', () => {
+  describe('When a user tries to retrieve all used cars with proper detail', () => {
     it('should return an object with the status and data', (done) => {
       chai.request(server)
-        .get('/api/v1/car?status=available&min=500&max=100000').set('Authorization', token)
+        .get('/api/v1/car?status=available&state=used').set('Authorization', token)
         .send()
         .end((err, res) => {
           if (res.body.data.length !== 0) {

@@ -45,7 +45,7 @@ describe('GET /api/v1/car?status=available', () => {
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(403);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Malformed Path');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid Query Parameter was supplied');
           done();
         });
     });
