@@ -167,7 +167,6 @@ class Car {
       return { error: 'Malformed Path' };
     }
 
-
     const car = this.doesCarExist(carId);
 
     if (!car) {
