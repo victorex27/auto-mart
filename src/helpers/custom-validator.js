@@ -23,13 +23,10 @@ export const passwordCheck = check('password').exists()
   .withMessage('Password Field must contain at least one number')
   .trim();
 
-  const stringCheck = (field) => {
+const stringCheck = (field) => {
   let name;
 
   switch (field) {
-    case 'lastName':
-      name = 'Last Name';
-      break;
     case 'firstName':
       name = 'First Name';
       break;
@@ -37,6 +34,7 @@ export const passwordCheck = check('password').exists()
       name = 'Address';
       break;
     default:
+      name = 'Last Name';
       break;
   }
 
