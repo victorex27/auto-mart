@@ -23,20 +23,29 @@ export const passwordCheck = check('password').exists()
   .withMessage('Password Field must contain at least one number')
   .trim();
 
-export const lastNameCheck = check('lastName').exists()
-  .withMessage('Last Name Field is missing')
-  .isLength({ min: 1 })
-  .withMessage('Last Name Field cannot be empty');
+const stringCheck = (field) => {
+  let name;
 
-export const firstNameCheck = check('firstName').exists()
-  .withMessage('First Name Field is missing')
-  .isLength({ min: 1 })
-  .withMessage('First Name Field cannot be empty');
+  switch (field) {
+    case 'firstName':
+      name = 'First Name';
+      break;
+    case 'address':
+      name = 'Address';
+      break;
+    default:
+      name = 'Last Name';
+      break;
+  }
 
-export const addressCheck = check('address').exists()
-  .withMessage('Address Field is missing')
-  .isLength({ min: 1 })
-  .withMessage('Address Field cannot be empty');
+  return check(field).exists()
+    .withMessage(`${name} Field is missing`)
+    .isLength({ min: 1 })
+    .withMessage(`${name} Field cannot be empty`);
+};
+export const lastNameCheck = stringCheck('lastName');
+export const firstNameCheck = stringCheck('firstName');
+export const addressCheck = stringCheck('address');
 
 export const carIdCheck = check('carId').exists()
   .withMessage('No car id supplied')
@@ -88,20 +97,50 @@ export const maxQueryCheck = query('max').isFloat({ min: 0 }).withMessage('Price
   .trim()
   .toFloat();
 
-export const arefieldsTheSameQueryCheck = query('max').custom((value, { req }) => {
-  if (!req.query.max || !req.query.min) {
-    throw new Error('A price range value is missing');
+const isValidNumberOfParameter = (queryObj, number) => {
+  if (Object.keys(queryObj).length !== number) {
+    throw new Error('Incorrect number of parameters');
   }
+};
 
-  if (req.query.min === req.query.max) {
+
+export const arefieldsTheSameQueryCheck = query('max').custom((value, { req }) => {
+  const queryObj = req.query;
+
+  isValidNumberOfParameter(queryObj, 3);
+
+
+  if (queryObj.min === queryObj.max) {
     throw new Error('Max and Min values cannot be the same');
   }
-  if (req.query.min > req.query.max) {
+  if (queryObj.min > queryObj.max) {
     throw new Error('Min value is greater than Max value');
   }
 
+
   return true;
 }).optional();
+
+
+export const usedStatusQueryCheck = query('state').custom((value, { req }) => {
+  const queryObj = req.query;
+
+  if (!queryObj.status) {
+    throw new Error('Availability Status is not set');
+  }
+  isValidNumberOfParameter(queryObj, 2);
+
+  if (!queryObj.state) {
+    throw new Error('No state value given');
+  }
+
+  if (queryObj.state !== 'used' && queryObj.state !== 'new') {
+    throw new Error('Incorrect state value');
+  }
+
+
+  return true;
+}).optional('nullable');
 
 
 export const priceParamCheck = param('newPrice').exists()

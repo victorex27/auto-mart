@@ -248,7 +248,16 @@ class Car {
     return 'delete';
   }
 
-  getAllUnsoldAvailableCars() {
+  getAllUnsoldAvailableCars(state) {
+    if (state) {
+      return this.cars.reduce((acc, car) => {
+        if (car.status === 'available' && car.state === state) {
+          acc.push(car);
+        }
+        return acc;
+      }, []);
+    }
+
     return this.cars.reduce((acc, car) => {
       if (car.status === 'available') {
         acc.push(car);
