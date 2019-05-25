@@ -142,6 +142,22 @@ export const usedStatusQueryCheck = query('state').custom((value, { req }) => {
   return true;
 }).optional('nullable');
 
+export const bodyTypeQueryCheck = query('body_type').custom((value, { req }) => {
+  const queryObj = req.query;
+
+
+  isValidNumberOfParameter(queryObj, 1);
+
+  if (!queryObj.body_type) {
+    throw new Error('Body type value is missing');
+  }
+
+  return true;
+}).optional('nullable')
+  .isAlpha()
+  .withMessage('Body type should only contain alphabet')
+  .toString();
+
 
 export const priceParamCheck = param('newPrice').exists()
   .isFloat({ min: 1 })

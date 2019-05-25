@@ -43,13 +43,18 @@ class Car {
     const {
       min, max, status, state,
     } = req.query;
+
+    const bodyType = req.query.body_type;
     const arrayQueryParameter = Object.keys(req.query);
 
-    const found = arrayQueryParameter.every(r => ['min', 'max', 'status', 'state'].indexOf(r) >= 0);
+    const found = arrayQueryParameter.every(r => ['min', 'max', 'status', 'state', 'body_type'].indexOf(r) >= 0);
     if (!found && arrayQueryParameter.length > 0) {
       return res.status(403).json({ status: 403, error: 'Invalid Query Parameter was supplied' });
     }
 
+    if (bodyType) {
+      return Result.getResult(res, CarModel.getAllCarsByBodyType(bodyType), true);
+    }
 
     if (max && min) {
       return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true);

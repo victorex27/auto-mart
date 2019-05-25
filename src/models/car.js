@@ -11,7 +11,7 @@ class Car {
       price: 1.4,
       manufacturer: 'mercedes',
       model: '2014',
-      body_type: 'trailer',
+      bodyType: 'trailer',
     },
     {
       id: 2,
@@ -22,7 +22,7 @@ class Car {
       price: 1.8,
       manufacturer: 'honda',
       model: '2015',
-      body_type: 'coupe',
+      bodyType: 'coupe',
     },
     {
       id: 3,
@@ -33,7 +33,7 @@ class Car {
       price: 2.8,
       manufacturer: 'mercedes',
       model: '2014',
-      body_type: 'suv',
+      bodyType: 'suv',
     }, {
       id: 4,
       owner: 1,
@@ -43,7 +43,7 @@ class Car {
       price: 1.9,
       manufacturer: 'mercedes',
       model: '2014',
-      body_type: 'trailer',
+      bodyType: 'trailer',
     },
     {
       id: 5,
@@ -54,7 +54,7 @@ class Car {
       price: 2.8,
       manufacturer: 'buggati',
       model: '2014',
-      body_type: 'coupe',
+      bodyType: 'coupe',
     },
     {
       id: 6,
@@ -65,7 +65,7 @@ class Car {
       price: 2.8,
       manufacturer: 'buggati',
       model: '2014',
-      body_type: 'coupe',
+      bodyType: 'coupe',
     },
     {
       id: 7,
@@ -76,7 +76,7 @@ class Car {
       price: 2.8,
       manufacturer: 'buggati',
       model: '2014',
-      body_type: 'coupe',
+      bodyType: 'coupe',
     },
     {
       id: 8,
@@ -87,7 +87,7 @@ class Car {
       price: 2.8,
       manufacturer: 'buggati',
       model: '2014',
-      body_type: 'coupe',
+      bodyType: 'jeep',
     },
     {
       id: 9,
@@ -98,7 +98,7 @@ class Car {
       price: 2.8,
       manufacturer: 'volkswagen',
       model: '2016',
-      body_type: 'coupe',
+      bodyType: 'salon',
     },
     {
       id: 10,
@@ -109,7 +109,7 @@ class Car {
       price: 2.8,
       manufacturer: 'volkswagen',
       model: '2016',
-      body_type: 'coupe',
+      bodyType: 'mpv',
     },
     {
       id: 11,
@@ -120,7 +120,7 @@ class Car {
       price: 2.8,
       manufacturer: 'volkswagen',
       model: '2016',
-      body_type: 'coupe',
+      bodyType: 'coupe',
     },
     {
       id: 12,
@@ -131,7 +131,7 @@ class Car {
       price: 2.8,
       manufacturer: 'volkswagen',
       model: '2016',
-      body_type: 'coupe',
+      bodyType: 'wagon',
     },
     {
       id: 13,
@@ -142,7 +142,7 @@ class Car {
       price: 2.8,
       manufacturer: 'volkswagen',
       model: '2016',
-      body_type: 'coupe',
+      bodyType: 'coupe',
     },
     {
       id: 14,
@@ -153,7 +153,7 @@ class Car {
       price: 2.8,
       manufacturer: 'volkswagen',
       model: '2016',
-      body_type: 'coupe',
+      bodyType: 'suv',
     },
     ];
     this.lastInsertId = this.cars.length;
@@ -260,6 +260,15 @@ class Car {
 
     return this.cars.reduce((acc, car) => {
       if (car.status === 'available') {
+        acc.push(car);
+      }
+      return acc;
+    }, []);
+  }
+
+  getAllCarsByBodyType(bodyType) {
+    return this.cars.reduce((acc, car) => {
+      if (car.bodyType === bodyType) {
         acc.push(car);
       }
       return acc;

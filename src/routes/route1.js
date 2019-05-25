@@ -9,7 +9,7 @@ import {
   newPriceSanitizer, orderIdSanitizer, orderIdParamCheck,
   priceParamCheck, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
   statusQueryCheck, minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
-  priceOptionalCheck, usedStatusQueryCheck,
+  priceOptionalCheck, usedStatusQueryCheck, bodyTypeQueryCheck,
 } from '../helpers/custom-validator';
 
 const router = express.Router();
@@ -33,13 +33,9 @@ router.patch('/car/:carId/:car', [
   priceOptionalCheck, carIdSanitizer,
 ], Car.markAsSold);
 
-// router.get('/car', [
-//   checkToken, statusQueryCheck, minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
-// ], Car.getAllUnsoldAvailableCars);
-
 router.get('/car', [
   checkToken, statusQueryCheck, minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
-  usedStatusQueryCheck,
+  usedStatusQueryCheck, bodyTypeQueryCheck,
 ], Car.getAllUnsoldAvailableCars);
 
 router.get('/car/:carId', [
