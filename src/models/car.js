@@ -52,8 +52,8 @@ class Car {
       state: 'used',
       status: 'available',
       price: 2.8,
-      manufacturer: 'buggati',
-      model: '2014',
+      manufacturer: 'dodge',
+      model: 'charger',
       bodyType: 'coupe',
     },
     {
@@ -63,8 +63,8 @@ class Car {
       state: 'used',
       status: 'available',
       price: 2.8,
-      manufacturer: 'buggati',
-      model: '2014',
+      manufacturer: 'dodge',
+      model: 'challenger',
       bodyType: 'coupe',
     },
     {
@@ -96,7 +96,7 @@ class Car {
       state: 'used',
       status: 'available',
       price: 2.8,
-      manufacturer: 'volkswagen',
+      manufacturer: 'toyota',
       model: '2016',
       bodyType: 'salon',
     },
@@ -118,7 +118,7 @@ class Car {
       state: 'used',
       status: 'available',
       price: 2.8,
-      manufacturer: 'volkswagen',
+      manufacturer: 'honda',
       model: '2016',
       bodyType: 'coupe',
     },
@@ -129,7 +129,7 @@ class Car {
       state: 'used',
       status: 'available',
       price: 2.8,
-      manufacturer: 'volkswagen',
+      manufacturer: 'hyundai',
       model: '2016',
       bodyType: 'wagon',
     },
@@ -166,7 +166,6 @@ class Car {
     if (status !== 'sold') {
       return { error: 'Malformed Path' };
     }
-
 
     const car = this.doesCarExist(carId);
 
@@ -269,6 +268,15 @@ class Car {
   getAllCarsByBodyType(bodyType) {
     return this.cars.reduce((acc, car) => {
       if (car.bodyType === bodyType) {
+        acc.push(car);
+      }
+      return acc;
+    }, []);
+  }
+
+  getAllCarsByManufacturer(manufacturer) {
+    return this.cars.reduce((acc, car) => {
+      if (car.manufacturer === manufacturer) {
         acc.push(car);
       }
       return acc;

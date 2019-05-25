@@ -159,6 +159,25 @@ export const bodyTypeQueryCheck = query('body_type').custom((value, { req }) => 
   .toString();
 
 
+export const manufacturerQueryCheck = query('manufacturer').custom((value, { req }) => {
+  const queryObj = req.query;
+  if (!req.query.status) {
+    throw new Error('Availability Status is not set');
+  }
+
+  isValidNumberOfParameter(queryObj, 2);
+
+  if (!queryObj.manufacturer) {
+    throw new Error('Manufacturer value is missing');
+  }
+
+  return true;
+}).optional('nullable')
+  .isAlpha()
+  .withMessage('Manufacturer should only contain alphabet')
+  .toString();
+
+
 export const priceParamCheck = param('newPrice').exists()
   .isFloat({ min: 1 })
   .withMessage('New Price must be a positive number')
