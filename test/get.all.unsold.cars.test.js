@@ -44,7 +44,7 @@ describe('GET /api/v1/car?status=available', () => {
         .get('/api/v1/car?s').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(403);
+          expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid Query Parameter was supplied');
           done();
         });
