@@ -12,6 +12,7 @@ class Car {
       manufacturer: 'mercedes',
       model: '2014',
       bodyType: 'trailer',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 2,
@@ -23,6 +24,7 @@ class Car {
       manufacturer: 'honda',
       model: '2015',
       bodyType: 'coupe',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 3,
@@ -34,6 +36,7 @@ class Car {
       manufacturer: 'mercedes',
       model: '2014',
       bodyType: 'suv',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     }, {
       id: 4,
       owner: 1,
@@ -44,6 +47,7 @@ class Car {
       manufacturer: 'mercedes',
       model: '2014',
       bodyType: 'trailer',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 5,
@@ -55,6 +59,7 @@ class Car {
       manufacturer: 'dodge',
       model: 'charger',
       bodyType: 'coupe',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 6,
@@ -66,6 +71,7 @@ class Car {
       manufacturer: 'dodge',
       model: 'challenger',
       bodyType: 'coupe',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 7,
@@ -77,6 +83,7 @@ class Car {
       manufacturer: 'buggati',
       model: '2014',
       bodyType: 'coupe',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 8,
@@ -88,6 +95,7 @@ class Car {
       manufacturer: 'buggati',
       model: '2014',
       bodyType: 'jeep',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 9,
@@ -99,6 +107,7 @@ class Car {
       manufacturer: 'toyota',
       model: '2016',
       bodyType: 'salon',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 10,
@@ -110,6 +119,7 @@ class Car {
       manufacturer: 'volkswagen',
       model: '2016',
       bodyType: 'mpv',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 11,
@@ -121,6 +131,7 @@ class Car {
       manufacturer: 'honda',
       model: '2016',
       bodyType: 'coupe',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 12,
@@ -132,6 +143,7 @@ class Car {
       manufacturer: 'hyundai',
       model: '2016',
       bodyType: 'wagon',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 13,
@@ -143,6 +155,7 @@ class Car {
       manufacturer: 'volkswagen',
       model: '2016',
       bodyType: 'coupe',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     {
       id: 14,
@@ -154,9 +167,30 @@ class Car {
       manufacturer: 'volkswagen',
       model: '2016',
       bodyType: 'suv',
+      url: 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg',
     },
     ];
     this.lastInsertId = this.cars.length;
+  }
+
+  createCar(body, userId, url) {
+    const newCar = {
+      id: this.lastInsertId + 1,
+      owner: userId,
+      createdOn: Date.now(),
+      state: body.state,
+      status: 'available',
+      price: body.price,
+      manufacturer: body.manufacturer,
+      model: body.model,
+      bodyType: body.bodyType,
+      url,
+    };
+    this.lastInsertId = this.lastInsertId + 1;
+
+    this.cars.push(newCar);
+
+    return newCar;
   }
 
   markAsSold(carId, userId, status) {

@@ -1,8 +1,10 @@
 import express from 'express';
+import multipart from 'connect-multiparty';
+import multer from 'multer';
+import fileType from 'file-type';
 import User from '../controllers/user';
 import Car from '../controllers/car';
 import Order from '../controllers/order';
-
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
   addressCheck, checkToken, priceCheck, carIdCheck,
@@ -13,6 +15,7 @@ import {
 } from '../helpers/custom-validator';
 
 const router = express.Router();
+
 
 router.post('/auth/signup', [
 
@@ -33,6 +36,8 @@ router.patch('/car/:carId/:car', [
   priceOptionalCheck, carIdSanitizer,
 ], Car.markAsSold);
 
+
+router.post('/car', checkToken, Car.postCarAd);
 router.get('/car', [
   checkToken, manufacturerQueryCheck, statusQueryCheck,
   minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
