@@ -25,7 +25,7 @@ describe('GET /api/v1/car?body_type=coupe', () => {
   });
 
 
-  describe('When a user tries to retrieve all used cars ommiting status=available', () => {
+  describe('When a user tries to retrieve all cars by body type ommiting body_type value', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .get('/api/v1/car?body_type').set('Authorization', token)
@@ -38,7 +38,7 @@ describe('GET /api/v1/car?body_type=coupe', () => {
     });
   });
 
-  describe('When a user tries to retrieve all used cars ommiting status=available', () => {
+  describe('When a user tries to retrieve all cars  by body type  with a numeric value', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .get('/api/v1/car?body_type=14').set('Authorization', token)
@@ -51,7 +51,7 @@ describe('GET /api/v1/car?body_type=coupe', () => {
     });
   });
 
-  describe('When a user tries to retrieve all used cars ommiting status=available', () => {
+  describe('When a user tries to retrieve all  cars  by body type with other parameters that are not allowed', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .get('/api/v1/car?status=available&body_type=coupe').set('Authorization', token)
@@ -65,7 +65,7 @@ describe('GET /api/v1/car?body_type=coupe', () => {
   });
 
 
-  describe('When a user tries to retrieve all used cars ommiting status=available', () => {
+  describe('When a user tries to retrieve all cars  by body type  with other parameters that are not allowed', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .get('/api/v1/car?body_type=coupe&status=available').set('Authorization', token)
@@ -79,7 +79,7 @@ describe('GET /api/v1/car?body_type=coupe', () => {
   });
 
 
-  describe('When a user tries to retrieve all used cars with proper detail', () => {
+  describe('When a user tries to retrieve all cars by body type  with proper detail', () => {
     it('should return an object with the status and data', (done) => {
       chai.request(server)
         .get('/api/v1/car?body_type=coupe').set('Authorization', token)

@@ -5,17 +5,18 @@ import fileType from 'file-type';
 import User from '../controllers/user';
 import Car from '../controllers/car';
 import Order from '../controllers/order';
+import Flag from '../controllers/flag';
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
   addressCheck, checkToken, priceCheck, carIdCheck,
   newPriceSanitizer, orderIdSanitizer, orderIdParamCheck,
   priceParamCheck, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
   statusQueryCheck, minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
-  priceOptionalCheck, usedStatusQueryCheck, bodyTypeQueryCheck, manufacturerQueryCheck,
+  priceOptionalCheck, usedStatusQueryCheck, bodyTypeQueryCheck, 
+  manufacturerQueryCheck, reasonCheckCheck, descriptionCheck,
 } from '../helpers/custom-validator';
 
 const router = express.Router();
-
 
 router.post('/auth/signup', [
 
@@ -66,5 +67,7 @@ router.patch('/order/:orderId/:newPrice', [
   orderIdSanitizer,
 ], Order.updateOrder);
 
+router.post('/flag', [checkToken, reasonCheckCheck, 
+  descriptionCheck, carIdCheck], Flag.postFlag);
 
 export default router;

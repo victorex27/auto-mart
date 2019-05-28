@@ -15,4 +15,5 @@
 --file ./test/update.car.price.test.js
 --file ./test/update.order.test.js
 --file ./test/delete.specific.car.test.js
+--file ./test/create.flag.test.js
 --file ./test/create.car.ad.test.js
