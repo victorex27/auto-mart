@@ -24,7 +24,7 @@ describe('POST /api/v1/car', () => {
       });
   });
 
-  describe('When a user tries to make a car add with no state field supplied', () => {
+  describe('When a user tries to make a car ad with no state field supplied', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         price: 1200000,
@@ -47,7 +47,7 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car add with an invalid state field type', () => {
+  describe('When a user tries to make a car ad with an invalid state field type', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         state: 45,
@@ -71,7 +71,7 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car add with no price field supplied', () => {
+  describe('When a user tries to make a car ad with no price field supplied', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         state: 'new',
@@ -94,7 +94,7 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car add with invalid price field type', () => {
+  describe('When a user tries to make a car ad with invalid price field type', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         state: 'new',
@@ -118,7 +118,7 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car add with no model field', () => {
+  describe('When a user tries to make a car ad with no model field', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         state: 'new',
@@ -141,7 +141,7 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car add with no body type field supplied', () => {
+  describe('When a user tries to make a car ad with no body type field supplied', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         state: 'new',
@@ -164,7 +164,7 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car add with no manufacturer field supplied', () => {
+  describe('When a user tries to make a car ad with no manufacturer field supplied', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         state: 'new',

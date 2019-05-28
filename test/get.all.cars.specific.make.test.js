@@ -25,11 +25,10 @@ describe('GET /api/v1/car?status=available&manufacturer=dodge', () => {
   });
 
 
-  describe('When a user tries to retrieve all used cars with a non alphabetic value', () => {
+  describe('When a user tries to retrieve all used cars by a manufacturer with no availability status set', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .get('/api/v1/car?manufacturer=dodge').set('Authorization', token)
-        // .get('/api/v1/car?status=available&manufacturer=112').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -39,7 +38,7 @@ describe('GET /api/v1/car?status=available&manufacturer=dodge', () => {
     });
   });
 
-  describe('When a user tries to retrieve all used cars with a non alphabetic value', () => {
+  describe('When a user tries to retrieve all used cars by a manufacturer  with a non alphabetic value', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .get('/api/v1/car?status=available&manufacturer=112').set('Authorization', token)
@@ -52,7 +51,7 @@ describe('GET /api/v1/car?status=available&manufacturer=dodge', () => {
     });
   });
 
-  describe('When a user tries to retrieve all used cars ommiting the value for manufacturer', () => {
+  describe('When a user tries to retrieve all used cars by a manufacturer  ommiting the value for manufacturer', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
         .get('/api/v1/car?status=available&manufacturer').set('Authorization', token)
@@ -66,7 +65,7 @@ describe('GET /api/v1/car?status=available&manufacturer=dodge', () => {
   });
 
 
-  describe('When a user tries to retrieve all used cars with proper detail', () => {
+  describe('When a user tries to retrieve all used cars by a manufacturer  with proper detail', () => {
     it('should return an object with the status and data', (done) => {
       chai.request(server)
         .get('/api/v1/car?status=available&manufacturer=dodge').set('Authorization', token)

@@ -51,7 +51,8 @@ export const carIdCheck = check('carId').exists()
   .withMessage('No car id supplied')
   .isInt({ min: 1 })
   .withMessage('Car id must be a positive integer')
-  .trim();
+  .trim()
+  .toInt();
 
 
 export const priceCheck = check('amount').exists()
@@ -59,6 +60,17 @@ export const priceCheck = check('amount').exists()
   .isInt({ min: 1 })
   .withMessage('Price must be a positive integer')
   .trim();
+
+
+export const reasonCheckCheck = check('reason').exists()
+  .withMessage('Reason Field is missing')
+  .trim()
+  .toString();
+
+export const descriptionCheck = check('description').exists()
+  .withMessage('Description Field is missing')
+  .trim()
+  .toString();
 
 export const orderIdParamCheck = param('orderId').exists()
   .isInt({ min: 1 }).withMessage('Order id must be a positive integer')
