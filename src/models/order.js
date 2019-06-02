@@ -11,16 +11,16 @@ class Order {
     const { carId } = data;
     const car = this.getCars().doesCarExist(carId);
     if (!car) {
-      return { error: 'Car id does not exist' };
+      return { code: 404, error: 'Car id does not exist' };
     }
 
     if (car.id === carId && car.owner === userId) {
-      return { error: 'You cannot make a purchase order for your stock' };
+      return { code: 400, error: 'You cannot make a purchase order for your stock' };
     }
 
     const order = this.doesOrderExistByCarId(carId, userId);
     if (order) {
-      return { error: 'Purchase Order already exists' };
+      return { code: 400, error: 'Purchase Order already exists' };
     }
 
 
@@ -46,19 +46,19 @@ class Order {
     const order = this.doesOrderExistByOrderId(orderId);
 
     if (!order) {
-      return { error: 'Purchase order does not exist' };
+      return { code: 404, error: 'Purchase order does not exist' };
     }
 
     if (order.buyer !== userId) {
-      return { error: 'This purchase order was not made by you' };
+      return { code: 400, error: 'This purchase order was not made by you' };
     }
 
     if (order.status !== 'pending') {
-      return { error: 'You cannot update the price a non pending purchase order' };
+      return { code: 400, error: 'You cannot update the price a non pending purchase order' };
     }
 
     if (order.priceOffered === newPrice) {
-      return { error: 'Current Price is the same as supplied price' };
+      return { code: 400, error: 'Current Price is the same as supplied price' };
     }
     const oldPrice = order.priceOffered;
     order.priceOffered = newPrice;

@@ -18,7 +18,7 @@ describe('GET /api/v1/car?status=available', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -68,7 +68,7 @@ describe('GET /api/v1/car?status=available', () => {
               expect(element).to.have.property('manufacturer');
             });
           }
-          expect(res.body).to.have.property('status').to.equals(201);
+          expect(res.body).to.have.property('status').to.equals(200);
           expect(res.body).to.have.property('data').to.be.a('array');
 
           done();

@@ -16,7 +16,7 @@ describe('POST /api/v1/auth/signin', () => {
         .post('/api/v1/auth/signin')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('status').to.equals(404);
           expect(res.body).to.have.property('error').to.be.a('string').equals('User Account does not exist');
           done();
         });
@@ -33,7 +33,7 @@ describe('POST /api/v1/auth/signin', () => {
         .post('/api/v1/auth/signin')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('status').to.equals(401);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid Password');
           done();
         });
@@ -50,7 +50,7 @@ describe('POST /api/v1/auth/signin', () => {
         .post('/api/v1/auth/signin')
         .send(user)
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(201);
+          expect(res.body).to.have.property('status').to.equals(200);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('token');
           expect(res.body).to.have.property('data').to.have.property('email');

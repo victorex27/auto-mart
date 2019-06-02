@@ -17,7 +17,7 @@ describe('When user tries to access the application using wrong token', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         // token = `Bearer ${res.body.data.token}`;
         done();
       });

@@ -11,11 +11,10 @@ class Flag {
   createFlag(userId, body) {
     const { carId } = body;
     if (!this.getCars().doesCarExist(carId)) {
-      return { error: 'Car id does not exist' };
+      return { code: 404, error: 'Car id does not exist' };
     }
-
     if (this.getCars().belongsToOwner(userId, carId)) {
-      return { error: 'You cannot report your own ad' };
+      return { code: 400, error: 'You cannot report your own ad' };
     }
     const newFlag = {
       id: this.lastInsertId + 1,

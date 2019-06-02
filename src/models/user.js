@@ -1,48 +1,15 @@
+import userData from './data/user';
+
 class User {
   constructor() {
-    this.users = [{
-      id: 1,
-      email: 'aobikobe@gmail.com',
-      firstName: 'Amaobi',
-      lastName: 'Obikobe',
-      password: 'password70',
-      address: ' 33 kwaru family way , Lagos',
-      isAdmin: true,
-    },
-    {
-      id: 2,
-      email: 'mikenit90@gmail.com',
-      firstName: 'Arinze',
-      lastName: 'Obikobe',
-      password: 'password70',
-      address: ' 40 Owerri west, owerri',
-      isAdmin: false,
-    },
-    {
-      id: 3,
-      email: 'victorex27@hotmail.com',
-      firstName: 'Ekene',
-      lastName: 'Obikobe',
-      password: 'password70',
-      address: '50 abuloma, port harcourt, rivers',
-      isAdmin: false,
-    }, {
-      id: 4,
-      email: 'victorvents@hotmail.com',
-      firstName: 'Emenike',
-      lastName: 'Obikobe',
-      password: 'password70',
-      address: '16 udo udoma, by abak road, akwa ibom',
-      isAdmin: false,
-    },
-    ];
+    this.users = userData;
     this.lastInsertId = this.users.length;
   }
 
 
   create(data) {
     if (this.doesUserExist(data.email)) {
-      return { error: 'User Account already exists' };
+      return { code: 400, error: 'User Account already exists' };
     }
 
     const newId = this.lastInsertId + 1;
@@ -62,12 +29,12 @@ class User {
 
   signIn(data) {
     if (!this.doesUserExist(data.email)) {
-      return { error: 'User Account does not exist' };
+      return { code: 404, error: 'User Account does not exist' };
     }
     const user = this.doCredentailsMatch(data.email, data.password);
 
     if (!user) {
-      return { error: 'Invalid Password' };
+      return { code: 401, error: 'Invalid Password' };
     }
 
     return user;
@@ -80,6 +47,5 @@ class User {
   doCredentailsMatch(email, password) {
     return this.users.find(user => user.email === email && user.password === password);
   }
-
 }
 export default new User();

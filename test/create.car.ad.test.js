@@ -18,7 +18,7 @@ describe('POST /api/v1/car', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -298,7 +298,6 @@ describe('POST /api/v1/car', () => {
 
       chai.request(server)
         .post('/api/v1/car').set('Authorization', token)
-        // .set('Accept', 'application.json')
         .field('Content-Type', 'multipart/form-data')
         .field(data)
         .attach('dataFile', 'test/img/img1.jpg')

@@ -102,10 +102,10 @@ export const priceOptionalCheck = check('amount').exists()
 export const statusQueryCheck = query('status').equals('available').withMessage('Invalid status parameter').optional('nullable')
   .trim()
   .toString();
-export const minQueryCheck = query('min').isFloat({ min: 0 }).withMessage('Price range should be a positive number').optional('nullable')
+export const minQueryCheck = query('min_price').isFloat({ min: 0 }).withMessage('Price range should be a positive number').optional('nullable')
   .trim()
   .toFloat();
-export const maxQueryCheck = query('max').isFloat({ min: 0 }).withMessage('Price range should be a positive number').optional('nullable')
+export const maxQueryCheck = query('max_price').isFloat({ min: 0 }).withMessage('Price range should be a positive number').optional('nullable')
   .trim()
   .toFloat();
 
@@ -116,16 +116,16 @@ const isValidNumberOfParameter = (queryObj, number) => {
 };
 
 
-export const arefieldsTheSameQueryCheck = query('max').custom((value, { req }) => {
+export const arefieldsTheSameQueryCheck = query('max_price').custom((value, { req }) => {
   const queryObj = req.query;
 
   isValidNumberOfParameter(queryObj, 3);
 
 
-  if (queryObj.min === queryObj.max) {
+  if (queryObj.min_price === queryObj.max_price) {
     throw new Error('Max and Min values cannot be the same');
   }
-  if (queryObj.min > queryObj.max) {
+  if (queryObj.min_price > queryObj.max_price) {
     throw new Error('Min value is greater than Max value');
   }
 

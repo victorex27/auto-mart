@@ -1,0 +1,957 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Auto Mart",
+    "description": "Online marketplace for automobiles of diverse makes, model or body type.\n",
+    "contact": {
+      "email": "aobikobe@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://quiet-earth-51065.herokuapp.com/api/v1/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/car": {
+      "get": {
+        "tags": [
+          "car"
+        ],
+        "summary": "getCar",
+        "description": "Get car",
+        "operationId": "Getcar",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status of the car( available is the only option)",
+            "required": false,
+            "style": "form",
+            "example":"available",
+            "schema": {
+              "enum": [
+                "available"
+              ]
+            }
+          },
+          {
+            "name": "body_type",
+            "in": "query",
+            "description": "Body type of the car",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "min",
+            "in": "query",
+            "description": "Minimum price of cars",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "description": "Maximum type of cars",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "manufacturer",
+            "in": "query",
+            "description": "Manufacturer of cars",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "State of cars",
+            "required": false,
+            "style": "form",
+            "schema": {
+              "enum": [
+                "new",
+                "used"
+              ]
+            }
+          }
+
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "car"
+        ],
+        "summary": "create car",
+        "description": "Create a new car ad",
+        "operationId": "CreateCar",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "state",
+                  "price",
+                  "model",
+                  "bodyType",
+                  "manufacturer",
+                  "dataFile"
+                ],
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "enum": ["new","used"],
+                    "description": "State of the car ad we want to create"
+                  },
+                  "price": {
+                    "type": "integer",
+                    "description": "Price of car ad we want to create"
+                  },"model": {
+                    "type": "string",
+                    "description": "Model of car ad we want to create"
+                  },"bodyType": {
+                    "type": "string",
+                    "description": "Body type of car ad we want to create"
+                  },"manufacturer": {
+                    "type": "string",
+                    "description": "Manufacturer of car ad we want to create"
+                  },"dataFile": {
+                    "type": "file",
+                    "description": "Picture of car ad we want to create"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "car not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+      
+    },
+    "/car/{carId}/{newPrice}": {
+      "patch": {
+        "tags": [
+          "car"
+        ],
+        "summary": "Update Car Price",
+        "description": "Update the price of the car with the specified car id",
+        "operationId": "updateCarPrice",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "description": "Id of car",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "newPrice",
+            "in": "path",
+            "description": "New price of car",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/car"
+                  },
+                  "description": "successful operation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    },
+    "/car/{carId}/sold": {
+      "patch": {
+        "tags": [
+          "car"
+        ],
+        "summary": "Mark a car as sold",
+        "description": "Update the status of the car with the specified id to sold",
+        "operationId": "markCArAsSold",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "description": "Id of car",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/car"
+                  },
+                  "description": "successful operation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    },
+    "/car/{carId}": {
+      "get": {
+        "tags": [
+          "car"
+        ],
+        "summary": "getcarById",
+        "description": "Returns a single car",
+        "operationId": "GetcarById",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "description": "ID of car to return",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/car"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "car not found"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "car"
+        ],
+        "summary": "deletecar",
+        "description": "Deletes a car",
+        "operationId": "Deletecar",
+        "parameters": [
+          {
+            "name": "carId",
+            "in": "path",
+            "description": "car id to delete",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "car not found"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    },
+    "/order/{orderId}/{newPrice}": {
+      "patch": {
+        "tags": [
+          "order"
+        ],
+        "summary": "Update Price of an order",
+        "description": "Update the price of an order with the specified id",
+        "operationId": "updateOrderPrice",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Id of order",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "newPrice",
+            "in": "path",
+            "description": "New Order Price",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/car"
+                  },
+                  "description": "successful operation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    },
+    "/order": {
+      "post": {
+        "tags": [
+          "order"
+        ],
+        "summary": "placeOrder",
+        "description": "Place an order for a car",
+        "operationId": "PlaceOrder",
+        "parameters": [
+          
+        ],
+        "requestBody": {
+          "description": "order placed for purchasing the car",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "carId",
+                  "amount"
+                ],
+                "type": "object",
+                "properties": {
+                  "carId": {
+                    "type": "integer",
+                    "description": "Id of car "
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "description": "Amount user intends to purchase the car for"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "create User",
+        "description": "Creates a new user for the system",
+        "operationId": "createUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "email",
+                  "password",
+                  "firstName",
+                  "lastName"
+                ],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "Email Address of user that we want to create"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Password of user that we want to create"
+                  },
+                  "firstName": {
+                    "type": "string",
+                    "description": "First name of user that we want to create"
+                  },
+                  "lastName": {
+                    "type": "string",
+                    "description": "Last name of user that we want to create"
+                  },
+                  "address": {
+                    "type": "string",
+                    "description": "Address of user that we want to create"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user"
+                  },
+                  "description": "successful operation"
+                }
+              }
+            }
+          }
+          ,
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "signinUser",
+        "description": "Signs in user into the system",
+        "operationId": "SigninUser",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "Email Address of user that wants to sign in"
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Password of user that wants to sign in"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/user"
+                  },
+                  "description": "successful operation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password supplied"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/flag": {
+      "post": {
+        "tags": [
+          "flag"
+        ],
+        "summary": "postFlag",
+        "description": "Report a car ad as fraudulent",
+        "operationId": "postFlag",
+        "parameters": [],
+        "requestBody": {
+          "description": "Report an car ad",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "required": [
+                  "carId",
+                  "reason",
+                  "description"
+                ],
+                "type": "object",
+                "properties": {
+                  "carId": {
+                    "type": "integer",
+                    "description": "Id of car "
+                  },
+                  "amount": {
+                    "type": "string",
+                    "description": "The reason for the complaint"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the complaint"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Flag"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Flag"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Order": {
+        "title": "Order",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "carId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "buyer": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "priceOffered": {
+            "type": "integer"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "complete": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "Car": {
+        "title": "Car",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "owner": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "price": {
+            "type": "integer"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "state": {
+            "$ref": "#/components/schemas/State"
+          }
+          ,
+          "manufacturer": {
+            "type": "string"
+          }
+        }
+      },
+      "User": {
+        "title": "User",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "isAdmin": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "user": {
+        "title": "user",
+        "type": "object",
+        "properties": {
+          "status":{
+            "type":"string"
+          },
+          "data":{
+            "type":"object",
+            "properties":{
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "email": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "token": {
+                "type": "string"
+              },
+              "createdOn": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "isAdmin": {
+                "type": "boolean",
+                "example": false
+              }
+            }
+          }
+          
+        }
+      },
+      "Flag": {
+        "title": "Flag",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "createdOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Tag": {
+        "title": "Tag",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiResponse": {
+        "title": "ApiResponse",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "Status": {
+        "title": "Status",
+        "enum": [
+          "available",
+          "sold"
+        ],
+        "type": "string",
+        "description": "Car Status",
+        "example": "available"
+      },
+      "State": {
+        "title": "State",
+        "enum": [
+          "used",
+          "new"
+        ],
+        "type": "string",
+        "description": "State of Vehicle",
+        "example": "new"
+      },
+      "Status1": {
+        "title": "Status1",
+        "enum": [
+          "accepted",
+          "pending",
+          "rejected"
+        ],
+        "type": "string",
+        "description": "status of order",
+        "example": "pending"
+      },
+      "status2": {
+        "title": "status2",
+        "enum": [
+          "available",
+          "pending",
+          "sold"
+        ],
+        "type": "string",
+        "example": "available"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type":"http",
+        "scheme":"bearer",
+        "bearerFormat":"JWT",
+        "in":"header"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "car",
+      "description": "Everything about your cars"
+    },
+    {
+      "name": "order",
+      "description": "Access to carorders"
+    },
+    {
+      "name": "flag",
+      "description": "Access to Report an ad"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user"
+    }
+  ]
+}

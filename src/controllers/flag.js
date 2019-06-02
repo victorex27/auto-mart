@@ -5,9 +5,9 @@ import Validator from '../helpers/validator';
 
 class Flag {
   static postFlag(req, res) {
-    const error = Validator.validate(req, res);
+    const error = Validator.validate(req, res, 400);
     if (error) return error;
-    return Result.getResult(res, FlagModel.createFlag(req.user.id, req.body), false);
+    return Result.getResult(res, FlagModel.createFlag(req.user.id, req.body), false, 201);
   }
 }
 
