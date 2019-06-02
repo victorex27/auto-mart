@@ -18,7 +18,7 @@ describe('DELETE /api/v1/car/:carId', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -30,7 +30,7 @@ describe('DELETE /api/v1/car/:carId', () => {
         .delete('/api/v1/car/900').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('status').to.equals(404);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exists');
           done();
         });
@@ -70,7 +70,7 @@ describe('DELETE /api/v1/car/:carId', () => {
         .delete('/api/v1/car/11').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(201);
+          expect(res.body).to.have.property('status').to.equals(200);
           expect(res.body).to.have.property('data').to.be.equals('Car Ad successfully deleted');
 
           done();
@@ -93,7 +93,7 @@ describe('DELETE /api/v1/car/:carId', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -105,7 +105,7 @@ describe('DELETE /api/v1/car/:carId', () => {
         .delete('/api/v1/car/12').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('status').to.equals(403);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Only admins are allowed to delete car adverts');
           done();
         });

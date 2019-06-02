@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator/check';
 
 class Validator {
-  static validate(req, res) {
+  static validate(req, res, status = 400) {
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
@@ -9,7 +9,7 @@ class Validator {
     }
     const error = errors.array()[0].msg;
 
-    return res.status(400).json({ status: 400, error });
+    return res.status(status).json({ status, error });
   }
 }
 

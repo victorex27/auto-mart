@@ -18,7 +18,7 @@ describe('POST /api/v1/flag', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -115,7 +115,7 @@ describe('POST /api/v1/flag', () => {
         .post('/api/v1/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('status').to.equals(404);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exist');
           done();
         });

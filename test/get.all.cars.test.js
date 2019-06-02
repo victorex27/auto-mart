@@ -18,7 +18,7 @@ describe('GET /api/v1/car/', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -41,7 +41,7 @@ describe('GET /api/v1/car/', () => {
               expect(element).to.have.property('manufacturer');
             });
           }
-          expect(res.body).to.have.property('status').to.equals(201);
+          expect(res.body).to.have.property('status').to.equals(200);
           expect(res.body).to.have.property('data').to.be.a('array');
 
           done();
@@ -64,7 +64,7 @@ describe('GET /api/v1/car/', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -76,7 +76,7 @@ describe('GET /api/v1/car/', () => {
         .get('/api/v1/car').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('status').to.equals(403);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Only an admin is allowed retrieve all cars');
           done();
         });

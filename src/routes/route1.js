@@ -1,7 +1,4 @@
 import express from 'express';
-import multipart from 'connect-multiparty';
-import multer from 'multer';
-import fileType from 'file-type';
 import User from '../controllers/user';
 import Car from '../controllers/car';
 import Order from '../controllers/order';
@@ -15,6 +12,7 @@ import {
   priceOptionalCheck, usedStatusQueryCheck, bodyTypeQueryCheck, 
   manufacturerQueryCheck, reasonCheckCheck, descriptionCheck,
 } from '../helpers/custom-validator';
+
 
 const router = express.Router();
 

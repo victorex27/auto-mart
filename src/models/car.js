@@ -29,34 +29,34 @@ class Car {
 
   markAsSold(carId, userId, status) {
     if (status === 'available') {
-      return { error: 'You are only allowed to update Car status as sold' };
+      return { code: 400, error: 'You are only allowed to update Car status as sold' };
     }
     if (status !== 'sold') {
-      return { error: 'Malformed Path' };
+      return { code: 400, error: 'Malformed Path' };
     }
 
     const car = this.doesCarExist(carId);
 
     if (!car) {
-      return { error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exists' };
     }
 
     if (car.owner !== userId) {
-      return { error: 'You cannot update an ad you did not create' };
+      return { code: 400, error: 'You cannot update an ad you did not create' };
     }
 
     if (car.status === 'sold') {
-      return { error: 'Status is sold. Update not performed' };
+      return { code: 400, error: 'Status is sold. Update not performed' };
     }
 
     const orders = this.getOrders().getOrdersByCarId(carId);
     if (orders.length === 0) {
-      return { error: 'You cannot mark an unordered ad as sold' };
+      return { code: 400, error: 'You cannot mark an unordered ad as sold' };
     }
     const acceptedOrder = orders.find(order => order.status === 'accepted' && order.carId === carId);
 
     if (!acceptedOrder) {
-      return { error: 'You cannot mark an unaccepted ad as sold' };
+      return { code: 400, error: 'You cannot mark an unaccepted ad as sold' };
     }
     car.status = 'sold';
     this.update(carId, car);
@@ -67,15 +67,15 @@ class Car {
   updateCarPrice(carId, userId, newPrice) {
     const car = this.doesCarExist(carId);
     if (!car) {
-      return { error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exists' };
     }
 
     if (car.owner !== userId) {
-      return { error: 'You cannot update an ad you did not create' };
+      return { code: 400, error: 'You cannot update an ad you did not create' };
     }
 
     if (car.status === 'sold') {
-      return { error: 'Car is already marked as sold. You cannot update price' };
+      return { code: 400, error: 'Car is already marked as sold. You cannot update price' };
     }
 
     car.price = newPrice;
@@ -87,7 +87,7 @@ class Car {
     const car = this.doesCarExist(carId);
 
     if (!car) {
-      return { error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exists' };
     }
     return car;
   }
@@ -96,11 +96,11 @@ class Car {
     const car = this.doesCarExist(carId);
 
     if (!car) {
-      return { error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exists' };
     }
 
     if (!isAdmin) {
-      return { error: 'Only admins are allowed to delete car adverts' };
+      return { code: 403, error: 'Only admins are allowed to delete car adverts' };
     }
 
 
@@ -153,7 +153,7 @@ class Car {
 
   getAllCars(isAdmin) {
     if (!isAdmin) {
-      return { error: 'Only an admin is allowed retrieve all cars' };
+      return { code: 403, error: 'Only an admin is allowed retrieve all cars' };
     }
 
     return this.cars;

@@ -17,10 +17,10 @@ class Car {
     const newPrice = Number(car);
 
     if (Number.isNaN(newPrice)) {
-      return Result.getResult(res, CarModel.markAsSold(carId, req.user.id, status), false);
+      return Result.getResult(res, CarModel.markAsSold(carId, req.user.id, status), false, 200);
     }
 
-    return Result.getResult(res, CarModel.updateCarPrice(carId, req.user.id, newPrice), false);
+    return Result.getResult(res, CarModel.updateCarPrice(carId, req.user.id, newPrice), false, 200);
   }
 
   static getSingleCar(req, res) {
@@ -28,7 +28,7 @@ class Car {
 
     if (error) return error;
 
-    return Result.getResult(res, CarModel.getSingleCar(req.params.carId), false);
+    return Result.getResult(res, CarModel.getSingleCar(req.params.carId), false, 200);
   }
 
   static postCarAd(req, res) {
@@ -50,7 +50,10 @@ class Car {
       });
       return cloudinary.v2.uploader
         .upload(dataFile.path, { tags: 'gotemps', resource_type: 'auto' })
-        .then(file => Result.getResult(res, CarModel.createCar(fields, req.user.id, file.url), false));
+        .then(file => Result.getResult(res,
+          CarModel.createCar(fields, req.user.id, file.url),
+          false,
+          201));
     });
   }
 
@@ -59,7 +62,10 @@ class Car {
 
     if (error) return error;
 
-    return Result.getResult(res, CarModel.getDeleteCar(req.params.carId, req.user.isAdmin), false);
+    return Result.getResult(res,
+      CarModel.getDeleteCar(req.params.carId, req.user.isAdmin),
+      false,
+      200);
   }
 
 
@@ -69,39 +75,42 @@ class Car {
     if (error) return error;
 
     const {
-      min, max, status, state, manufacturer,
+      status, state, manufacturer,
     } = req.query;
+
+    const min = req.query.min_price;
+    const max = req.query.max_price;
 
     const bodyType = req.query.body_type;
     const arrayQueryParameter = Object.keys(req.query);
 
-    const found = arrayQueryParameter.every(r => ['min', 'max', 'status', 'state', 'body_type', 'manufacturer'].indexOf(r) >= 0);
+    const found = arrayQueryParameter.every(r => ['min_price', 'max_price', 'status', 'state', 'body_type', 'manufacturer'].indexOf(r) >= 0);
     if (!found && arrayQueryParameter.length > 0) {
       return res.status(400).json({ status: 400, error: 'Invalid Query Parameter was supplied' });
     }
 
     if (bodyType) {
-      return Result.getResult(res, CarModel.getAllCarsByBodyType(bodyType), true);
+      return Result.getResult(res, CarModel.getAllCarsByBodyType(bodyType), true, 200);
     }
 
 
     if (manufacturer) {
-      return Result.getResult(res, CarModel.getAllCarsByManufacturer(manufacturer), true);
+      return Result.getResult(res, CarModel.getAllCarsByManufacturer(manufacturer), true, 200);
     }
 
 
     if (max && min) {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true);
+      return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true, 200);
     }
 
     if (state && (state === 'used' || state === 'new')) {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(state), true);
+      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(state), true, 200);
     }
 
     if (status) {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(), true);
+      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(), true, 200);
     }
-    return Result.getResult(res, CarModel.getAllCars(req.user.isAdmin), true);
+    return Result.getResult(res, CarModel.getAllCars(req.user.isAdmin), true, 200);
   }
 
   static validation(dataFile, fields) {

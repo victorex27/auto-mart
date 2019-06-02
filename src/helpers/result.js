@@ -1,17 +1,17 @@
 
 class Result {
-  static getResult(res, car, isArrayOfOutput) {
-    if (car.error) {
-      return res.status(400).json({ status: 400, error: car.error });
+  static getResult(res, obj, isArrayOfOutput, status) {
+    if (obj.error) {
+      return res.status(obj.code).json({ status: obj.code, error: obj.error });
     }
-    if (car === 'delete') {
-      return res.status(201).json({ status: 201, data: 'Car Ad successfully deleted' });
+    if (obj === 'delete') {
+      return res.status(status).json({ status, data: 'Car Ad successfully deleted' });
     }
 
     if (isArrayOfOutput) {
-      return res.status(201).json({ status: 201, data: [...car] });
+      return res.status(status).json({ status, data: [...obj] });
     }
-    return res.status(201).json({ status: 201, data: { ...car } });
+    return res.status(status).json({ status, data: { ...obj } });
   }
 }
 

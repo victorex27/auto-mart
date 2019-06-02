@@ -7,16 +7,16 @@ class User {
   static create(req, res) {
     const newUser = UserModel.create(req.body);
 
-    User.getUser(req, res, newUser);
+    User.getUser(req, res, newUser, 201);
   }
 
   static signIn(req, res) {
     const newUser = UserModel.signIn(req.body);
 
-    User.getUser(req, res, newUser);
+    User.getUser(req, res, newUser, 200);
   }
 
-  static getUser(req, res, userModel) {
+  static getUser(req, res, userModel, status) {
     const errors = validationResult(req);
 
 
@@ -26,12 +26,12 @@ class User {
     }
 
     if (userModel.error) {
-      return res.status(400).json({ status: 400, error: userModel.error });
+      return res.status(400).json({ status: userModel.code, error: userModel.error });
     }
 
     const token = jwt.sign({ id: userModel.id, email: userModel.email, isAdmin: userModel.isAdmin }, process.env.YOUR_SECRET_KEY, { expiresIn: '2h' });
 
-    return res.status(201).json({ status: 201, data: { token, ...userModel } });
+    return res.status(status).json({ status, data: { token, ...userModel } });
   }
 
 }

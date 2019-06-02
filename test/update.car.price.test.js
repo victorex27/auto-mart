@@ -18,7 +18,7 @@ describe('PACTH /api/v1/car/:carId/:price', () => {
       .post('/api/v1/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
-        expect(res.statusCode).to.equal(201);
+        expect(res.statusCode).to.equal(200);
         token = `Bearer ${res.body.data.token}`;
         done();
       });
@@ -44,7 +44,7 @@ describe('PACTH /api/v1/car/:carId/:price', () => {
         .patch('/api/v1/car/90/10000').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('status').to.equals(404);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exists');
           done();
         });
@@ -70,7 +70,7 @@ describe('PACTH /api/v1/car/:carId/:price', () => {
         .patch('/api/v1/car/14/1000').set('Authorization', token)
         .send()
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(201);
+          expect(res.body).to.have.property('status').to.equals(200);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
           expect(res.body).to.have.property('data').to.have.property('owner');
