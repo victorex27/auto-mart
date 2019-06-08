@@ -5,6 +5,13 @@ const homeTab = document.getElementById('home_tab');
 const advTab = document.getElementById('adv_tab');
 const poTab = document.getElementById('po_tab');
 const adminTab = document.getElementById('admin_tab');
+const aside = document.querySelector('aside');
+const oncloseButtonClicked = () => {
+  if (window.matchMedia('(max-width: 700px)').matches) {
+    aside.style.display = 'none';
+    aside.style.width = '30%';
+  }
+};
 
 
 class Navigation {
@@ -62,6 +69,7 @@ class Navigation {
         }
         document.querySelector('h1').innerHTML = pageTitle;
       } else {
+        oncloseButtonClicked();
         this.setPageTitle(currentPage);
       }
       currentPage.showPage();

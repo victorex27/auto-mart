@@ -9,9 +9,12 @@ import Car from './pages/car.js';
 // menu and close button
 const menuButton = document.getElementById('menu-button');
 const closeButton = document.getElementById('close-button');
+const filterListButton = document.getElementById('filter-list');
+const closeFilterButton = document.getElementById('close-filter');
 
 // aside div
 const aside = document.querySelector('aside');
+const section = document.querySelector('section');
 
 // tabs in the aside block
 const homeTab = document.getElementById('home_tab');
@@ -40,10 +43,25 @@ const oncloseButtonClicked = () => {
   }
 };
 
+const onFilterListButtonClicked = () => {
+  section.style.display = 'block';
+  section.style.position = 'absolute';
+  section.style.top = '0';
+  section.style.left = '0';
+  section.style.width = '100%';
+  section.style.height = '100vh';
+
+};
+
+const onCloseFilterButtonClicked = () => {
+  section.style.display = 'none';
+};
+
 menuButton.addEventListener('click', onmenuButtonClicked);
 closeButton.addEventListener('click', oncloseButtonClicked);
 backButton.addEventListener('click', onBackButtonClicked);
-
+filterListButton.addEventListener('click', onFilterListButtonClicked);
+closeFilterButton.addEventListener('click', onCloseFilterButtonClicked);
 const startApp = () => {
   const car = new Car(navigation);
   const galleryDiv = new GalleryDiv(navigation, car);

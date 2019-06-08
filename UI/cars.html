@@ -22,15 +22,14 @@
             <span> <button class="am am-close-white am-100" id="close-button"></button></span>
             <span> Auto </span>
             <span> Mart </span>
-            <span> <button id='back-button' class='am  am-primary-color am-back-white am-no-margin am-no-padding am-100'></button> </span>
+            <span> <button id='back-button'
+                    class='am  am-primary-color am-back-white am-no-margin am-no-padding am-100'></button> </span>
 
             <div>
                 <span>Signed in as aobikobe@gmail.com</span>
 
 
             </div>
-
-
 
             <nav>
                 <li> <a href="javascript:void(0)" class='current' id='home_tab'>Home</a> </li>
@@ -48,77 +47,15 @@
     </nav>
     <main>
 
-
-
-
         <h1> </h1>
-        <section>
-            <div>
-                <form action="">
-                    <li>
-                        <label for="">View</label>
-                        <select name="mileage" id="mileage">
-                            <option value="all">All</option>
-                            <option value="new">New</option>
-                            <option value="used">Used</option>
-                        </select>
-                    </li>
-                    <li>
-
-                        <label for="Manufacturer"> Made by</label>
-                        <select name="manufacturer" id="manufacturer">
-                            <option value="any">Any</option>
-                            <option value="toyota"> Toyota</option>
-                            <option value="honda"> Honda</option>
-                            <option value="mercedes"> Mercedes</option>
-                        </select>
-                    </li>
-
-
-
-                    <li>
-                        <label for="body_type">With Body type of </label>
-                        <select name="body_type" id="body_type">
-                            <option value="any">Any</option>
-                            <option value="suv"> SUV</option>
-                            <option value="wagon"> Wagon</option>
-                            <option value="sedan"> Sedan</option>
-                            <option value="convertible"> Convertible</option>
-                            <option value="crossover"> Crossover</option>
-                        </select>
-                    </li>
-                    <li>
-                        <label for="price">Maximum Price (in million)</label>
-                        <select name="price" id="price">
-                            <option value="unlimited">Unlimited</option>
-                            <option value="50"> 50</option>
-                            <option value="40"> 40</option>
-                            <option value="30"> 30</option>
-                            <option value="20"> 20</option>
-                            <option value="10"> 10</option>
-                            <option value="5"> 5</option>
-                            <option value="4"> 4</option>
-                            <option value="3"> 3</option>
-                            <option value="2"> 2</option>
-                            <option value="1"> 1</option>
-                        </select>
-
-                    </li>
-                </form>
-
-            </div>
-
-
-
-        </section>
-
-
+        <button id='filter-list' class='btn mobile-view'> 
+            <span>Filter List </span>
+                      <img src="img/Long_Arrow_Right.ico" alt='filter list'/>
+                      </button>
 
         <div id='single-car'>
             <div>
-                <div> <img src="https://via.placeholder.com/150" alt="slide position 1"></div>
-                <div> <img src="https://via.placeholder.com/150" alt="slide position 2"></div>
-                <div> <img src="https://via.placeholder.com/150" alt="slide position 3"></div>
+                <div> <img src="./img/img2.jpg" alt="slide position 1"></div>
             </div>
 
             <div>
@@ -161,24 +98,21 @@
 
                 <div>
 
-                    <span> Price( &#8358; ) </span> <input type='number' name='po-price' id='po-price'>
-
-
-                    <button id='make-purchase-order-button' class='is-not-visible'> Make Purchase Order </button>
-                    <button id='update-purchase-order-button' class='is-not-visible'> Update Purchase Order </button>
-                    <button id='update-advert-button' class='is-not-visible'> Update Ad Price </button>
-
+                    <span>
+                        <span> Price( &#8358; ) </span> <input type='number' name='po-price' id='po-price'>
+                    </span>
+                    <span>
+                        <button id='make-purchase-order-button' class='is-not-visible'> M </button>
+                        <button id='update-purchase-order-button' class='is-not-visible'> UPO</button>
+                        <button id='update-advert-button' class='is-not-visible'> UAP </button>
+                    </span>
                 </div>
-
 
             </div>
 
             <div id='verify-purchase-order'>
-                
 
                 <div>
-
-
 
                     <table>
                         <thead>
@@ -327,7 +261,7 @@
         <div id='gallery'>
             <div class='card'>
                 <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
+                    <img src="./img/img2.jpg" alt="car">
                 </div>
 
                 <div>
@@ -342,7 +276,7 @@
 
             <div class='card'>
                 <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
+                    <img src="./img/img4.jpg" alt="car">
                 </div>
 
                 <div>
@@ -537,7 +471,70 @@
 
 
         </div>
+        <section>
+                <button id='close-filter' class='btn mobile-view'> 
+                        <span>Back </span>
+                                  <img src="img/Long_Arrow_Left.ico" alt='filter list'/>
+                                  </button>
+                <h2 id='mobile-view'>Filter List </h2>
+            <div>
+                <form action="">
+                    <li>
+                        <label for="">View</label>
+                        <select name="mileage" id="mileage">
+                            <option value="all">All</option>
+                            <option value="new">New</option>
+                            <option value="used">Used</option>
+                        </select>
+                    </li>
+                    <li>
 
+                        <label for="Manufacturer"> Made by</label>
+                        <select name="manufacturer" id="manufacturer">
+                            <option value="any">Any</option>
+                            <option value="toyota"> Toyota</option>
+                            <option value="honda"> Honda</option>
+                            <option value="mercedes"> Mercedes</option>
+                        </select>
+                    </li>
+
+
+
+                    <li>
+                        <label for="body_type">With Body type of </label>
+                        <select name="body_type" id="body_type">
+                            <option value="any">Any</option>
+                            <option value="suv"> SUV</option>
+                            <option value="wagon"> Wagon</option>
+                            <option value="sedan"> Sedan</option>
+                            <option value="convertible"> Convertible</option>
+                            <option value="crossover"> Crossover</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="price">Maximum Price (in million)</label>
+                        <select name="price" id="price">
+                            <option value="unlimited">Unlimited</option>
+                            <option value="50"> 50</option>
+                            <option value="40"> 40</option>
+                            <option value="30"> 30</option>
+                            <option value="20"> 20</option>
+                            <option value="10"> 10</option>
+                            <option value="5"> 5</option>
+                            <option value="4"> 4</option>
+                            <option value="3"> 3</option>
+                            <option value="2"> 2</option>
+                            <option value="1"> 1</option>
+                        </select>
+
+                    </li>
+                </form>
+
+            </div>
+
+
+
+        </section>
         <div class='modal'>
 
             <div>

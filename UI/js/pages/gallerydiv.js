@@ -41,7 +41,7 @@ class GalleryHomeDiv {
         if (window.matchMedia('(max-width: 700px)').matches) {
           this.homeDiv.style.width = '100%';
         } else {
-          this.homeDiv.style.width = '75%';
+          // this.homeDiv.style.width = '75%';
         }
         this.removeNotificationDiv();
         this.removeSoldStatus();
