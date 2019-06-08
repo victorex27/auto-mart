@@ -1,12 +1,12 @@
 import Common from './common.js';
-import GalleryHomeDiV from './gallerydiv.js';
-import HomePage from './home.js';
 
 class Advertisement extends Common {
-  constructor() {
+  constructor(navigation, galleryHomeDiV) {
     super();
 
+    this.name = 'adv';
 
+    this.navigation = navigation;
     this.advDiv = document.getElementById('advertisement');
 
     this.header = document.querySelector('div#advertisement > header');
@@ -26,16 +26,18 @@ class Advertisement extends Common {
       }
     });
 
-    this.galleryHomeDiV = new GalleryHomeDiV();
+    this.galleryHomeDiV = galleryHomeDiV;
   }
 
   showPage() {
-    document.querySelector('h1').innerHTML = 'Your Ads';
-    HomePage.Type = 'adv';
-
+    this.navigation.setPageType('adv');
     this.advDiv.style.display = 'flex';
     this.advDiv.classList.remove('is-not-visible');
     this.galleryHomeDiV.showPage();
+  }
+
+  getName() {
+    return this.name;
   }
 
   removePage() {

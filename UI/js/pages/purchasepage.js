@@ -1,23 +1,27 @@
-import GalleryHomeDiV from './gallerydiv.js';
 import Common from './common.js';
-import HomePage from './home.js';
 
 class PurchaseOrderPage extends Common {
-  constructor() {
+  constructor(navigation, galleryHomeDiV) {
     super();
 
-    this.galleryHomeDiV = new GalleryHomeDiV();
+    this.name = 'po';
+
+    this.navigation = navigation;
+    this.galleryHomeDiV = galleryHomeDiV;
   }
 
 
   showPage() {
-    document.querySelector('h1').innerHTML = 'Purchase Orders';
-    HomePage.Type = 'po';
+    this.navigation.setPageType('po');
     this.galleryHomeDiV.showPage();
   }
 
   removePage() {
     this.galleryHomeDiV.removePage();
+  }
+
+  getName() {
+    return this.name;
   }
 }
 
