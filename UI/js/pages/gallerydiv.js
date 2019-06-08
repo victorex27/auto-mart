@@ -1,8 +1,5 @@
-import Car from './car.js';
-import HomePage from './home.js';
-
 class GalleryHomeDiv {
-  constructor() {
+  constructor(navigation, car) {
     this.homeDiv = document.querySelector('main > div#gallery');
     this.filterDiv = document.querySelector('main > section');
     this.notes = document.querySelectorAll('span.notification');
@@ -12,35 +9,38 @@ class GalleryHomeDiv {
     // type takes the page that is creating the view
     // and displays the equivalent elements that are needed
 
-    this.car = new Car();
+    // console.log('my nav ',navigation);
+
 
     this.cards.forEach(
 
       (card) => {
         card.addEventListener('click', (ev) => {
-
-          HomePage.Navigation.setCurrentPage(this.car);
+          navigation.setCurrentPage(car);
           ev.preventDefault();
         });
       },
 
     );
+    this.navigation = navigation;
   }
 
   showPage() {
     window.scroll(0, 0);
     this.homeDiv.style.display = 'flex';
 
-    if (!window.matchMedia('(max-width: 700px)').matches && HomePage.Type === 'home') {
+
+    if (!window.matchMedia('(max-width: 700px)').matches && this.navigation.getPageType() === 'home') {
       this.filterDiv.style.display = 'flex';
+      // console.log('here we are');
     }
 
 
-    switch (HomePage.Type) {
-      case 'home':  {
+    switch (this.navigation.getPageType()) {
+      case 'home': {
         if (window.matchMedia('(max-width: 700px)').matches) {
           this.homeDiv.style.width = '100%';
-        } else{
+        } else {
           this.homeDiv.style.width = '75%';
         }
         this.removeNotificationDiv();
@@ -48,7 +48,7 @@ class GalleryHomeDiv {
       }
         break;
 
-      case 'po':  {
+      case 'po': {
         this.homeDiv.style.width = '100%';
         this.removeSoldStatus();
         this.removeFilterDiv();
@@ -57,7 +57,7 @@ class GalleryHomeDiv {
 
         break;
 
-      case 'adv':  {
+      case 'adv': {
         this.homeDiv.style.width = '100%';
         this.removeSoldStatus();
         this.removeFilterDiv();
@@ -79,9 +79,9 @@ class GalleryHomeDiv {
 
   removePage() {
     this.homeDiv.style.display = 'none';
-    if (HomePage.Type === 'home') {
-      this.removeFilterDiv();
-    }
+    // if (HomePage.Type === 'home') {
+    //   this.removeFilterDiv();
+    // }
   }
 
 
@@ -120,6 +120,10 @@ class GalleryHomeDiv {
         span.style.display = 'none';
       },
     );
+  }
+
+  getName() {
+    return 'gallery';
   }
 }
 

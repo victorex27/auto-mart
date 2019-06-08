@@ -1,22 +1,22 @@
-import GalleryHomeDiV from './gallerydiv.js';
 import Common from './common.js';
-import HomePage from './home.js';
 
 class AdminPage extends Common {
-  constructor() {
+  constructor(navigation, galleryHomeDiV) {
     super();
-
-    this.galleryHomeDiV = new GalleryHomeDiV();
+    this.navigation = navigation;
+    this.galleryHomeDiV = galleryHomeDiV;
   }
 
   showPage() {
-    document.querySelector('h1').innerHTML = 'Admin';
-    HomePage.Type = 'admin';
+    this.navigation.setPageType('admin');
     this.galleryHomeDiV.showPage();
   }
 
   removePage() {
     this.galleryHomeDiV.removePage();
+  }
+  getName(){
+    return 'admin';
   }
 }
 

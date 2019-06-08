@@ -154,6 +154,10 @@ button {
   background-image: url(../img/Back.ico)
 }
 
+.am-back-white {
+  background-image: url(../img/Long_Arrow_Left.ico)
+}
+
 .am-next-white {
   background-image: url(../img/Forward.ico)
 }

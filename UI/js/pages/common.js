@@ -1,17 +1,13 @@
-class Common{
-    
-    constructor(){
-        
-    }
-    
-    removePage(){
+class Common {
+  removePage() {
 
-    }
+  }
 
-    showPage(){
-        
-    }
+  showPage() {
 
+  }
+
+  getName(){}
 }
 
 export default Common;
