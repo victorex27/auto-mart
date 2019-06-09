@@ -97,6 +97,8 @@ button {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: 5em;
+  height: 5em;
 }
 
 .am-no-margin {
@@ -109,6 +111,8 @@ button {
 
 .am-small {
   background-size: 10px;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .am-primary-color {
@@ -119,7 +123,7 @@ button {
   box-shadow: 2px 2px 3px #000;
 }
 
-.am-40 {
+/* .am-40 {
   width: 40px;
   height: 40px;
 }
@@ -132,8 +136,13 @@ button {
 .am-100 {
   width: 100px;
   height: 100px;
-}
+} */
 
+img{
+  display: block;
+        margin-left: auto;
+        margin-right: auto;
+}
 .am-menu {
   background-image: url(../img/Menu_5.ico)
 }
@@ -141,6 +150,7 @@ button {
 .am-close {
   background-image: url(../img/Delete.ico)
 }
+
 
 .am-close-white {
   background-image: url(../img/Delete_1.ico)
@@ -153,11 +163,9 @@ button {
 .am-prev-white {
   background-image: url(../img/Back.ico)
 }
-
 .am-back-white {
   background-image: url(../img/Long_Arrow_Left.ico)
 }
-
 .am-next-white {
   background-image: url(../img/Forward.ico)
 }
@@ -232,6 +240,12 @@ button {
   margin: auto;
 }
 
-.modal select, .modal textarea {
+select, .modal textarea {
   width: 100%;
+}
+
+option{
+
+
+  width: 50px;
 }

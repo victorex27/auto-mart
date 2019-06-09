@@ -9,20 +9,16 @@ class Advertisement extends Common {
     this.navigation = navigation;
     this.advDiv = document.getElementById('advertisement');
 
-    this.header = document.querySelector('div#advertisement > header');
+    this.formButton = document.querySelector('div#advertisement > header>button');
+    this.formButtonImage = document.querySelector('div#advertisement > header>button > img');
     this.form = document.querySelector('div#advertisement > form');
-    this.plusButton = document.getElementById('open-form');
-    this.minusButton = document.getElementById('close-form');
 
-    this.header.addEventListener('click', () => {
+    this.formButton.addEventListener('click', () => {
+      this.form.classList.toggle('is-not-visible');
       if (this.form.classList.contains('is-not-visible')) {
-        this.plusButton.classList.add('is-not-visible');
-        this.minusButton.classList.remove('is-not-visible');
-        this.form.classList.remove('is-not-visible');
+        this.formButtonImage.src = '/UI/img/Plus_3.ico';
       } else {
-        this.form.classList.add('is-not-visible');
-        this.plusButton.classList.remove('is-not-visible');
-        this.minusButton.classList.add('is-not-visible');
+        this.formButtonImage.src = '/UI/img/Minus_2.ico';
       }
     });
 

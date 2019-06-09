@@ -5,6 +5,15 @@ const homeTab = document.getElementById('home_tab');
 const advTab = document.getElementById('adv_tab');
 const poTab = document.getElementById('po_tab');
 const adminTab = document.getElementById('admin_tab');
+const aside = document.querySelector('aside');
+const backButtonMobile = document.querySelector('#back-button-mobile');
+const backButtonFullScreen = document.querySelector('#back-button-fullscreen');
+const oncloseButtonClicked = () => {
+  if (window.matchMedia('(max-width: 601px)').matches) {
+    aside.style.display = 'none';
+    aside.style.width = '30%';
+  }
+};
 
 
 class Navigation {
@@ -67,6 +76,14 @@ class Navigation {
       currentPage.showPage();
       this.backlog.push(currentPage);
     }
+    if (sizeOfBacklog > 0) {
+      if (window.matchMedia('(max-width: 601px)').matches) {
+        backButtonMobile.classList.remove('no-display');
+      }else {
+        backButtonFullScreen.classList.remove('no-display');
+      }
+    }
+    oncloseButtonClicked();
   }
 
   setLastPage() {
@@ -135,6 +152,14 @@ class Navigation {
       document.querySelector('h1').innerHTML = pageTitle;
       currentPage.showPage();
       this.backlog.pop();
+    }
+
+    if (sizeOfBacklog === 2) {
+      if (window.matchMedia('(max-width: 601px)').matches) {
+        backButtonMobile.classList.add('no-display');
+      } else {
+        backButtonFullScreen.classList.add('no-display');
+      }
     }
   }
 
