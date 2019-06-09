@@ -240,11 +240,12 @@ img{
   margin: auto;
 }
 
-.modal select, .modal textarea {
+select, .modal textarea {
   width: 100%;
 }
 
 option{
 
-  width: 50%;
+
+  width: 50px;
 }

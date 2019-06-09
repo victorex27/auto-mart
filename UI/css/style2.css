@@ -3,7 +3,7 @@ body {
     min-height: 100vh;
 }
 
-aside {
+.aside-fullscreen {
     position: fixed;
     top: 0;
     left: 0;
@@ -20,6 +20,11 @@ aside {
     background-color: rgba(50, 50, 50, 0.9);
     color: white;
     z-index: 2;
+}
+
+.aside-smallscreen {
+    display: 'block';
+    width: '100%';
 }
 
 aside>div {
@@ -104,6 +109,13 @@ main {
     padding: 10px;
 }
 
+section {
+    border: 1px solid rgb(206, 230, 231);
+    border-top: 3px solid rgba(144, 12, 63);
+    background-color: white;
+    height: 350px;
+}
+
 body>nav {
     display: none;
 }
@@ -115,15 +127,21 @@ main>h1 {
     grid-area: header;
 }
 
-main>section {
-    border: 1px solid rgb(206, 230, 231);
-    border-top: 3px solid rgba(144, 12, 63);
-    background-color: white;
+.section-fullscreen {
+    display: flex;
     padding: 10px;
     /* margin-left: 10px; */
     /* width: 18%; */
-    height: 450px;
     grid-area: section;
+}
+
+.section-smallscreen {
+    display: 'block';
+    position: 'absolute';
+    top: '0';
+    left: '0';
+    width: '100%';
+    height: '100vh';
 }
 
 main>section>div>form {
@@ -145,7 +163,7 @@ main>section>div>form>li>label {
     margin-right: 25px;
 }
 
-main>section>div>form>li>select, main>div#advertisement select {
+main>section>div>form>li>select, div#advertisement select {
     cursor: pointer;
     color: black;
     font-weight: lighter;
@@ -153,6 +171,13 @@ main>section>div>form>li>select, main>div#advertisement select {
     width: 100%;
     background-color: rgb(206, 230, 231);
     border-bottom: 1px solid black;
+}
+
+.card span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 main>section>div>form>li>select>option {
@@ -176,22 +201,25 @@ main>div {
     -ms-box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -moz-box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -webkitbox-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
-    flex: 0 0 170px;
-    margin: 0 0 15px 0;
+    flex: 0 0 auto;
+    /* margin: 0 0 15px 0; */
+    margin-bottom: 15px;
+    margin-left: 10px;
     cursor: pointer;
     display: flex;
     flex-flow: column nowrap;
+    width: calc( (100% - 5px) / 5);
 }
 
 .card>div:nth-child(1) {
-    width: 170px;
+    width: 100%;
     height: 170px;
     overflow: hidden;
 }
 
 .card>div:nth-child(1)>img {
     width: auto;
-    height: 100%;
+    height: 170px;
 }
 
 .card>div:nth-child(2) {
@@ -302,9 +330,16 @@ main>div#single-car>div:nth-child(3)>div>span {
     font-weight: 300;
 }
 
+/* style for gallery */
+
+div#gallery {
+    display: flex;
+    flex-flow: row wrap;
+}
+
 /* Style for posting adv */
 
-main>div#advertisement {
+div#advertisement {
     display: none;
     flex-flow: column;
     width: 100%;
@@ -312,27 +347,7 @@ main>div#advertisement {
     background-color: rgba(144, 12, 63);
 }
 
-main>div#advertisement>header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    color: white;
-    background-color: rgba(144, 12, 63);
-    cursor: pointer;
-    padding: 15px;
-}
-
-main>div#advertisement>header>label {
-    color: white;
-    font-weight: bolder;
-    padding-left: 10px;
-    /* border:1px solid black; */
-}
-
-main>div#advertisement select {
+div#advertisement select {
     width: 90%;
 }
 
@@ -342,19 +357,14 @@ div#make-purchase-order {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    padding: 15px;
+    padding: 5px;
     margin-top: 15px;
 }
 
 div#make-purchase-order>div:last-child {
     display: flex;
     flex-flow: row wrap;
-    /* justify-content: flex-end; */
     justify-content: space-between;
-    align-self: flex-end;
-    align-items: baseline;
-    margin-top: 15px;
-    margin-left: auto;
 }
 
 div#make-purchase-order input[type=number] {
@@ -407,12 +417,13 @@ tr:nth-child(even) {
     background-color: #f2f2f2
 }
 
-span.is-sold-span {
+.no-display, .mobile-view, span.is-sold-span {
     display: none;
 }
 
-.mobile-view {
-    display: none;
+span.back-button {
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Responsive design*/
@@ -422,12 +433,10 @@ span.is-sold-span {
         border-bottom: 3px solid rgba(144, 12, 63);
     }
     .card {
-        flex: 0 0 100px;
         margin: 0 15px 15px 0;
         cursor: pointer;
     }
     .card>div:nth-child(1) {
-        width: 100px;
         height: 100px;
         /* overflow: hidden; */
     }
@@ -439,7 +448,6 @@ span.is-sold-span {
     }
     main>div#single-car>div:first-child {
         display: flex;
-        border: 1px solid black;
         flex-flow: row nowrap;
         overflow: hidden;
     }
@@ -480,6 +488,18 @@ span.is-sold-span {
     /* End of style for a single car*/
 }
 
+@media (min-width: 601px) and (max-width: 880px) {
+    .card>div:nth-child(1) {
+        height: 70px;
+    }
+    .card>div:nth-child(2) {
+        width: 100%;
+    }
+    .card>div:nth-child(1)>img {
+        width: 100%;
+        height: auto;
+    }
+}
 
 @media screen and (max-width: 601px) {
     main {
@@ -511,7 +531,7 @@ span.is-sold-span {
     /* End of style for a single car*/
     /* Filter style*/
     .open-filter {
-        color:blue;
+        color: blue;
         display: 'block';
         /* position: 'absolute';
         top: '0';
@@ -519,7 +539,6 @@ span.is-sold-span {
         width: '100%';
         height: '100vh'; */
     }
-
     aside {
         display: none;
     }
@@ -560,11 +579,18 @@ span.is-sold-span {
         margin-left: auto;
         cursor: pointer;
     }
-    main>section {
+    section {
         display: none;
     }
     main>div {
         width: 100%;
+    }
+    main>div.top {
+        display: flex;
+        justify-content: space-between;
+    }
+    .button-fullscreen {
+        display: none;
     }
     .card {
         flex: 1 0 100%;
@@ -588,5 +614,8 @@ span.is-sold-span {
     .card>div:nth-child(1) {
         width: 100%;
         height: 200px;
+    }
+    div#make-purchase-order>div:last-child {
+        margin-top: 10px;
     }
 }

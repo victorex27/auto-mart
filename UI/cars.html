@@ -16,14 +16,14 @@
 
 <body>
 
-    <aside>
+    <aside class='aside-fullscreen'>
 
         <div>
             <span> <button class="am am-close-white am-100" id="close-button"></button></span>
             <span> Auto </span>
             <span> Mart </span>
-            <span> <button id='back-button'
-                    class='am  am-primary-color am-back-white am-no-margin am-no-padding am-100'></button> </span>
+            <span class='back-button'> <button id='back-button-fullscreen'
+                    class='back-button  no-display button-fullscreen am  am-primary-color am-back-white am-no-margin am-no-padding am-100'></button> </span>
 
             <div>
                 <span>Signed in as aobikobe@gmail.com</span>
@@ -48,10 +48,19 @@
     <main>
 
         <h1> </h1>
-        <button id='filter-list' class='btn mobile-view'> 
-            <span>Filter List </span>
-                      <img src="img/Long_Arrow_Right.ico" alt='filter list'/>
-                      </button>
+        <div class='mobile-view top'>
+            <button id='filter-list' class='btn '>
+                <span>Filter List </span>
+                <img src="img/Long_Arrow_Right.ico" alt='filter list' />
+            </button>
+            <button class='btn back-button no-display' id='back-button-mobile'>
+                <span>Back </span>
+                <img src="img/Long_Arrow_Left.ico" alt='back button' />
+            </button>
+
+        </div>
+
+
 
         <div id='single-car'>
             <div>
@@ -201,11 +210,17 @@
 
         </div>
 
-        <div id='advertisement'>
+       
+       <div>
+            <div id='advertisement'>
             <header>
-                <label for=""> Create New Advert</label>
+                    <button id='open-form' class='btn'>
+                            <span>Create New Advert </span>
+                            <img src="img/Plus_3.ico" alt='filter list' />
+                        </button>
+                <!-- <label for=""> </label>
                 <button class='am   am-plus-white  am-40' id='open-form'></button>
-                <button class='am   am-minus-white  am-40 is-not-visible' id='close-form'></button>
+                <button class='am   am-minus-white  am-40 is-not-visible' id='close-form'></button> -->
             </header>
 
             <form class='is-not-visible'>
@@ -471,12 +486,15 @@
 
 
         </div>
-        <section>
-                <button id='close-filter' class='btn mobile-view'> 
-                        <span>Back </span>
-                                  <img src="img/Long_Arrow_Left.ico" alt='filter list'/>
-                                  </button>
-                <h2 id='mobile-view'>Filter List </h2>
+       </div>
+        
+
+        <section class=''>
+            <button id='close-filter' class='btn mobile-view'>
+                <span>Back </span>
+                <img src="img/Long_Arrow_Left.ico" alt='filter list' />
+            </button>
+            <h2 class='mobile-view'>Filter List </h2>
             <div>
                 <form action="">
                     <li>
