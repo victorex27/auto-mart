@@ -1,5 +1,5 @@
 import Common from './common.js';
-
+const overlay = document.querySelector('.overlay');
 class Car extends Common {
   constructor(navigation) {
     super();
@@ -27,11 +27,10 @@ class Car extends Common {
 
     /* modal */
     this.modalDiv = document.querySelector('.modal');
-    this.modalOverlay = document.querySelector('.overlay');
     this.modalCloseButton = document.querySelector('.close-modal');
     this.modalCloseButton.addEventListener('click', (ev) => {
-      this.modalDiv.style.display = 'none';
-      this.modalOverlay.style.display = 'none';
+      this.modalDiv.classList.remove('slide-down');
+      overlay.classList.remove('slide-down');
       ev.preventDefault();
     });
 
@@ -144,8 +143,9 @@ class Car extends Common {
   }
 
   onReportPostButton(ev) {
-    this.modalOverlay.style.display = 'block';
-    this.modalDiv.style.display = 'flex';
+    overlay.classList.add('slide-down');
+    this.modalDiv.classList.add('slide-down');
+    // this.modalDiv.style.display = 'flex';
 
     ev.preventDefault();
   }

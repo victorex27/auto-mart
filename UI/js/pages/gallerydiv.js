@@ -30,7 +30,7 @@ class GalleryHomeDiv {
     this.homeDiv.style.display = 'flex';
 
 
-    if (!window.matchMedia('(max-width: 700px)').matches && this.navigation.getPageType() === 'home') {
+    if (!window.matchMedia('(max-width: 900px)').matches && this.navigation.getPageType() === 'home') {
       this.filterDiv.style.display = 'flex';
     }
   }

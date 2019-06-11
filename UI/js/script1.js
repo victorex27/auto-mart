@@ -1,16 +1,21 @@
-const signUpDiv = document.querySelector('aside');
+const overlay = document.querySelector('.overlay');
+const modal = document.querySelector('.modal');
 const mainDiv = document.querySelector('main');
 
 const openSignUpPage = () => {
-  if (window.matchMedia('(max-width: 700px)').matches) {
+  if (window.matchMedia('(max-width: 900px)').matches) {
     mainDiv.style.display = 'none';
   }
-  signUpDiv.style.display = 'flex';
+  // signUpDiv.style.display = 'flex';
+  overlay.classList.add('slide-down');
+  modal.classList.add('slide-down');
+  
 };
 
 const closeSignUpPage = () => {
-  signUpDiv.style.display = 'none';
-  if (window.matchMedia('(max-width: 700px)').matches) {
+  modal.classList.remove('slide-down');
+  overlay.classList.remove('slide-down');
+  if (window.matchMedia('(max-width: 900px)').matches) {
     mainDiv.style.display = 'block';
   }
 };
