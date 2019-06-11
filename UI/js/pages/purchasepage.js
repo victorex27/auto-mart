@@ -1,23 +1,37 @@
 import Common from './common.js';
 
+const div = document.querySelector('div#purchase-order');
 class PurchaseOrderPage extends Common {
-  constructor(navigation, galleryHomeDiV) {
+  constructor(navigation, car) {
     super();
 
     this.name = 'po';
-
+    const buttons = document.querySelectorAll('.view-po');
     this.navigation = navigation;
-    this.galleryHomeDiV = galleryHomeDiV;
+    div.style.display = 'none';
+    buttons.forEach(
+
+      (button) => {
+        button.addEventListener('click', (ev) => {
+          navigation.setCurrentPage(car);
+          ev.preventDefault();
+        });
+      },
+
+    );
+    // this.galleryHomeDiV = galleryHomeDiV;
   }
 
 
   showPage() {
     this.navigation.setPageType('po');
-    this.galleryHomeDiV.showPage();
+    div.style.display = 'block';
+    // this.galleryHomeDiV.showPage();
   }
 
   removePage() {
-    this.galleryHomeDiV.removePage();
+    div.style.display = 'none';
+    // this.galleryHomeDiV.removePage();
   }
 
   getName() {
