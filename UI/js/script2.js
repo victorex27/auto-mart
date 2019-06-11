@@ -24,13 +24,20 @@ const poTab = document.getElementById('po_tab');
 const adminTab = document.getElementById('admin_tab');
 const backButtons = document.querySelectorAll('.back-button');
 
+if (window.matchMedia('(max-width: 900px)').matches) {
+  aside.classList.remove('aside-fullscreen');
+}
+
 
 // let activeTab = homeTab;
 const navigation = new Navigation();
 // event listeners
 const onmenuButtonClicked = () => {
-  aside.style.display = 'block';
-  aside.style.width = '100%';
+
+  console.log('clicked');
+  aside.classList.add('slide-right');
+  // aside.style.display = 'block';
+  // aside.style.width = '100%';
   // aside.classList.remove('mobile-view');
   // aside.classList.add('aside-smallscreen');
 };
@@ -40,26 +47,28 @@ const onBackButtonClicked = () => {
 };
 
 const oncloseButtonClicked = () => {
-  if (window.matchMedia('(max-width: 700px)').matches) {
-    aside.style.display = 'none';
-    aside.style.width = '30%';
+  if (window.matchMedia('(max-width: 900px)').matches) {
+    aside.classList.remove('slide-right');
   }
 };
 
 const onFilterListButtonClicked = () => {
-  section.style.display = 'block';
-  section.style.position = 'absolute';
-  section.style.backgroundColor = 'white';
-  section.style.top = '0';
-  section.style.left = '0';
-  section.style.width = '100%';
-  section.style.height = '100vh';
+
+  section.classList.add('slide-right');
+  // section.style.display = 'block';
+  // section.style.position = 'absolute';
+  // section.style.backgroundColor = 'white';
+  // section.style.top = '0';
+  // section.style.left = '0';
+  // section.style.width = '100%';
+  // section.style.height = '100vh';
   // section.classList.remove('mobile-view');
   // section.classList.add('section-smallscreen');
 };
 
 const onCloseFilterButtonClicked = () => {
-  section.style.display = 'none';
+  // section.style.display = 'none';
+  section.classList.remove('slide-right');
 };
 
 menuButton.addEventListener('click', onmenuButtonClicked);

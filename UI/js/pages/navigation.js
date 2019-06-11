@@ -6,15 +6,30 @@ const advTab = document.getElementById('adv_tab');
 const poTab = document.getElementById('po_tab');
 const adminTab = document.getElementById('admin_tab');
 const aside = document.querySelector('aside');
+const main = document.querySelector('main');
+const rippleDiv = document.querySelector('#ripple');
 const backButtonMobile = document.querySelector('#back-button-mobile');
 const backButtonFullScreen = document.querySelector('#back-button-fullscreen');
 const oncloseButtonClicked = () => {
-  if (window.matchMedia('(max-width: 601px)').matches) {
-    aside.style.display = 'none';
-    aside.style.width = '30%';
+  if (window.matchMedia('(max-width: 900px)').matches) {
+    aside.classList.remove('slide-right');
   }
 };
 
+rippleDiv.addEventListener('animationend', () => {
+  
+  rippleDiv.classList.remove('ripple');
+  main.style.opacity = '1';  
+  console.log('ending anime');
+}, false);
+
+
+const animationStart = () => {
+    main.style.opacity = '0';
+  
+};
+
+rippleDiv.addEventListener('animationstart', animationStart , false);
 
 class Navigation {
   constructor() {
@@ -73,17 +88,21 @@ class Navigation {
       } else {
         this.setPageTitle(currentPage);
       }
-      currentPage.showPage();
+      Navigation.showRippleAnimation(currentPage);
       this.backlog.push(currentPage);
     }
     if (sizeOfBacklog > 0) {
-      if (window.matchMedia('(max-width: 601px)').matches) {
+      if (window.matchMedia('(max-width: 900px)').matches) {
         backButtonMobile.classList.remove('no-display');
-      }else {
+      } else {
         backButtonFullScreen.classList.remove('no-display');
       }
     }
     oncloseButtonClicked();
+
+
+    // rippleDiv.style.webkitAnimationName = 'ripple';
+    // rippleDiv.style.AnimationName = 'ripple';
   }
 
   setLastPage() {
@@ -150,12 +169,13 @@ class Navigation {
       }
 
       document.querySelector('h1').innerHTML = pageTitle;
-      currentPage.showPage();
+      Navigation.showRippleAnimation(currentPage);
+
       this.backlog.pop();
     }
 
     if (sizeOfBacklog === 2) {
-      if (window.matchMedia('(max-width: 601px)').matches) {
+      if (window.matchMedia('(max-width: 900px)').matches) {
         backButtonMobile.classList.add('no-display');
       } else {
         backButtonFullScreen.classList.add('no-display');
@@ -198,6 +218,13 @@ class Navigation {
         break;
     }
     document.querySelector('h1').innerHTML = pageTitle;
+  }
+
+  static showRippleAnimation(currentPage) {
+    
+    rippleDiv.classList.add('ripple');
+    // main.style.opacity = '0';
+    currentPage.showPage();
   }
 }
 

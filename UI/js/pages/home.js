@@ -16,7 +16,7 @@ class HomePage extends Common {
 
   showPage() {
     // this.homeDiv.style.display = 'flex';
-    // if (!window.matchMedia('(max-width: 700px)').matches) {
+    // if (!window.matchMedia('(max-width: 900px)').matches) {
     //     this.filterDiv.style.display = 'flex';
     //   }
 

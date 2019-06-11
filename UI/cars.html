@@ -8,7 +8,6 @@
         name="description">
     <meta content="Obikobe Amaobi" name="author">
     <link href="css/style2.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="icon" href="img/logo.png">
     <title>Buy A Car</title>
 
@@ -23,7 +22,8 @@
             <span> Auto </span>
             <span> Mart </span>
             <span class='back-button'> <button id='back-button-fullscreen'
-                    class='back-button  no-display button-fullscreen am  am-primary-color am-back-white am-no-margin am-no-padding am-100'></button> </span>
+                    class='back-button  no-display button-fullscreen am  am-alternate-color am-back-white am-no-margin am-no-padding am-100'></button>
+            </span>
 
             <div>
                 <span>Signed in as aobikobe@gmail.com</span>
@@ -55,7 +55,7 @@
             </button>
             <button class='btn back-button no-display' id='back-button-mobile'>
                 <span>Back </span>
-                <img src="img/Long_Arrow_Left.ico" alt='back button' />
+                <img src="img/Long_Arrow_Left_2.ico" alt='back button' />
             </button>
 
         </div>
@@ -71,9 +71,9 @@
 
                 <span> By Okolie Nnaemeka</span>
                 <span>
-                    <button class='am am-small am-primary-color am-prev-white am-no-margin am-no-padding am-40'
+                    <button class='am am-small am-alternate-color am-prev-white am-no-margin am-no-padding am-40'
                         id='menu-button'></button>
-                    <button class='am am-small am-primary-color am-next-white am-no-margin am-no-padding am-40'
+                    <button class='am am-small am-alternate-color am-next-white am-no-margin am-no-padding am-40'
                         id='menu-button'></button>
                 </span>
 
@@ -101,20 +101,42 @@
             <div id='make-purchase-order'>
 
                 <div id='current-purchase-order-div' class='is-not-visible'>
-                    <div><span> Purcahse Order:( &#8358; )</span> <span> 14 000</span></div>
-                    <div><label for="">Status:</label> <span>Accepted</span></div>
+                    <div><label> Purchase Order:( &#8358; )</label> <span class='primary-color'> 14 000</span></div>
+                    <div><label for="">Status:</label> <span class='primary-color'>Accepted</span></div>
                 </div>
 
                 <div>
 
-                    <span>
-                        <span> Price( &#8358; ) </span> <input type='number' name='po-price' id='po-price'>
+                    <span class='make-purchase-order'>
+                        <div class='form-group'>
+                            <label> Price( &#8358; ) :</label>
+                            <input type='number' name='po-price' id='po-price'>
+                        </div>
                     </span>
                     <span>
-                        <button id='make-purchase-order-button' class='is-not-visible'> M </button>
-                        <button id='update-purchase-order-button' class='is-not-visible'> UPO</button>
-                        <button id='update-advert-button' class='is-not-visible'> UAP </button>
+                        <!-- <input type='number' name='po-price' id='po-price'> -->
+                        <div class='form-group'>
+
+                            <button id='make-purchase-order-button' class='btn is-not-visible'>
+                                <span>Make Order</span>
+                                <img src="img/Shopping_Cart.ico" alt='mark purchase order' />
+                            </button>
+                            <button id='update-purchase-order-button' class='btn is-not-visible'>
+                                <span> Update Order</span>
+
+                                <img src="img/Update.ico" alt='update purchase order' />
+                            </button>
+
+                            <button id='update-advert-button' class='btn is-not-visible'>
+                                <span> Update Price</span>
+
+                                <img src="img/Update.ico" alt='update car ad' />
+                            </button>
+
+
+                        </div>
                     </span>
+
                 </div>
 
             </div>
@@ -138,12 +160,13 @@
                                 <td><span> pending</span></td>
                                 <td>
 
-                                    <button class='btn btn-small'> <span>Accept</span> <img src="img/Checkmark.ico"
-                                            alt=""></button>
+                                    <button class='btn small btn-primary'> <span class='custom-white'>Accept</span> <img
+                                            src="img/Checkmark.ico" alt=""></button>
 
 
                                 </td>
-                                <td> <button class='btn btn-small'> <span>Reject</span> <img src="img/Delete_1.ico"
+                                <td> <button class='btn btn-small btn-tertiary'> <span
+                                            class='custom-white'>Reject</span> <img src="img/Delete_1.ico"
                                             alt=""></button></td>
 
                             </tr>
@@ -153,12 +176,13 @@
                                 <td><span> pending</span></td>
                                 <td>
 
-                                    <button class='btn btn-small'> <span>Accept</span> <img src="img/Checkmark.ico"
-                                            alt=""></button>
+                                    <button class='btn small btn-primary'> <span class='custom-white'>Accept</span> <img
+                                            src="img/Checkmark.ico" alt=""></button>
 
 
                                 </td>
-                                <td> <button class='btn btn-small'> <span>Reject</span> <img src="img/Delete_1.ico"
+                                <td> <button class='btn btn-small btn-tertiary'> <span
+                                            class='custom-white'>Reject</span> <img src="img/Delete_1.ico"
                                             alt=""></button></td>
 
                             </tr>
@@ -169,12 +193,13 @@
                                 <td><span> pending</span></td>
                                 <td>
 
-                                    <button class='btn btn-small'> <span>Accept</span> <img src="img/Checkmark.ico"
-                                            alt=""></button>
+                                    <button class='btn small btn-primary'> <span class='custom-white'>Accept</span> <img
+                                            src="img/Checkmark.ico" alt=""></button>
 
 
                                 </td>
-                                <td> <button class='btn btn-small'> <span>Reject</span> <img src="img/Delete_1.ico"
+                                <td> <button class='btn btn-small btn-tertiary'> <span
+                                            class='custom-white'>Reject</span> <img src="img/Delete_1.ico"
                                             alt=""></button></td>
 
                             </tr>
@@ -210,289 +235,286 @@
 
         </div>
 
-       
-       <div>
+
+        <div>
             <div id='advertisement'>
-            <header>
+                <header>
                     <button id='open-form' class='btn'>
-                            <span>Create New Advert </span>
-                            <img src="img/Plus_3.ico" alt='filter list' />
-                        </button>
-                <!-- <label for=""> </label>
-                <button class='am   am-plus-white  am-40' id='open-form'></button>
-                <button class='am   am-minus-white  am-40 is-not-visible' id='close-form'></button> -->
-            </header>
+                        <span>Create New Advert </span>
+                        <img src="img/Plus_Math.ico" class='bigger' alt='filter list' />
+                    </button>
+                </header>
 
-            <form class='is-not-visible'>
-                <div class='form-group'>
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
-                </div>
-                <div class='form-group'>
-                    <label for="model"> Model</label>
-                    <input type="text" name="model" id="model">
-                </div>
-                <div class='form-group'>
-                    <label for="price">Price</label>
-                    <input type="text" name="price" id="price4">
-                </div>
-                <div class='form-group'>
-                    <span>Manufacturer</span>
-                    <select name="manufacturer" id="manufacturer">
-                        <option value="any">Any</option>
-                        <option value="toyota"> Toyota</option>
-                        <option value="honda"> Honda</option>
-                        <option value="mercedes"> Mercedes</option>
-                    </select>
-                </div>
-                <div class='form-group'>
+                <form class='is-not-visible'>
+                    <div class='form-group'>
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name">
+                    </div>
+                    <div class='form-group'>
+                        <label for="model"> Model</label>
+                        <input type="text" name="model" id="model">
+                    </div>
+                    <div class='form-group'>
+                        <label for="price">Price</label>
+                        <input type="text" name="price" id="price4">
+                    </div>
+                    <div class='form-group'>
+                        <span>Manufacturer</span>
+                        <select name="manufacturer" id="manufacturer">
+                            <option value="any">Any</option>
+                            <option value="toyota"> Toyota</option>
+                            <option value="honda"> Honda</option>
+                            <option value="mercedes"> Mercedes</option>
+                        </select>
+                    </div>
+                    <div class='form-group'>
 
-                    <span>Body type</span>
-                    <select name="body_type" id="body_type">
-                        <option value="any">Any</option>
-                        <option value="suv"> SUV</option>
-                        <option value="wagon"> Wagon</option>
-                        <option value="sedan"> Sedan</option>
-                        <option value="convertible"> Convertible</option>
-                        <option value="crossover"> Crossover</option>
-                    </select>
+                        <span>Body type</span>
+                        <select name="body_type" id="body_type">
+                            <option value="any">Any</option>
+                            <option value="suv"> SUV</option>
+                            <option value="wagon"> Wagon</option>
+                            <option value="sedan"> Sedan</option>
+                            <option value="convertible"> Convertible</option>
+                            <option value="crossover"> Crossover</option>
+                        </select>
 
-                </div>
+                    </div>
 
 
-                <div class='form-group'>
-                    <span>Used</span>
-                    <input type="checkbox" name="mileage" id='mileage' value="1" checked>
-                </div>
-                <div class='form-group'>
+                    <div class='form-group'>
+                        <span>Used</span>
+                        <input type="checkbox" name="mileage" id='mileage' value="1" checked>
+                    </div>
+                    <div class='form-group'>
 
-                    <input type="file" name="file" id='file'>
-                </div>
-                <div class='form-group'> <button> Create ad </button></div>
-            </form>
+                        <input type="file" name="file" id='file'>
+                    </div>
+                    <div class='form-group'> <button> Create ad </button></div>
+                </form>
 
+            </div>
+
+            <div id='gallery'>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img2.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> Sold </span>
+                    </div>
+
+                    <span class='notification'> 3 new notifications</span>
+
+                </div>
+
+                <div class='card'>
+                    <div>
+                        <img src="./img/img4.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> Sold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+
+                <div class='card'>
+                    <div>
+                        <img src="./img/img1.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img3.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> Sold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+
+                <div class='card'>
+                    <div>
+                        <img src="./img/img5.png" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> Sold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img6.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img7.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img8.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> Sold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img9.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img11.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img12.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img13.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img14.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img15.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img16.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img17.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> unSold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+                <div class='card'>
+                    <div>
+                        <img src="./img/img18.jpg" alt="car">
+                    </div>
+
+                    <div>
+                        <span class='tertiary-color'>Bugatti au noire</span>
+                        <span class='primary-color'>$144, 735</span>
+                        <span class='is-sold-span secondary-color'> Sold </span>
+                    </div>
+                    <span class='notification'> 3 new notifications</span>
+                </div>
+
+
+            </div>
         </div>
 
-        <div id='gallery'>
-            <div class='card'>
-                <div>
-                    <img src="./img/img2.jpg" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Sold </span>
-                </div>
-
-                <span class='notification'> 3 new notifications</span>
-
-            </div>
-
-            <div class='card'>
-                <div>
-                    <img src="./img/img4.jpg" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Sold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Sold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-            <div class='card'>
-                <div>
-                    <img src="https://via.placeholder.com/150" alt="car">
-                </div>
-
-                <div>
-                    <span>Bugatti au noire</span>
-                    <span>$144, 735</span>
-                    <span class='is-sold-span'> Unsold </span>
-                </div>
-                <span class='notification'> 3 new notifications</span>
-            </div>
-
-
-        </div>
-       </div>
-        
 
         <section class=''>
-            <button id='close-filter' class='btn mobile-view'>
+            <button id='close-filter' class='btn btn-white mobile-view'>
                 <span>Back </span>
-                <img src="img/Long_Arrow_Left.ico" alt='filter list' />
+                <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
             </button>
             <h2 class='mobile-view'>Filter List </h2>
             <div>
@@ -553,8 +575,14 @@
 
 
         </section>
-        <div class='modal'>
 
+
+
+    </main>
+    <div class='overlay'></div>
+    <div class='modal'>
+
+        <div>
             <div>
                 <span> <button class='am am-close am-50 close-modal'></button></span>
                 <div>
@@ -579,12 +607,13 @@
 
                 </div>
             </div>
-
         </div>
 
-        <div class="overlay"> </div>
+    </div>
 
-    </main>
+    <div id='ripple'>
+
+    </div>
 
 
     <script src="js/general.js"></script>

@@ -16,9 +16,9 @@ class Advertisement extends Common {
     this.formButton.addEventListener('click', () => {
       this.form.classList.toggle('is-not-visible');
       if (this.form.classList.contains('is-not-visible')) {
-        this.formButtonImage.src = '/UI/img/Plus_3.ico';
+        this.formButtonImage.src = '/UI/img/Plus_Math.ico';
       } else {
-        this.formButtonImage.src = '/UI/img/Minus_2.ico';
+        this.formButtonImage.src = '/UI/img/Minus.ico';
       }
     });
 
