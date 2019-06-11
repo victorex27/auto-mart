@@ -85,7 +85,7 @@ const startApp = () => {
 
   const homePage = new HomePage(navigation, galleryDiv);
   const purchaseOrderPage = new PurchaseOrderPage(navigation, car);
-  const advertisement = new Advertisement(navigation, galleryDiv);
+  const advertisement = new Advertisement(navigation, car);
   const adminPage = new AdminPage(navigation, galleryDiv);
 
   navigation.setCurrentPage(homePage);

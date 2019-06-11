@@ -6,9 +6,9 @@ class PurchaseOrderPage extends Common {
     super();
 
     this.name = 'po';
-    const buttons = document.querySelectorAll('.view-po');
     this.navigation = navigation;
     div.style.display = 'none';
+    const buttons = document.querySelectorAll('.view-po');
     buttons.forEach(
 
       (button) => {

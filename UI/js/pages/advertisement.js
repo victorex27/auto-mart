@@ -1,7 +1,7 @@
 import Common from './common.js';
-
+const div = document.querySelector('div#advert');
 class Advertisement extends Common {
-  constructor(navigation, galleryHomeDiV) {
+  constructor(navigation, car) {
     super();
 
     this.name = 'adv';
@@ -22,14 +22,26 @@ class Advertisement extends Common {
       }
     });
 
-    this.galleryHomeDiV = galleryHomeDiV;
+    div.style.display = 'none';
+    const buttons = document.querySelectorAll('.view-po');
+    buttons.forEach(
+
+      (button) => {
+        button.addEventListener('click', (ev) => {
+          navigation.setCurrentPage(car);
+          ev.preventDefault();
+        });
+      },
+
+    );
+
   }
 
   showPage() {
     this.navigation.setPageType('adv');
     this.advDiv.style.display = 'flex';
     this.advDiv.classList.remove('is-not-visible');
-    this.galleryHomeDiV.showPage();
+    div.style.display = 'block';
   }
 
   getName() {
@@ -39,7 +51,7 @@ class Advertisement extends Common {
   removePage() {
     this.advDiv.style.display = 'none';
     this.advDiv.classList.add('is-not-visible');
-    this.galleryHomeDiV.removePage();
+    div.style.display = 'none';
   }
 }
 
