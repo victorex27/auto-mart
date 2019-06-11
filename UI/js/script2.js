@@ -84,7 +84,7 @@ const startApp = () => {
   const galleryDiv = new GalleryDiv(navigation, car);
 
   const homePage = new HomePage(navigation, galleryDiv);
-  const purchaseOrderPage = new PurchaseOrderPage(navigation, galleryDiv);
+  const purchaseOrderPage = new PurchaseOrderPage(navigation, car);
   const advertisement = new Advertisement(navigation, galleryDiv);
   const adminPage = new AdminPage(navigation, galleryDiv);
 
