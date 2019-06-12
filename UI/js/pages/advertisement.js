@@ -23,7 +23,7 @@ class Advertisement extends Common {
     });
 
     div.style.display = 'none';
-    const buttons = document.querySelectorAll('.view-po');
+    const buttons = document.querySelectorAll('.view-ad');
     buttons.forEach(
 
       (button) => {

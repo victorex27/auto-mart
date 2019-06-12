@@ -1,23 +1,23 @@
 @import url("general.css");
 body {
-  background-image: url(../img/img4.jpg) ;
+  background-image: url(../img/img4.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  
   /* background-color: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
   color: white;
 }
 
-.title, .site-name{
-  font-family: 'Saira Semi Condensed','Lato', Helvetica, sans-serif;
+.title, .site-name {
+  font-family: 'Saira Semi Condensed', 'Lato', Helvetica, sans-serif;
   font-size: 4em;
 }
-.sub-title{
-  
-  font-family: 'Kanit','Indie Flower', cursive;
+
+.sub-title {
+  font-family: 'Kanit', 'Indie Flower', cursive;
   font-size: 1.5em;
   /* font-weight: 900; */
 }
+
 .main-div {
   min-height: 80vh;
   position: absolute;
@@ -103,7 +103,7 @@ nav>span.site-name {
 
 button#get-started {
   float: right;
-  width:210px;
+  width: 210px;
 }
 
 /* .modal>aside {
@@ -121,15 +121,15 @@ button#get-started {
   align-items: flex-end;
   z-index: 1000;
   /* display: none; */
+
 }
 
 /* .modal>aside>div {
   width: 70%;
   margin: auto;
-} */ */
+} */
 
-
-
+*/
 /* Responsive design*/
 
 @media screen and (max-width: 558px) {

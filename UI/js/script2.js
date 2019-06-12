@@ -22,7 +22,8 @@ const homeTab = document.getElementById('home_tab');
 const advTab = document.getElementById('adv_tab');
 const poTab = document.getElementById('po_tab');
 const adminTab = document.getElementById('admin_tab');
-const backButtons = document.querySelectorAll('.back-button');
+const backButton = document.querySelector('#back-button-fullscreen ');
+const backButtonSmall = document.querySelector('#back-button-mobile');
 
 if (window.matchMedia('(max-width: 900px)').matches) {
   aside.classList.remove('aside-fullscreen');
@@ -33,13 +34,7 @@ if (window.matchMedia('(max-width: 900px)').matches) {
 const navigation = new Navigation();
 // event listeners
 const onmenuButtonClicked = () => {
-
-  console.log('clicked');
   aside.classList.add('slide-right');
-  // aside.style.display = 'block';
-  // aside.style.width = '100%';
-  // aside.classList.remove('mobile-view');
-  // aside.classList.add('aside-smallscreen');
 };
 
 const onBackButtonClicked = () => {
@@ -53,29 +48,17 @@ const oncloseButtonClicked = () => {
 };
 
 const onFilterListButtonClicked = () => {
-
   section.classList.add('slide-right');
-  // section.style.display = 'block';
-  // section.style.position = 'absolute';
-  // section.style.backgroundColor = 'white';
-  // section.style.top = '0';
-  // section.style.left = '0';
-  // section.style.width = '100%';
-  // section.style.height = '100vh';
-  // section.classList.remove('mobile-view');
-  // section.classList.add('section-smallscreen');
 };
 
 const onCloseFilterButtonClicked = () => {
-  // section.style.display = 'none';
   section.classList.remove('slide-right');
 };
 
 menuButton.addEventListener('click', onmenuButtonClicked);
 closeButton.addEventListener('click', oncloseButtonClicked);
-backButtons.forEach((backButton) => {
-  backButton.addEventListener('click', onBackButtonClicked);
-});
+backButton.addEventListener('click', onBackButtonClicked);
+backButtonSmall.addEventListener('click', onBackButtonClicked);
 
 filterListButton.addEventListener('click', onFilterListButtonClicked);
 closeFilterButton.addEventListener('click', onCloseFilterButtonClicked);
@@ -86,7 +69,7 @@ const startApp = () => {
   const homePage = new HomePage(navigation, galleryDiv);
   const purchaseOrderPage = new PurchaseOrderPage(navigation, car);
   const advertisement = new Advertisement(navigation, car);
-  const adminPage = new AdminPage(navigation, galleryDiv);
+  const adminPage = new AdminPage(navigation, car);
 
   navigation.setCurrentPage(homePage);
 

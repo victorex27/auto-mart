@@ -17,19 +17,16 @@ const oncloseButtonClicked = () => {
 };
 
 rippleDiv.addEventListener('animationend', () => {
-  
   rippleDiv.classList.remove('ripple');
-  main.style.opacity = '1';  
-  console.log('ending anime');
+  main.style.opacity = '1';
 }, false);
 
 
 const animationStart = () => {
-    main.style.opacity = '0';
-  
+  main.style.opacity = '0';
 };
 
-rippleDiv.addEventListener('animationstart', animationStart , false);
+rippleDiv.addEventListener('animationstart', animationStart, false);
 
 class Navigation {
   constructor() {
@@ -110,7 +107,6 @@ class Navigation {
     const lastPage = this.backlog[sizeOfBacklog - 1];
     const currentPage = this.backlog[sizeOfBacklog - 2];
     const nextPage = this.backlog[sizeOfBacklog - 3];
-
     let pageTitle = 'home';
     if (currentPage instanceof Common) {
       lastPage.removePage();
@@ -169,7 +165,7 @@ class Navigation {
       }
 
       document.querySelector('h1').innerHTML = pageTitle;
-      Navigation.showRippleAnimation(currentPage);
+
 
       this.backlog.pop();
     }
@@ -181,6 +177,7 @@ class Navigation {
         backButtonFullScreen.classList.add('no-display');
       }
     }
+    Navigation.showRippleAnimation(currentPage);
   }
 
   setPageType(type) {
@@ -221,7 +218,6 @@ class Navigation {
   }
 
   static showRippleAnimation(currentPage) {
-    
     rippleDiv.classList.add('ripple');
     // main.style.opacity = '0';
     currentPage.showPage();
