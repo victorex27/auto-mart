@@ -3,11 +3,22 @@ body {
   background-image: url(../img/img4.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+  /* background-color: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
   color: white;
 }
 
-body>div {
+.title, .site-name {
+  font-family: 'Saira Semi Condensed', 'Lato', Helvetica, sans-serif;
+  font-size: 4em;
+}
+
+.sub-title {
+  font-family: 'Kanit', 'Indie Flower', cursive;
+  font-size: 1.5em;
+  /* font-weight: 900; */
+}
+
+.main-div {
   min-height: 80vh;
   position: absolute;
   top: 140px;
@@ -16,7 +27,7 @@ body>div {
   flex-flow: row nowrap;
   width: 100%;
   align-items: center;
-  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2));
+  /* background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
 }
 
 span.site_name {
@@ -46,12 +57,11 @@ main>div>span:nth-child(3), main>div>div {
 }
 
 main>div>div {
-  width: 70%;
+  /* width: 70%; */
 }
 
 main>div>span:nth-child(3) {
-  font-size: 0.8em;
-  width: 60%;
+  /* width: 60%; */
 }
 
 main>div>button {
@@ -93,31 +103,33 @@ nav>span.site-name {
 
 button#get-started {
   float: right;
-  width:210px;
+  width: 210px;
 }
 
-aside {
+/* .modal>aside {
   -webkit-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -o-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -ms-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -4px -4px 5px 10px rgba(50, 50, 50, 0.75);
   box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
-  flex: 1 1 50%;
-  flex-flow: column nowrap;
-  background-color: white;
+  flex: 0 1 50%;
+  margin-left: auto; 
+  margin-right: auto; 
+  background-color: rgba(255, 255, 255, 1);
   color: rgba(217, 30, 24, 1);
   padding: 10px;
   align-items: flex-end;
-  display: none;
+  z-index: 1000;
+  /* display: none; */
+
 }
 
-aside>div {
+/* .modal>aside>div {
   width: 70%;
   margin: auto;
-}
+} */
 
-
-
+*/
 /* Responsive design*/
 
 @media screen and (max-width: 558px) {

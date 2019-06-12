@@ -1,25 +1,36 @@
-import GalleryHomeDiV  from './gallerydiv.js';
-import Common  from './common.js';
-import HomePage from './home.js';
-class AdminPage extends Common{
+import Common from './common.js';
 
-    constructor(){
-        super();
-        
-        this.galleryHomeDiV = new GalleryHomeDiV();
-        
-    }
+const div = document.querySelector('div#admin-page');
+class AdminPage extends Common {
+  constructor(navigation, car) {
+    super();
+    this.navigation = navigation;
+    div.style.display = 'none';
+    const buttons = document.querySelectorAll('.view-adm');
+    buttons.forEach(
 
-    showPage(){
-        document.querySelector('h1').innerHTML = 'Admin';
-        HomePage.Type = 'admin';
-        this.galleryHomeDiV.showPage();
+      (button) => {
+        button.addEventListener('click', (ev) => {
+          navigation.setCurrentPage(car);
+          ev.preventDefault();
+        });
+      },
 
-    }
+    );
+  }
 
-    removePage(){
-        this.galleryHomeDiV.removePage();
-    }
+  showPage() {
+    this.navigation.setPageType('admin');
+    div.style.display = 'block';
+  }
+
+  removePage() {
+    div.style.display = 'none';
+  }
+
+  getName() {
+    return 'admin';
+  }
 }
 
 export default AdminPage;

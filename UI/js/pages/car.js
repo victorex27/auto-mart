@@ -1,142 +1,160 @@
-import Common  from './common.js';
-import HomePage from './home.js';
-class Car extends Common{
+import Common from './common.js';
 
-    constructor(){
-        super();
-        
-        this.makePurchaseOrderButton = document.getElementById('make-purchase-order-button');
-        this.updatePurchaseOrderButton = document.getElementById('update-purchase-order-button');
-        this.updateAdvertButton = document.getElementById('update-advert-button');
-        this.currentPurchaseOrderDiv = document.getElementById('current-purchase-order-div');
-        this.isSoldDiv = document.getElementById('is-sold-div');
-        this.carDiv = document.getElementById('single-car');
-        this.verifyPurchaseOrderDiv = document.getElementById('verify-purchase-order');
+const overlay = document.querySelector('.overlay');
 
-        // div for making puchase order, and updating price for both seller and user
-        this.makePurchaseOrderDiv = document.getElementById('make-purchase-order');
-        this.deletePostDiv = document.getElementById('delete-post-div');
-        this.reportPostButton = document.getElementById('report-post');
+class Car extends Common {
+  constructor(navigation) {
+    super();
+    this.name = 'car';
+    this.navigation = navigation;
+    this.makePurchaseOrderButton = document.getElementById('make-purchase-order-button');
+    this.updatePurchaseOrderButton = document.getElementById('update-purchase-order-button');
+    this.updateAdvertButton = document.getElementById('update-advert-button');
+    this.currentPurchaseOrderDiv = document.getElementById('current-purchase-order-div');
+    this.isSoldDiv = document.getElementById('is-sold-div');
+    this.carDiv = document.getElementById('single-car');
+    this.verifyPurchaseOrderDiv = document.getElementById('verify-purchase-order');
 
-        // purchase order status
-        this.status = document.querySelector('div#current-purchase-order-div > div:nth-child(2)');
+    // div for making puchase order, and updating price for both seller and user
+    this.makePurchaseOrderDiv = document.getElementById('make-purchase-order');
+    this.deletePostDiv = document.getElementById('delete-post-div');
+    this.reportPostButton = document.getElementById('report-post');
 
-        //main div
-        this.main = document.querySelector('main');
-        
-        
-        /* modal */
-        this.modalDiv = document.querySelector('.modal');
-        this.modalOverlay = document.querySelector('.overlay');
-        this.modalCloseButton = document.querySelector('.close-modal');
-        this.modalCloseButton.addEventListener( 'click', (ev)=>{
-            this.modalDiv.style.display = 'none';
-            this.modalOverlay.style.display = 'none';
-            ev.preventDefault();
-        });
+    // purchase order status
+    this.status = document.querySelector('div#current-purchase-order-div > div:nth-child(2)');
 
-        
-        this.reportPostButton.addEventListener( 'click', (ev)=>{ this.onReportPostButton(ev); });
+    // main div
+    this.main = document.querySelector('main');
+
+
+    /* modal */
+    this.modalDiv = document.querySelector('.modal');
+    this.modalCloseButton = document.querySelector('.close-modal');
+    this.modalCloseButton.addEventListener('click', (ev) => {
+      this.modalDiv.classList.remove('slide-down');
+      overlay.classList.remove('slide-down');
+      ev.preventDefault();
+    });
+
+
+    this.reportPostButton.addEventListener('click', (ev) => { this.onReportPostButton(ev); });
+  }
+
+
+  showPage() {
+    window.scroll(0, 0);
+    this.carDiv.style.display = 'flex';
+    this.carDiv.classList.remove('is-not-visible');
+    this.deletePostDiv.style.display = 'none';
+    this.verifyPurchaseOrderDiv.style.display = 'none';
+    this.status.style.display = 'none';
+
+    switch (this.navigation.getPageType()) {
+      case 'po':
+        this.showPoPage();
+        break;
+
+      case 'adv':
+        this.showAdvPage();
+        break;
+      case 'admin':
+        this.showAdminPage();
+        break;
+      default:
+        this.showHomePage();
     }
+  }
+
+  removePage() {
+    this.carDiv.style.display = 'none';
+    this.carDiv.classList.add('is-not-visible');
+    this.makePurchaseOrderDiv.style.display = 'block';
 
 
-    showPage(){
+    switch (this.navigation.getPageType) {
+      case 'po':
+        this.removePoPage();
+        break;
 
-        window.scroll(0,0);
+      case 'adv':
+        this.removeAdvPage();
+        break;
 
-        this.carDiv.style.display = 'flex';
-        this.carDiv.classList.remove('is-not-visible');
-        this.deletePostDiv.style.display = 'none';
-        this.verifyPurchaseOrderDiv.style.display = 'none';
-        this.status.style.display = 'none';
-
-        switch (HomePage.Type) {
-            case 'home':
-                document.querySelector('h1').innerHTML = 'Make Purchase Order';
-                this.makePurchaseOrderButton.classList.remove('is-not-visible');
-                this.updatePurchaseOrderButton.classList.add('is-not-visible')
-                this.currentPurchaseOrderDiv.classList.add('is-not-visible');
-                this.updateAdvertButton.classList.add('is-not-visible');
-                this.isSoldDiv.style.display = 'none';
-                this.reportPostButton.style.display = 'none';
-                
-            break;
-
-            case 'po':
-                document.querySelector('h1').innerHTML = 'Purchase Order';
-                this.makePurchaseOrderButton.classList.add('is-not-visible');
-                this.updatePurchaseOrderButton.classList.remove('is-not-visible');
-                this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
-                this.updateAdvertButton.classList.add('is-not-visible');
-                this.isSoldDiv.style.display = 'none';
-                this.reportPostButton.style.display = 'block';
-                this.status.style.display = 'block';
-            break;
-
-        
-            case 'adv':
-                this.makePurchaseOrderButton.classList.add('is-not-visible');
-                this.updatePurchaseOrderButton.classList.add('is-not-visible')
-                this.currentPurchaseOrderDiv.classList.add('is-not-visible');
-                this.updateAdvertButton.classList.remove('is-not-visible');
-                this.isSoldDiv.style.display = 'flex';
-                this.reportPostButton.style.display = 'none';
-                this.verifyPurchaseOrderDiv.style.display = 'block';
-            break;
-            case 'admin':
-                this.makePurchaseOrderDiv.style.display = 'none';
-                this.deletePostDiv.style.display = 'flex';
-                this.reportPostButton.style.display = 'none';
-            break;
-            
-
-        }
-
-
-        
-
+      case 'admin':
+        this.removeAdminPage();
+        break;
+      default:
+        this.removeHomePage();
     }
-
-    removePage(){
-        this.carDiv.style.display = 'none';
-        this.carDiv.classList.add('is-not-visible');
-        this.makePurchaseOrderDiv.style.display = 'block';
+  }
 
 
-        switch (HomePage.Type) {
-            case 'home':
-                this.makePurchaseOrderButton.classList.add('is-not-visible');
-                this.updatePurchaseOrderButton.classList.remove('is-not-visible');
-                this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
-                    
-            break;
+  showHomePage() {
+    this.makePurchaseOrderButton.classList.remove('is-not-visible');
+    this.updatePurchaseOrderButton.classList.add('is-not-visible');
+    this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+    this.updateAdvertButton.classList.add('is-not-visible');
+    this.isSoldDiv.style.display = 'none';
+    this.reportPostButton.style.display = 'none';
+  }
 
-            case 'po':
-                this.makePurchaseOrderButton.classList.remove('is-not-visible');
-                this.updatePurchaseOrderButton.classList.add('is-not-visible')
-                this.currentPurchaseOrderDiv.classList.add('is-not-visible');
-            break;
+  removeHomePage() {
+    this.makePurchaseOrderButton.classList.add('is-not-visible');
+    this.updatePurchaseOrderButton.classList.remove('is-not-visible');
+    this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
+  }
 
-            case '':
-                this.deletePostDiv.style.display = 'none';
-            break;
+  showPoPage() {
+    this.makePurchaseOrderButton.classList.add('is-not-visible');
+    this.updatePurchaseOrderButton.classList.remove('is-not-visible');
+    this.currentPurchaseOrderDiv.classList.remove('is-not-visible');
+    this.updateAdvertButton.classList.add('is-not-visible');
+    this.isSoldDiv.style.display = 'none';
+    this.reportPostButton.style.display = 'block';
+    this.status.style.display = 'block';
+  }
 
-            case 'admin':
-                this.makePurchaseOrderDiv.style.display = 'none';
-            break
+  removePoPage() {
+    this.makePurchaseOrderButton.classList.remove('is-not-visible');
+    this.updatePurchaseOrderButton.classList.add('is-not-visible');
+    this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+  }
 
-        }
+  showAdvPage() {
+    this.makePurchaseOrderButton.classList.add('is-not-visible');
+    this.updatePurchaseOrderButton.classList.add('is-not-visible');
+    this.currentPurchaseOrderDiv.classList.add('is-not-visible');
+    this.updateAdvertButton.classList.remove('is-not-visible');
+    this.isSoldDiv.style.display = 'flex';
+    this.reportPostButton.style.display = 'none';
+    this.verifyPurchaseOrderDiv.style.display = 'block';
+  }
 
-    }
+  removeAdvPage() {
+    this.deletePostDiv.style.display = 'none';
+  }
 
-    onReportPostButton(ev){
+  showAdminPage() {
+    this.makePurchaseOrderDiv.style.display = 'none';
+    this.deletePostDiv.style.display = 'flex';
+    this.reportPostButton.style.display = 'none';
+  }
 
-        this.modalOverlay.style.display = 'block';
-        this.modalDiv.style.display = 'flex';
-        
-        ev.preventDefault();
-    }
+  removeAdminPage() {
+    this.makePurchaseOrderDiv.style.display = 'none';
+  }
 
+  onReportPostButton(ev) {
+    overlay.classList.add('slide-down');
+    this.modalDiv.classList.add('slide-down');
+    // this.modalDiv.style.display = 'flex';
+
+    ev.preventDefault();
+  }
+
+  getName() {
+    return this.name;
+  }
 }
 
 export default Car;

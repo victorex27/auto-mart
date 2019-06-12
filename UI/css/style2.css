@@ -7,19 +7,27 @@ aside {
     position: fixed;
     top: 0;
     left: 0;
-    width: 30%;
     height: 100vh;
     box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
     -o-box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
     -ms-box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
     -moz-box-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
     -webkitbox-shadow: 4px 6px 2px 2px rgba( 50, 50, 50, 1);
-    background-image: url(../img/img2.jpg);
+    background-image: url(../img/img22.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-color: rgba(50, 50, 50, 0.9);
     color: white;
+}
+
+.aside-fullscreen {
+    width: 25%;
     z-index: 2;
+}
+
+.aside-smallscreen {
+    display: 'block';
+    width: '100%';
 }
 
 aside>div {
@@ -92,11 +100,33 @@ aside>div>nav>li>a:active {
 }
 
 main {
-    padding-left: 35px;
-    margin-left: 30%;
-    width: 70%;
-    color: rgba(144, 12, 63);
-    padding-top: 50px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 0;
+    grid-template-areas: "header header" "body section";
+    padding-left: 15px;
+    margin-left: 25%;
+    width: 75%;
+    color: rgba(0, 0, 0, 0.8);
+    padding-top: 0px;
+    padding: 10px;
+}
+
+.primary-color {
+    color: rgb(86, 56, 255);
+}
+
+.secondary-color {
+    color: rgb(185, 56, 255);
+}
+
+.tertiary-color {
+    color: rgb(56, 195, 255);
+}
+
+section {
+    border-top: 3px solid rgba(86, 56, 255);
+    background-color: white;
 }
 
 body>nav {
@@ -104,32 +134,37 @@ body>nav {
 }
 
 main>h1 {
-    margin: 20px 0;
+    background-color: rgba(86, 56, 255, 0.3);
+    color: rgb(86, 56, 255);
+    width: 98%;
+    margin: 10px auto;
     padding: 10px;
     text-transform: uppercase;
+    grid-area: header;
+    border-radius: 0.3em;
 }
 
-main>section {
-    position: fixed;
-    top: 10px;
-    right: 5px;
-    border: 1px solid rgb(206, 230, 231);
-    border-top: 3px solid rgba(144, 12, 63);
-    background-color: white;
-    padding: 10px;
-    width: 18%;
-}
-
-main>div {
-    margin-top: 10px;
+.section-fullscreen {
     display: flex;
-    flex-flow: row wrap;
-    width: 75%;
+    padding: 10px;
+    /* margin-left: 10px; */
+    /* width: 18%; */
+    grid-area: section;
+}
+
+.section-smallscreen {
+    display: 'block';
+    position: 'absolute';
+    top: '0';
+    left: '0';
+    width: '100%';
+    height: '100vh';
 }
 
 main>section>div>form {
     display: flex;
     flex-flow: column wrap;
+    /* width:100%; */
 }
 
 main>section>div>form>li {
@@ -145,7 +180,7 @@ main>section>div>form>li>label {
     margin-right: 25px;
 }
 
-main>section>div>form>li>select, main>div#advertisement select {
+main>section>div>form>li>select, div#advertisement select {
     cursor: pointer;
     color: black;
     font-weight: lighter;
@@ -155,9 +190,26 @@ main>section>div>form>li>select, main>div#advertisement select {
     border-bottom: 1px solid black;
 }
 
+.card span {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 main>section>div>form>li>select>option {
     background-color: white;
     cursor: pointer;
+}
+
+main>div {
+    margin-top: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    align-self: center;
+    justify-content: space-between;
+    padding: 10px;
+    grid-area: body;
 }
 
 .card {
@@ -166,44 +218,53 @@ main>section>div>form>li>select>option {
     -ms-box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -moz-box-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
     -webkitbox-shadow: 4px 6px 5px 1px rgba( 50, 50, 50, 1);
-    flex: 0 0 140px;
-    margin: 0 15px 15px 0;
+    flex: 0 0 auto;
+    /* margin: 0 0 15px 0; */
+    margin-bottom: 15px;
+    margin-left: 10px;
     cursor: pointer;
     display: flex;
+    border-radius: 0.2em;
     flex-flow: column nowrap;
+    width: calc( (100% - 5px) / 5);
+    overflow: hidden;
 }
 
 .card>div:nth-child(1) {
-    width: 140px;
-    height: 140px;
+    width: 100%;
+    height: 170px;
     overflow: hidden;
+}
+
+.card>div:nth-child(1)>img {
+    width: auto;
+    height: 170px;
 }
 
 .card>div:nth-child(2) {
     display: flex;
     flex-flow: column wrap;
-    padding: 2px;
+    padding: 10px;
 }
 
 .card>div:nth-child(2)>span:nth-child(1) {
-    color: rgba(144, 12, 63);
+    font-size: 1.2em;
     font-weight: bolder;
 }
 
 .card>div:nth-child(2)>span:nth-child(2) {
-    font-size: 0.6em;
+    font-size: 0.8em;
 }
 
 div.card>span {
     display: none;
     text-align: center;
-    color: rgba(144, 12, 63);
 }
 
-img {
+/* img {
     width: 100%;
     height: auto;
-}
+} */
 
 /* Style for viewing a particular car */
 
@@ -212,7 +273,6 @@ main>div#single-car {
     margin-top: 15px;
     width: 100%;
     justify-content: center;
-    padding: 20px;
     flex-flow: column nowrap;
 }
 
@@ -227,6 +287,11 @@ main>div#single-car>div:nth-child(1)>div:first-child, main>div#single-car>div:nt
     flex: 1 0 auto;
     height: 250px;
     overflow: hidden;
+}
+
+main>div#single-car>div:nth-child(1)>div:first-child>img {
+    width: 75%;
+    height: auto;
 }
 
 main>div#single-car>div:nth-child(1)>div:nth-child(2) {
@@ -271,49 +336,71 @@ div#is-sold-div {
     justify-content: flex-end;
 }
 
-main>div#single-car>div:nth-child(3)>div>label {
+main>div#single-car label {
     font-weight: bolder;
+    color: rgb(56, 195, 255);
+    font-size: 1.2em;
 }
 
 main>div#single-car>div:nth-child(3)>div>label::after {
     content: ':';
 }
 
-main>div#single-car>div:nth-child(3)>div>span {
+main>div#single-car>div:nth-child(2) span, main>div#single-car>div:nth-child(3) span {
+    color: rgb(86, 56, 255);
     font-weight: 300;
+}
+
+/* style for gallery */
+
+div#gallery {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: center;
 }
 
 /* Style for posting adv */
 
-main>div#advertisement {
+div#advertisement {
     display: none;
     flex-flow: column;
     width: 100%;
-    background-image: linear-gradient(white, rgba(144, 12, 63), rgba(144, 12, 63));
-    background-color: rgba(144, 12, 63);
+    /* background-image: linear-gradient(white, rgba(144, 12, 63), rgba(144, 12, 63)); */
+    /* background-color: rgba(144, 12, 63); */
 }
 
-main>div#advertisement>header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    color: white;
-    background-color: rgba(144, 12, 63);
+div#advertisement>header>button.btn {
     cursor: pointer;
-    padding: 15px;
+    background-color: #fdfdfd;
+    width: 100%;
 }
 
-main>div#advertisement>header>label {
-    color: white;
+div#advertisement>header>button.btn>span {
     font-weight: bolder;
-    padding-left: 10px;
-    /* border:1px solid black; */
+    font-size: 1.5em;
+    color: rgb(86, 56, 255);
 }
 
-main>div#advertisement select {
+div#advertisement>form {
+    align-items: center;
+}
+
+div#advertisement>form, div#advertisement>form>label {
+    background-color: rgba(56, 195, 255, 0.2);
+    color: rgb(86, 56, 255);
+    border-radius: 0.3em;
+}
+
+div#advertisement>form>div.form-group>label {
+    color: rgb(86, 56, 255);
+}
+
+div#advertisement>form>div.form-group>input {
+    background: #fdfdfd;
+}
+
+div#advertisement select {
     width: 90%;
 }
 
@@ -323,36 +410,43 @@ div#make-purchase-order {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    padding: 15px;
+    padding: 5px;
     margin-top: 15px;
 }
 
 div#make-purchase-order>div:last-child {
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-end;
-    align-self: flex-end;
-    align-items: center;
-    margin-top: 15px;
-    margin-left: auto;
+    justify-content: flex-start;
 }
 
 div#make-purchase-order input[type=number] {
-    width: 200px;
+    width: 150px;
     height: 100%;
     padding: 16px 32px;
-    margin: 6px 6px;
+    /* margin: 6px 6px; */
 }
 
 div#make-purchase-order button {
-    width: 200px;
+    margin: 30px 0 0 0;
+}
+
+span.make-purchase-order {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+}
+
+span.make-purchase-order>div.formgroup {
+    align-self: baseline;
 }
 
 div#current-purchase-order-div {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    margin: 35px 0 0 0;
 }
 
 div#current-purchase-order-div>div:nth-child(2) {
@@ -378,32 +472,161 @@ div#verify-purchase-order>div {
     overflow-x: auto;
 }
 
-table td {
+.no-display, .mobile-view, span.is-sold-span {
+    display: none;
+}
+
+span.back-button {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Ripple effect */
+
+.ripple {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    transform: translate3d(0, 0, 0);
+    z-index: 5;
+    background-image: radial-gradient(circle, rgb(233, 244, 245) 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: transform .5s;
+    animation: opacity 1s ease-in-out 1 forwards;
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+        transform: scale(0, 0);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(10, 10);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0, 0);
+    }
+}
+
+/*   
+  .ripple:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+  } */
+
+.ripple:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+}
+
+/* styling table*/
+
+/* https://codepen.io/AllThingsSmitty/pen/MyqmdM */
+
+table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    margin: 15px 0 0 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    color: rgb(86, 56, 255);
+}
+
+table thead, table th {
+    background-color: #fdfdfd;
+    border: 1px solid #fdfdfd;
+}
+
+table caption {
+    font-size: 1.3em;
     padding: 10px;
+    color: rgb(185, 56, 255);
+}
+
+table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+td>span.img {
+    display: block;
+    /* width: 30px; */
+    height: 30px;
+    overflow: hidden;
+    border-radius: 0.5em;
+}
+
+td>span>img {
+    width: 30px;
+    height: 30px;
+}
+
+td>button {
+    width: 100px;
+    height: 50px;
+}
+
+td>button>span {
+    font-size: 0.6em;
+}
+
+td>button>span {
+    color: #fdfdfd;
 }
 
 tr:nth-child(even) {
     background-color: #f2f2f2
 }
 
-span.is-sold-span {
-    display: none;
+table th, table td {
+    padding: 0;
+    font-size: 0.6em;
+    text-align: center;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+table tr>th:first-child {
+    width: 30px;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
 }
 
 /* Responsive design*/
 
 @media screen and (max-width: 1150px) {
-    body>nav {
-        border-bottom: 3px solid rgba(144, 12, 63);
-        border-radius: 0.5em;
-    }
     .card {
-        flex: 0 0 100px;
         margin: 0 15px 15px 0;
         cursor: pointer;
     }
     .card>div:nth-child(1) {
-        width: 100px;
         height: 100px;
         /* overflow: hidden; */
     }
@@ -416,21 +639,20 @@ span.is-sold-span {
     main>div#single-car>div:first-child {
         display: flex;
         flex-flow: row nowrap;
+        overflow: hidden;
     }
-    main>div#single-car>div:nth-child(1)>div:first-child, main>div#single-car>div:nth-child(1)>div:last-child {
+    main>div#single-car>div:nth-child(1)>div {
         flex: 1 0 auto;
-        height: 250px;
-        border: 1px solid black;
+        height: 300px;
+        /* margin: 0 5px; */
         overflow: hidden;
     }
-    main>div#single-car>div:nth-child(1)>div:nth-child(2) {
-        flex: 1 0 300px;
-        height: 300px;
-        margin: 0 5px;
-        overflow: hidden;
-        -webkit-box-shadow: 0px 0px 10px #000;
-        -moz-box-shadow: 0px 0px 10px #000;
-        box-shadow: 0px 0px 10px #000;
+    main>div#single-car>div:nth-child(1)>div img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: auto;
     }
     main>div#single-car>div:nth-child(2) {
         display: flex;
@@ -456,7 +678,57 @@ span.is-sold-span {
     /* End of style for a single car*/
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
+    table {
+        border: 0;
+    }
+    table caption {
+        font-size: 1.3em;
+    }
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 1.2em;
+        text-align: center;
+    }
+    td>button>span {
+        font-size: 0.9em;
+    }
+    td>button {
+        width: 100%;
+    }
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        /* content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase; */
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
+    main {
+        display: flex;
+        flex-flow: column nowrap;
+    }
     /* Style for viewing a particular car */
     main>div#single-car {
         width: 100%;
@@ -468,9 +740,9 @@ span.is-sold-span {
         flex-flow: row nowrap;
         margin-top: 15px;
     }
-    main>div#single-car>div:nth-child(1)>div:first-child, main>div#single-car>div:nth-child(1)>div:last-child {
+    /* main>div#single-car>div:nth-child(1)>div:first-child, main>div#single-car>div:nth-child(1)>div:last-child {
         display: none;
-    }
+    } */
     main>div#single-car>div:nth-child(1)>div:nth-child(2) {
         flex: 1 0 auto;
         height: 300px;
@@ -480,11 +752,38 @@ span.is-sold-span {
         box-shadow: 0px 0px 10px #000;
     }
     /* End of style for a single car*/
-}
-
-@media screen and (max-width: 600px) {
-    aside {
-        display: none;
+    /* Filter style*/
+    .open-filter {
+        color: blue;
+        display: 'block';
+        /* position: 'absolute';
+        top: '0';
+        left: '0';
+        width: '100%';
+        height: '100vh'; */
+    }
+    aside, section {
+        width: 100%;
+        transition: all 1s ease-in-out 0s;
+        -webkit-transform: scaleX(0);
+        -o-transform: scaleX(0);
+        -ms-transform: scaleX(0);
+        transform: scaleX(0);
+        -webkit-transform-origin: left;
+        -o-transform-origin: left;
+        -ms-transform-origin: left;
+        transform-origin: left;
+        height: 100vh;
+        z-index: 4;
+    }
+    .slide-right {
+        -webkit-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        -ms-transform: scaleX(1);
+        transform: scaleX(1);
+    }
+    .mobile-view {
+        display: block;
     }
     aside>div>span:first-child {
         display: block;
@@ -498,60 +797,99 @@ span.is-sold-span {
         width: 100%;
     }
     body>nav {
-        background-color: white;
+        color: rgba(86, 56, 255);
+        background-color: #fdfdfd;
         display: flex;
         flex-flow: row nowrap;
         position: fixed;
         top: 0px;
         width: 100%;
-        width: calc( 100% - 10px);
-        padding: 10px;
+        padding: 15px;
+        border-bottom: 1px solid rgb(56, 195, 255);
     }
     body>nav>span {
         display: block;
-        margin-left: 10px;
-        padding: 20px;
-        color: rgba(144, 12, 63);
+        padding: 5px;
+        /* color: rgba(144, 12, 63); */
         font-weight: bolder;
         font-size: 2em;
     }
     body>nav>button {
-        border: 3px solid rgba(144, 12, 63);
+        /* border: 3px solid rgba(144, 12, 63); */
         border-radius: 0.5em;
         margin-right: 16px;
         margin-left: auto;
         cursor: pointer;
     }
-    main>section {
-        display: none;
+    section {
+        /* display: none; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        color: #fdfdfd;
+        background-color: rgb(85, 56, 255);
+    }
+    section label {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #fdfdfd;
     }
     main>div {
         width: 100%;
-        margin-left: 10px;
+    }
+    main>div.top {
+        display: flex;
+        justify-content: space-between;
+    }
+    .button-fullscreen {
+        display: none;
     }
     .card {
-        flex: 0 0 120px;
-        margin-left: 10px;
+        flex: 1 0 100%;
+        /* margin-left: 10px; */
         align-content: flex-start;
     }
     .card>div:nth-child(1) {
-        width: 120px;
-        height: 120px;
+        width: 100%;
+        height: 350px;
+    }
+    .card>div:nth-child(1)>img {
+        width: 100%;
+        height: auto;
     }
 }
 
-@media screen and (max-width: 420px) {
+@media (max-width: 420px) {
     main>div {
         justify-content: center;
     }
-    .card {
-        flex: 0 0 250px;
-        margin: 0 15px 15px 0;
-        cursor: pointer;
-    }
     .card>div:nth-child(1) {
-        width: 250px;
-        height: 250px;
-        /* overflow: hidden; */
+        width: 100%;
+        height: 200px;
     }
+    div#make-purchase-order>div:last-child {
+        margin-top: 10px;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1220px) {
+    td>button {
+        width: 65px;
+    }
+    td>button>span {
+        font-size: 0.8em;
+    }
+}
+
+div#purchase-order, div#advert, div#admin-page {
+    display: none;
+}
+
+div#purchase-order {
+    max-width: 100%;
+}
+
+div#delete-post-div {
+    color: rgb(86, 56, 255);
 }

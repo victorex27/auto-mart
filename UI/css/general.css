@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Saira+Semi+Condensed&display=swap');
 * {
   -webkit-box-sizing: border-box;
   -o-box-sizing: border-box;
@@ -13,13 +14,17 @@ html {
 body {
   min-height: 100vh;
   margin: 0px;
-  font-family: Lato, Helvetica, sans-serif;
+  font-family: 'Lato', Helvetica, sans-serif;
   color: rgb(10, 10, 10);
 }
 
 h2 {
   font-size: 1.6em;
   text-align: center;
+}
+
+h1, h2, h3 {
+  font-family: 'Saira Semi Condensed', 'Lato', Helvetica, sans-serif;
 }
 
 /** for form styling*/
@@ -81,8 +86,8 @@ label {
 
 button {
   cursor: pointer;
-  background-image: linear-gradient(white, rgba(144, 12, 63), rgba(144, 12, 63));
-  background-color: rgba(144, 12, 63);
+  /* background-image: linear-gradient(white, rgba(144, 12, 63), rgba(144, 12, 63)); */
+  background-color: rgb(86, 56, 255);
   border: none;
   color: white;
   text-decoration: none;
@@ -92,11 +97,33 @@ button {
   margin: 10px 0px;
 }
 
+button.btn-primary {
+  background-color: rgb(86, 56, 255);
+}
+
+button.btn-tertiary {
+  background-color: rgb(56, 195, 255);
+}
+
+.primary-color {
+  color: rgb(86, 56, 255);
+}
+
 .am {
   background-color: transparent;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: 5em;
+  height: 5em;
+}
+
+.bm {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 15em;
+  height: 15em;
 }
 
 .am-no-margin {
@@ -109,17 +136,19 @@ button {
 
 .am-small {
   background-size: 10px;
+  width: 2.5em;
+  height: 2.5em;
 }
 
-.am-primary-color {
-  background-color: rgba(144, 12, 63);
+.am-alternate-color {
+  background-color: rgb(86, 56, 255);
   border-radius: 50%;
   -webkit-box-shadow: 2px 2px 3px #000;
   -moz-box-shadow: 0px 0px 3px #000;
   box-shadow: 2px 2px 3px #000;
 }
 
-.am-40 {
+/* .am-40 {
   width: 40px;
   height: 40px;
 }
@@ -132,10 +161,22 @@ button {
 .am-100 {
   width: 100px;
   height: 100px;
+} */
+
+label {
+  font-weight: bolder;
+  color: rgb(56, 195, 255);
+  font-size: 1.2em;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .am-menu {
-  background-image: url(../img/Menu_5.ico)
+  background-image: url(../img/Menu.ico)
 }
 
 .am-close {
@@ -154,6 +195,11 @@ button {
   background-image: url(../img/Back.ico)
 }
 
+.am-back-white {
+  background-image: url(../img/Long_Arrow_Left_2.ico);
+  background-color: transparent;
+}
+
 .am-next-white {
   background-image: url(../img/Forward.ico)
 }
@@ -166,9 +212,30 @@ button {
   background-image: url(../img/Minus_2.ico)
 }
 
+.am-update {
+  background-image: url(../img/Update.ico)
+}
+
+.am-cart {
+  background-image: url(../img/Shopping_Cart.ico)
+}
+
 .btn {
   font-weight: bolder;
-  max-width: 250px;
+  border: 2px solid #fdfdfd;
+  border-radius: 0.3em;
+}
+
+.btn-white {
+  background-color: #fdfdfd;
+}
+
+span.custom-white {
+  color: #fdfdfd;
+}
+
+.btn-white>span {
+  color: rgb(86, 56, 255);
 }
 
 .btn img {
@@ -182,6 +249,11 @@ button {
   height: 25px;
 }
 
+.btn img.bigger {
+  width: 50px;
+  height: 50px;
+}
+
 .btn-small {
   width: 100px;
 }
@@ -192,10 +264,9 @@ button {
 
 /* Modal styling */
 
-/*  help from https://css-tricks.com/considerations-styling-modal/ */
-
+/* 
 .overlay {
-  display: none;
+  display: none; 
   position: fixed;
   top: 0;
   left: 0;
@@ -203,31 +274,65 @@ button {
   height: 100%;
   background-color: rgba(10, 10, 10, 0.5);
   z-index: 2;
+} */
+
+.overlay, .modal {
+  position: fixed;
+  transition: all .6s ease-in-out 0s;
+  -webkit-transform: scaleY(0);
+  -o-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: top;
+  -o-transform-origin: top;
+  -ms-transform-origin: top;
+  transform-origin: top;
+}
+
+.overlay {
+  height: 100vh;
+  top: 0;
+  background-color: black;
+  opacity: 0.8;
+  width: 100%;
+  z-index: 2;
 }
 
 .modal {
-  display: none;
-  flex-flow: column wrap;
-  justify-content: center;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  max-width: 100%;
-  height: 400px;
-  max-height: 100%;
+  width: 80%;
+  top: 10%;
+  left: 10%;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid black;
   z-index: 3;
+  -webkit-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  -o-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  -ms-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -4px -4px 5px 10px rgba(50, 50, 50, 0.75);
+  box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(217, 30, 24, 1);
+  padding: 10px;
+  align-items: flex-end;
+}
+
+.slide-down {
+  -webkit-transform: scaleY(1);
+  -o-transform: scaleY(1);
+  -ms-transform: scaleY(1);
+  transform: scaleY(1);
 }
 
 .modal>div {
-  background-color: white;
-  width: 300px;
-  height: 400px;
-  padding: 20px;
+  width: 100%;
   margin: auto;
 }
 
-.modal select, .modal textarea {
+select {
   width: 100%;
+}
+
+option {
+  width: 50px;
 }
