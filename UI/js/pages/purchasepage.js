@@ -19,19 +19,16 @@ class PurchaseOrderPage extends Common {
       },
 
     );
-    // this.galleryHomeDiV = galleryHomeDiV;
   }
 
 
   showPage() {
     this.navigation.setPageType('po');
     div.style.display = 'block';
-    // this.galleryHomeDiV.showPage();
   }
 
   removePage() {
     div.style.display = 'none';
-    // this.galleryHomeDiV.removePage();
   }
 
   getName() {

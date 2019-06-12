@@ -144,66 +144,81 @@
             <div id='verify-purchase-order'>
 
                 <div>
-
                     <table>
+                        <caption>Received Orders</caption>
                         <thead>
-                            <td>Name</td>
-                            <td>amount</td>
-                            <td>status</td>
+                            <tr>
 
+                                <th scope="col">Name</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Status</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
                         </thead>
-
                         <tbody>
                             <tr>
-                                <td><span>Amanda Aduchie</span> </td>
-                                <td><span> &#8358; 1 400 000</span> </td>
-                                <td><span> pending</span></td>
-                                <td>
-
-                                    <button class='btn small btn-primary'> <span class='custom-white'>Accept</span> <img
-                                            src="img/Checkmark.ico" alt=""></button>
 
 
-                                </td>
-                                <td> <button class='btn btn-small btn-tertiary'> <span
-                                            class='custom-white'>Reject</span> <img src="img/Delete_1.ico"
+                                <td data-label="name">Amanda Aduchie</td>
+                                <td data-label="Amount">&#8358; 11900000 </td>
+                                <td data-label="Status">Pending</td>
+                                <td data-label="Accept"><button class='btn btn-primary'> <span
+                                            class='custom-white'>Accept</span> <img src="img/Checkmark.ico"
                                             alt=""></button></td>
-
-                            </tr>
-                            <tr>
-                                <td><span>Amanda Aduchie</span> </td>
-                                <td><span> &#8358; 1 400 000</span> </td>
-                                <td><span> pending</span></td>
-                                <td>
-
-                                    <button class='btn small btn-primary'> <span class='custom-white'>Accept</span> <img
-                                            src="img/Checkmark.ico" alt=""></button>
-
-
+                                <td data-label="Reject">
+                                    <button class='btn  btn-tertiary'> <span class='custom-white'>Reject</span>
+                                        <img src="img/Delete_1.ico" alt=""></button>
                                 </td>
-                                <td> <button class='btn btn-small btn-tertiary'> <span
-                                            class='custom-white'>Reject</span> <img src="img/Delete_1.ico"
-                                            alt=""></button></td>
-
                             </tr>
 
                             <tr>
-                                <td><span>Amanda Aduchie</span> </td>
-                                <td><span> &#8358; 1 400 000</span> </td>
-                                <td><span> pending</span></td>
-                                <td>
-
-                                    <button class='btn small btn-primary'> <span class='custom-white'>Accept</span> <img
-                                            src="img/Checkmark.ico" alt=""></button>
 
 
-                                </td>
-                                <td> <button class='btn btn-small btn-tertiary'> <span
-                                            class='custom-white'>Reject</span> <img src="img/Delete_1.ico"
+                                <td data-label="name">Amanda Aduchie</td>
+                                <td data-label="Amount">&#8358; 11900000 </td>
+                                <td data-label="Status">Pending</td>
+                                <td data-label="Accept"><button class='btn btn-primary'> <span
+                                            class='custom-white'>Accept</span> <img src="img/Checkmark.ico"
                                             alt=""></button></td>
-
+                                <td data-label="Reject">
+                                    <button class='btn  btn-tertiary'> <span class='custom-white'>Reject</span>
+                                        <img src="img/Delete_1.ico" alt=""></button>
+                                </td>
                             </tr>
 
+                            <tr>
+
+
+                                <td data-label="name">Amanda Aduchie</td>
+                                <td data-label="Amount">&#8358; 11900000 </td>
+                                <td data-label="Status">Pending</td>
+                                <td data-label="Accept">
+                                    <button class='btn btn-primary'>
+                                        <span class='custom-white'>Accept</span> <img src="img/Checkmark.ico"
+                                            alt=""></button>
+                                </td>
+                                <td data-label="Reject">
+                                    <button class='btn  btn-tertiary'>
+                                        <span class='custom-white'>Reject</span> <img src="img/Delete_1.ico"
+                                            alt=""></button>
+                                </td>
+                            </tr>
+
+                            <tr>
+
+
+                                <td data-label="name">Amanda Aduchie</td>
+                                <td data-label="Amount">&#8358; 11900000 </td>
+                                <td data-label="Status">Pending</td>
+                                <td data-label="Accept"><button class='btn  btn-primary'> <span
+                                            class='custom-white'>Accept</span> <img src="img/Checkmark.ico"
+                                            alt=""></button></td>
+                                <td data-label="Reject">
+                                    <button class='btn  btn-tertiary'> <span class='custom-white'>Reject</span>
+                                        <img src="img/Delete_1.ico" alt=""></button>
+                                </td>
+                            </tr>
 
                         </tbody>
                     </table>
@@ -299,77 +314,94 @@
                 <table>
                     <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">Make</th>
-                            <th scope="col">Model</th>
                             <th scope="col">Seller</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Paid</th>
+                            <th scope="col">Proposal</th>
                             <th scope="col">Status</th>
                             <th scope="col">Date</th>
-                            <th scope="col">button</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
-                            <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
-                            <td data-label="Status">Accepted</td>
-                            <td data-label="Period">03/01/2016</td>
-                            <td data-label="img">
-                                <button class='btn  view-po'>
-                                    <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
-                                </button>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img12.jpg" alt="car">
+                                </span>
                             </td>
-                        </tr>
-                        
-                        <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Obikobe Amaobi</td>
                             <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
                             <td data-label="Status">Accepted</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="img">
                                 <button class='btn  view-po'>
                                     <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
+                                    <img src="./img/Eye.ico" alt='filter list' />
                                 </button>
                             </td>
                         </tr>
 
                         <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img13.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Obikobe Amaobi</td>
+
                             <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
                             <td data-label="Status">Accepted</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="img">
                                 <button class='btn  view-po'>
                                     <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
+                                    <img src="./img/Eye.ico" alt='filter list' />
                                 </button>
                             </td>
                         </tr>
 
                         <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img14.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Obikobe Amaobi</td>
                             <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
                             <td data-label="Status">Accepted</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="img">
                                 <button class='btn  view-po'>
                                     <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
+                                    <img src="./img/Eye.ico" alt='filter list' />
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img15.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Obikobe Amaobi</td>
+                            <td data-label="Amount">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
+                            <td data-label="Status">Accepted</td>
+                            <td data-label="Period">03/01/2016</td>
+                            <td data-label="img">
+                                <button class='btn  view-po'>
+                                    <span>View </span>
+                                    <img src="./img/Eye.ico" alt='filter list' />
                                 </button>
                             </td>
                         </tr>
@@ -384,80 +416,194 @@
                 <table>
                     <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">Make</th>
-                            <th scope="col">Model</th>
                             <th scope="col">Buyer</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Paid</th>
+                            <th scope="col">Proposal</th>
                             <th scope="col">Status</th>
                             <th scope="col">Date</th>
-                            <th scope="col">button</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
-                            <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
-                            <td data-label="Status">Accepted</td>
-                            <td data-label="Period">03/01/2016</td>
-                            <td data-label="img">
-                                <button class='btn  view-po'>
-                                    <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
-                                </button>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img16.jpg" alt="car">
+                                </span>
                             </td>
-                        </tr>
-                        
-                        <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+
+                            <td data-label="Buyer">Obikobe Augustine</td>
                             <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
                             <td data-label="Status">Accepted</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="img">
-                                <button class='btn  view-po'>
+                                <button class='btn  view-ad'>
                                     <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
+                                    <img src="./img/Eye.ico" alt='filter list' />
                                 </button>
                             </td>
                         </tr>
 
                         <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img17.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Buyer">Obikobe Augustine</td>
                             <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
                             <td data-label="Status">Accepted</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="img">
-                                <button class='btn  view-po'>
+                                <button class='btn  view-ad'>
                                     <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
+                                    <img src="./img/Eye.ico" alt='filter list' />
                                 </button>
                             </td>
                         </tr>
 
                         <tr>
-                            <td data-label="Account">Buggati</td>
-                            <td data-label="Due Date">2016</td>
-                            <td data-label="Due Date">Seller</td>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img18.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Buyer">Obikobe Augustine</td>
                             <td data-label="Amount">$1,190</td>
-                            <td data-label="Paid">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
                             <td data-label="Status">Accepted</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="img">
-                                <button class='btn  view-po'>
+                                <button class='btn  view-ad'>
                                     <span>View </span>
-                                    <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
+                                    <img src="./img/Eye.ico" alt='filter list' />
                                 </button>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img20.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Buyer">Obikobe Augustine</td>
+                            <td data-label="Amount">$1,190</td>
+                            <td data-label="Proposal">$1,190</td>
+                            <td data-label="Status">Accepted</td>
+                            <td data-label="Period">03/01/2016</td>
+                            <td data-label="img">
+                                <button class='btn  view-ad'>
+                                    <span>View </span>
+                                    <img src="./img/Eye.ico" alt='filter list' />
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+            <div id='admin-page'>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Make</th>
+                            <th scope="col">Buyer</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img9.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Amanda Aduchie</td>
+                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Status">Sold</td>
+                            <td data-label="Period">03/01/2016</td>
+                            <td data-label="button">
+                                <button class='btn  view-adm'>
+                                    <span>View </span>
+                                    <img src="./img/Eye.ico" alt='filter list' />
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img12.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Amanda Aduchie</td>
+                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Status">Sold</td>
+                            <td data-label="Period">03/01/2016</td>
+                            <td data-label="button">
+                                <button class='btn  view-adm'>
+                                    <span>View </span>
+                                    <img src="./img/Eye.ico" alt='filter list' />
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img8.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Amanda Aduchie</td>
+                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Status">Sold</td>
+                            <td data-label="Period">03/01/2016</td>
+                            <td data-label="button">
+                                <button class='btn  view-adm'>
+                                    <span>View </span>
+                                    <img src="./img/Eye.ico" alt='filter list' />
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td data-label="Image">
+                                <span class='img'>
+                                    <img src="./img/img6.jpg" alt="car">
+                                </span>
+                            </td>
+                            <td data-label="Car">Bugatti<span>2016</span></td>
+                            <td data-label="Seller">Amanda Aduchie</td>
+                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Status">Sold</td>
+                            <td data-label="Period">03/01/2016</td>
+                            <td data-label="button">
+                                <button class='btn  view-adm'>
+                                    <span>View </span>
+                                    <img src="./img/Eye.ico" alt='filter list' />
+                                </button>
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
 

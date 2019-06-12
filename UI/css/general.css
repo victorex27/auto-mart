@@ -23,8 +23,8 @@ h2 {
   text-align: center;
 }
 
-h1, h2, h3{
-  font-family: 'Saira Semi Condensed','Lato', Helvetica, sans-serif;
+h1, h2, h3 {
+  font-family: 'Saira Semi Condensed', 'Lato', Helvetica, sans-serif;
 }
 
 /** for form styling*/
@@ -97,18 +97,15 @@ button {
   margin: 10px 0px;
 }
 
-button.btn-primary{
-
+button.btn-primary {
   background-color: rgb(86, 56, 255);
 }
 
-button.btn-tertiary{
-
+button.btn-tertiary {
   background-color: rgb(56, 195, 255);
 }
 
-.primary-color{
-
+.primary-color {
   color: rgb(86, 56, 255);
 }
 
@@ -121,7 +118,7 @@ button.btn-tertiary{
   height: 5em;
 }
 
-.bm{
+.bm {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -165,17 +162,19 @@ button.btn-tertiary{
   width: 100px;
   height: 100px;
 } */
- label
-{
-    font-weight: bolder;
-    color: rgb(56, 195, 255);
-    font-size: 1.2em;
+
+label {
+  font-weight: bolder;
+  color: rgb(56, 195, 255);
+  font-size: 1.2em;
 }
-img{
+
+img {
   display: block;
-        margin-left: auto;
-        margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 .am-menu {
   background-image: url(../img/Menu.ico)
 }
@@ -183,7 +182,6 @@ img{
 .am-close {
   background-image: url(../img/Delete.ico)
 }
-
 
 .am-close-white {
   background-image: url(../img/Delete_1.ico)
@@ -196,10 +194,12 @@ img{
 .am-prev-white {
   background-image: url(../img/Back.ico)
 }
+
 .am-back-white {
   background-image: url(../img/Long_Arrow_Left_2.ico);
   background-color: transparent;
 }
+
 .am-next-white {
   background-image: url(../img/Forward.ico)
 }
@@ -222,9 +222,11 @@ img{
 
 .btn {
   font-weight: bolder;
+  border: 2px solid #fdfdfd;
+  border-radius: 0.3em;
 }
 
-.btn-white{
+.btn-white {
   background-color: #fdfdfd;
 }
 
@@ -232,7 +234,7 @@ span.custom-white {
   color: #fdfdfd;
 }
 
-.btn-white > span {
+.btn-white>span {
   color: rgb(86, 56, 255);
 }
 
@@ -247,9 +249,9 @@ span.custom-white {
   height: 25px;
 }
 
-.btn img.bigger{
+.btn img.bigger {
   width: 50px;
-  height: 50px; 
+  height: 50px;
 }
 
 .btn-small {
@@ -274,34 +276,32 @@ span.custom-white {
   z-index: 2;
 } */
 
-.overlay, .modal{
+.overlay, .modal {
   position: fixed;
   transition: all .6s ease-in-out 0s;
   -webkit-transform: scaleY(0);
-  -o-transform:  scaleY(0);
-  -ms-transform:  scaleY(0);
-  transform:  scaleY(0);
+  -o-transform: scaleY(0);
+  -ms-transform: scaleY(0);
+  transform: scaleY(0);
   -webkit-transform-origin: top;
   -o-transform-origin: top;
   -ms-transform-origin: top;
   transform-origin: top;
-  
 }
 
-
 .overlay {
-  height:100vh;  
-  top:0;
+  height: 100vh;
+  top: 0;
   background-color: black;
-  opacity:0.8;
-  width:100%;
+  opacity: 0.8;
+  width: 100%;
   z-index: 2;
 }
 
-.modal{
+.modal {
   width: 80%;
-  top:10%;
-  left:10%;
+  top: 10%;
+  left: 10%;
   margin-right: auto;
   margin-left: auto;
   border: 1px solid black;
@@ -317,28 +317,22 @@ span.custom-white {
   align-items: flex-end;
 }
 
-
-.slide-down{
-  
-  -webkit-transform:  scaleY(1);
+.slide-down {
+  -webkit-transform: scaleY(1);
   -o-transform: scaleY(1);
   -ms-transform: scaleY(1);
   transform: scaleY(1);
 }
-
-
 
 .modal>div {
   width: 100%;
   margin: auto;
 }
 
-select{
+select {
   width: 100%;
 }
 
-option{
-
-
+option {
   width: 50px;
 }

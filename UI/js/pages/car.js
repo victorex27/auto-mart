@@ -1,5 +1,7 @@
 import Common from './common.js';
+
 const overlay = document.querySelector('.overlay');
+
 class Car extends Common {
   constructor(navigation) {
     super();
