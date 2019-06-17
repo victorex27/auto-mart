@@ -1,8 +1,8 @@
 import express from 'express';
-import User from '../controllers/user';
-import Car from '../controllers/car';
-import Order from '../controllers/order';
-import Flag from '../controllers/flag';
+import User from '../controllers/v1/user';
+import Car from '../controllers/v1/car';
+import Order from '../controllers/v1/order';
+import Flag from '../controllers/v1/flag';
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
   addressCheck, checkToken, priceCheck, carIdCheck,

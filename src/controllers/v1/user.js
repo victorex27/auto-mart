@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator/check';
-import UserModel from '../models/user';
+import UserModel from '../../models/user';
 
 
 class User {

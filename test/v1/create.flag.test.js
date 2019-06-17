@@ -1,11 +1,11 @@
 import chai, { expect, use } from 'chai';
 import chaiHttp from 'chai-http';
 import request from 'supertest';
-import server from '../src/server';
+import server from '../../src/server';
 
 use(chaiHttp);
 
-describe('POST /api/v1/order', () => {
+describe('POST /api/v1/flag', () => {
   const userCredentials = {
     email: 'aobikobe@gmail.com',
     password: 'password70',
@@ -24,51 +24,54 @@ describe('POST /api/v1/order', () => {
       });
   });
 
-  describe('When a user tries to make a purchase order for a car id that does not exist', () => {
-    it('should return an object with the status and error', (done) => {
-      const data = {
-        carId: 900,
-        amount: 1400000,
-      };
-
-
-      chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
-        .send(data)
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(404);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exist');
-          done();
-        });
-    });
-  });
-  describe('When a user tries to make a purchase order with a non positive integer price', () => {
+  describe('When a user tries to make a flag without reason', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         carId: 2,
-        amount: 'amaobi',
+        description: 'big description 2018',
       };
 
 
       chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
+        .post('/api/v1/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Price must be a positive integer');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Reason Field is missing');
           done();
         });
     });
   });
-  describe('When a user tries to make a purchase order with no car id', () => {
+
+  describe('When a user tries to make a flag without description', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        amount: 1400000,
+        carId: 2,
+        reason: 'super reason',
       };
 
 
       chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
+        .post('/api/v1/flag').set('Authorization', token)
+        .send(data)
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Description Field is missing');
+          done();
+        });
+    });
+  });
+
+  describe('When a user tries to make a flag with no carId field', () => {
+    it('should return an object with the status and error', (done) => {
+      const data = {
+        reason: 'super reason',
+        description: 'big description 2018',
+      };
+
+
+      chai.request(server)
+        .post('/api/v1/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -78,16 +81,18 @@ describe('POST /api/v1/order', () => {
     });
   });
 
-  describe('When a user tries to make a purchase order with a non positive integer car id', () => {
+
+  describe('When a user tries to make a flag with a car id that is not an a postive integer', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 'ama',
-        amount: 1400000,
+        carId: 'amaobi',
+        reason: 'super reason',
+        description: 'big description 2018',
       };
 
 
       chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
+        .post('/api/v1/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -97,82 +102,68 @@ describe('POST /api/v1/order', () => {
     });
   });
 
-  describe('When a user tries to make a purchase order with no amount', () => {
+  describe('When a user tries to make a flag with a car id that does not exist', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 2,
+        carId: 99,
+        reason: 'super reason',
+        description: 'big description 2018',
       };
 
 
       chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
+        .post('/api/v1/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Price is not supplied');
+          expect(res.body).to.have.property('status').to.equals(404);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exist');
           done();
         });
     });
   });
 
-  describe('When a user tries to make a purchase order from user\'s posted adv', () => {
+  describe('When a user tries to make a flag with car id field that belongs to user', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         carId: 1,
-        amount: 1290598,
+        reason: 'super reason',
+        description: 'big description 2018',
       };
 
 
       chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
+        .post('/api/v1/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot make a purchase order for your stock');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot report your own ad');
           done();
         });
     });
   });
 
-  describe('When a user tries to make a purchase order that already exists', () => {
-    it('should return an object with the status and error', (done) => {
-      const data = {
-        carId: 3,
-        amount: 1290598,
-      };
 
-
-      chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
-        .send(data)
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Purchase Order already exists');
-          done();
-        });
-    });
-  });
-
-  describe('When a user tries to make a purchase order with valid detail', () => {
+  describe('When a user tries to upload a new car with valid detail', () => {
     it('should return an object with the status and data', (done) => {
       const data = {
-        carId: 7,
-        amount: 1400000,
+        carId: 2,
+        reason: 'super reason',
+        description: 'big description 2018',
       };
 
 
       chai.request(server)
-        .post('/api/v1/order').set('Authorization', token)
+        .post('/api/v1/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(201);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
-          expect(res.body).to.have.property('data').to.have.property('carId');
+          expect(res.body).to.have.property('data').to.have.property('user');
           expect(res.body).to.have.property('data').to.have.property('createdOn');
-          expect(res.body).to.have.property('data').to.have.property('priceOffered');
-          expect(res.body).to.have.property('data').to.have.property('price');
-          expect(res.body).to.have.property('data').to.have.property('buyer');
+          expect(res.body).to.have.property('data').to.have.property('carId');
+          expect(res.body).to.have.property('data').to.have.property('reason');
+          expect(res.body).to.have.property('data').to.have.property('description');
           done();
         });
     });

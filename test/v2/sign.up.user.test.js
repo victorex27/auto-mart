@@ -1,11 +1,11 @@
 import chai, { expect, use } from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../src/server';
+import server from '../../src/server';
 
 use(chaiHttp);
 
 
-describe('POST /api/v1/auth/signup', () => {
+describe('POST /api/v2/auth/signup', () => {
   describe('When a new User Signs Up with an Email account that already exists', () => {
     it('should return an error status', (done) => {
       const user = {
@@ -13,7 +13,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -30,7 +30,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -46,7 +46,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -63,7 +63,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -80,7 +80,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -97,7 +97,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -114,7 +114,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -130,7 +130,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -147,7 +147,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -164,7 +164,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -181,7 +181,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -198,7 +198,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -215,7 +215,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -232,7 +232,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -249,7 +249,7 @@ describe('POST /api/v1/auth/signup', () => {
       };
 
       chai.request(server)
-        .post('/api/v1/auth/signup')
+        .post('/api/v2/auth/signup')
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(201);

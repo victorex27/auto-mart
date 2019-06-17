@@ -1,6 +1,6 @@
-import FlagModel from '../models/flag';
-import Result from '../helpers/result';
-import Validator from '../helpers/validator';
+import FlagModel from '../../models/flag';
+import Result from '../../helpers/result';
+import Validator from '../../helpers/validator';
 
 
 class Flag {
