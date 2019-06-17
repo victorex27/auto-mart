@@ -1,6 +1,12 @@
 language: node_js
 node_js:
   - "10"
+
+services:
+- postgresql
+before_script:
+- psql -c 'create database auto_mart_db;' -U postgres
+
 script:
 - npm run test
 after_script:

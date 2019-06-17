@@ -2,9 +2,9 @@
 import url from 'url';
 import cloudinary from 'cloudinary';
 import formidable from 'formidable';
-import CarModel from '../models/car';
-import Result from '../helpers/result';
-import Validator from '../helpers/validator';
+import CarModel from '../../models/car';
+import Result from '../../helpers/result';
+import Validator from '../../helpers/validator';
 
 
 class Car {
