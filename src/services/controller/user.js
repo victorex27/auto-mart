@@ -27,6 +27,22 @@ class UserService {
     );
   }
 
+  static async signIn(data) {
+    const doesUserExistPromise = UserService.doesUserExist(data.email);
+
+    return doesUserExistPromise.then(
+      (userExists) => {
+        if (!userExists) {
+          return { code: 404, error: 'User Account does not exist' };
+        }
+        const retrieveUserPromise = UserService.doCredentailsMatch(data.email, data.password);
+
+        return retrieveUserPromise.then(
+          obj => obj,
+        );
+      },
+    );
+  }
 
   static async createUser(data) {
     const salt = bcryptjs.genSaltSync(10);
@@ -50,6 +66,25 @@ class UserService {
       return true;
     }
     return false;
+  }
+
+  static async doCredentailsMatch(email, password) {
+    const text = 'SELECT * FROM users WHERE email = $1';
+    const value = [email];
+    const { rows } = await query(text, value);
+
+
+    const result = bcryptjs.compareSync(password, rows[0].password);
+
+    if (!result) return { code: 401, error: 'Invalid Password' };  
+    return {
+      id: rows[0].id,
+      email: rows[0].email,
+      firstName: rows[0].first_name,
+      lastName: rows[0].last_name,
+      address: rows[0].address,
+      isAdmin: rows[0].is_admin,
+    };
   }
 }
 export default UserService;

@@ -18,4 +18,9 @@ router2.post('/auth/signup', [
   addressCheck,
 ], User.create);
 
+router2.post('/auth/signin', [
+  emailCheck,
+  passwordCheck,
+], User.signIn);
+
 export default router2;
