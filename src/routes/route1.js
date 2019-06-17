@@ -9,7 +9,7 @@ import {
   newPriceSanitizer, orderIdSanitizer, orderIdParamCheck,
   priceParamCheck, carIdParamCheck, carStatusParamCheck, carIdSanitizer,
   statusQueryCheck, minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
-  priceOptionalCheck, usedStatusQueryCheck, bodyTypeQueryCheck, 
+  priceOptionalCheck, usedStatusQueryCheck, bodyTypeQueryCheck,
   manufacturerQueryCheck, reasonCheckCheck, descriptionCheck,
 } from '../helpers/custom-validator';
 
@@ -65,7 +65,7 @@ router.patch('/order/:orderId/:newPrice', [
   orderIdSanitizer,
 ], Order.updateOrder);
 
-router.post('/flag', [checkToken, reasonCheckCheck, 
+router.post('/flag', [checkToken, reasonCheckCheck,
   descriptionCheck, carIdCheck], Flag.postFlag);
 
 export default router;

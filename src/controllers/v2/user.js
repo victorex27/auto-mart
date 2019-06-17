@@ -15,6 +15,18 @@ class User {
     );
   }
 
+  static signIn(req, res) {
+    const newUser = UserService.signIn(req.body);
+
+
+    const ers = Promise.resolve(newUser);
+
+
+    ers.then(
+      user => User.getUser(req, res, user, 200),
+    );
+  }
+
   static getUser(req, res, userModel, status) {
     const errors = validationResult(req);
 
