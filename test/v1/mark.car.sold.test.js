@@ -146,7 +146,7 @@ describe('PACTH /api/v1/car/:carId/sold', () => {
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(404);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exists');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Car id does not exist');
           done();
         });
     });

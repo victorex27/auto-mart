@@ -38,7 +38,7 @@ class Car {
     const car = this.doesCarExist(carId);
 
     if (!car) {
-      return { code: 404, error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exist' };
     }
 
     if (car.owner !== userId) {
@@ -67,7 +67,7 @@ class Car {
   updateCarPrice(carId, userId, newPrice) {
     const car = this.doesCarExist(carId);
     if (!car) {
-      return { code: 404, error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exist' };
     }
 
     if (car.owner !== userId) {
@@ -87,7 +87,7 @@ class Car {
     const car = this.doesCarExist(carId);
 
     if (!car) {
-      return { code: 404, error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exist' };
     }
     return car;
   }
@@ -96,7 +96,7 @@ class Car {
     const car = this.doesCarExist(carId);
 
     if (!car) {
-      return { code: 404, error: 'Car id does not exists' };
+      return { code: 404, error: 'Car id does not exist' };
     }
 
     if (!isAdmin) {

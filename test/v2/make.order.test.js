@@ -165,6 +165,7 @@ describe('POST /api/v2/order', () => {
         .post('/api/v2/order').set('Authorization', token)
         .send(data)
         .end((err, res) => {
+          // console.log('body', res.body);
           expect(res.body).to.have.property('status').to.equals(201);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');

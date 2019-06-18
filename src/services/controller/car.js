@@ -89,8 +89,12 @@ class CarService {
     queryString += ' WHERE cars.id = $1';
     const value = [carId];
     const { rows } = await query(queryString, value);
+    if (rows[0]) {
+      const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
 
-    return rows[0];
+      return { ...rest, bodyType, createdOn };
+    }
+    return undefined;
   }
 
   static async customQuery(queryString, value) {

@@ -5,7 +5,7 @@ import server from '../../src/server';
 
 
 use(chaiHttp);
-describe('GET /api/v1/car/:carId', () => {
+describe('GET /api/v2/car/:carId', () => {
   const userCredentials = {
     email: 'aobikobe@gmail.com',
     password: 'password70',
@@ -15,7 +15,7 @@ describe('GET /api/v1/car/:carId', () => {
 
   before((done) => {
     authenticatedUser
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
         expect(res.statusCode).to.equal(200);
@@ -27,7 +27,7 @@ describe('GET /api/v1/car/:carId', () => {
   describe('When a user tries to retrieve a car with alphabetic car id', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .get('/api/v1/car/amaobi').set('Authorization', token)
+        .get('/api/v2/car/amaobi').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -40,7 +40,7 @@ describe('GET /api/v1/car/:carId', () => {
   describe('When a user tries to retrieve a car id with negative value', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .get('/api/v1/car/-2').set('Authorization', token)
+        .get('/api/v2/car/-2').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -53,7 +53,7 @@ describe('GET /api/v1/car/:carId', () => {
   describe('When a user tries to retrieve a car id that is type float', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .get('/api/v1/car/2.5').set('Authorization', token)
+        .get('/api/v2/car/2.5').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -65,7 +65,7 @@ describe('GET /api/v1/car/:carId', () => {
   describe('When a user tries to retrieve a car id that does not exist', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .get('/api/v1/car/90').set('Authorization', token)
+        .get('/api/v2/car/90').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(404);
@@ -79,7 +79,7 @@ describe('GET /api/v1/car/:carId', () => {
   describe('When a user tries to retrieve a car with a proper carId that exists', () => {
     it('should return an object with the status and data', (done) => {
       chai.request(server)
-        .get('/api/v1/car/1').set('Authorization', token)
+        .get('/api/v2/car/1').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(200);
