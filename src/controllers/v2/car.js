@@ -49,6 +49,7 @@ class Car {
     );
   }
 
+
   static async getAllUnsoldAvailableCars(req, res) {
     const error = Validator.validate(req, res);
     if (error) return error;
@@ -72,14 +73,14 @@ class Car {
 
     // if (bodyType) {
     //   carObject = await CarService.getAllCarsByBodyType(bodyType);
-    // } else if (manufacturer) {
-    //   carObject = await CarService.getAllCarsByManufacturer(manufacturer);
+    // } else
+    if (manufacturer) {
+      carObject = await CarService.getAllCarsByManufacturer(manufacturer);
     // } else if (max && min) {
     //   carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
     // } else if (state && (state === 'used' || state === 'new')) {
     //   carObject = await CarService.getAllUnsoldAvailableCars(state);
-    // } else 
-    if (status && !state) {
+    } else if (status && !state) {
       carObject = await CarService.getAllUnsoldAvailableCars();
     } else {
       carObject = await CarService.getAllCars(req.user.isAdmin);

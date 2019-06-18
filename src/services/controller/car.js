@@ -20,6 +20,13 @@ class CarService {
     );
   }
 
+  static getAllCarsByManufacturer(manufacturer) {
+    const getCarPromise = CarService.getAllCarsByManufacturerQuery(manufacturer);
+    return getCarPromise.then(
+      data => data,
+    );
+  }
+
   static getAllUnsoldAvailableCars() {
     const getCarPromise = CarService.getAvailableCarQuery();
     return getCarPromise.then(
@@ -95,6 +102,13 @@ class CarService {
       return { ...rest, bodyType, createdOn };
     }
     return undefined;
+  }
+
+  static async getAllCarsByManufacturerQuery(manufacturer) {
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    queryString += ' AND manufacturer = $1';
+    const value = [manufacturer];
+    return CarService.customQuery(queryString, value);
   }
 
   static async customQuery(queryString, value) {
