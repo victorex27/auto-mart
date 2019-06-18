@@ -1,9 +1,10 @@
 import express from 'express';
 import User from '../controllers/v2/user';
+import Car from '../controllers/v2/car';
 
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
-  addressCheck,
+  addressCheck, checkToken,
 } from '../helpers/custom-validator';
 
 
@@ -22,5 +23,7 @@ router2.post('/auth/signin', [
   emailCheck,
   passwordCheck,
 ], User.signIn);
+
+router2.post('/car', checkToken, Car.postCarAd);
 
 export default router2;
