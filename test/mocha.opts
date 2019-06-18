@@ -18,6 +18,7 @@
 --file ./test/v1/create.flag.test.js
 --file ./test/v1/create.car.ad.test.js
 --file ./test/v2/get.all.new.unsold.cars.test.js
+--file ./test/v2/get.all.used.unsold.cars.test.js
 --file ./test/v2/get.all.cars.specific.body.test.js
 --file ./test/v2/get.all.cars.specific.make.test.js
 --file ./test/v2/get.all.unsold.cars.test.js
