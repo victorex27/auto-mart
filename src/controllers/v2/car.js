@@ -77,8 +77,8 @@ class Car {
       carObject = await CarService.getAllCarsByManufacturer(manufacturer);
     // } else if (max && min) {
     //   carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
-    // } else if (state && (state === 'used' || state === 'new')) {
-    //   carObject = await CarService.getAllUnsoldAvailableCars(state);
+    } else if (state && (state === 'used' || state === 'new')) {
+      carObject = await CarService.getAllUnsoldAvailableCars(state);
     } else if (status && !state) {
       carObject = await CarService.getAllUnsoldAvailableCars();
     } else {

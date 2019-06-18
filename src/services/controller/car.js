@@ -34,8 +34,14 @@ class CarService {
     );
   }
 
-  static getAllUnsoldAvailableCars() {
-    const getCarPromise = CarService.getAvailableCarQuery();
+  static getAllUnsoldAvailableCars(state) {
+    let getCarPromise;
+    if (state) {
+      getCarPromise = CarService.getAvailableCarQuery(state);
+    } else {
+      getCarPromise = CarService.getAvailableCarQuery();
+    }
+
     return getCarPromise.then(
       data => data,
     );
