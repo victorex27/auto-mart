@@ -28,4 +28,5 @@
 --file ./test/v2/sign.in.test.js
 --file ./test/v2/sign.up.user.test.js
 --file ./test/v2/create.car.ad.test.js
+--file ./test/v2/delete.specific.car.test.js
 --file ./test/v2/teardown.js
