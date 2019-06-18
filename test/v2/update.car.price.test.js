@@ -57,7 +57,6 @@ describe('PACTH /api/v2/car/:carId/:price', () => {
         .patch('/api/v2/car/13/10000').set('Authorization', token)
         .send()
         .end((err, res) => {
-          console.log('body', res.body);
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Car is already marked as sold. You cannot update price');
           done();

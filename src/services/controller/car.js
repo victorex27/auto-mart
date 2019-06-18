@@ -103,10 +103,56 @@ class CarService {
 
       const getCarPromise = CarService.updateCarPriceQuery(carId, newPrice);
       return getCarPromise.then(
-        newOrder => newOrder,
+        data => data,
       );
     });
   }
+
+  static async markAsSold(carId, userId, status) {
+    const doesCarExistPromise = CarService.getSingleCar(carId);
+    const getCarOrderProperties = CarService.getCarOrderProperties(carId);
+
+    return doesCarExistPromise.then((doesCarExist) => {
+      if (status === 'available') {
+        return { code: 400, error: 'You are only allowed to update Car status as sold' };
+      }
+
+      if (status !== 'sold') {
+        return { code: 400, error: 'Malformed Path' };
+      }
+
+      if (doesCarExist.code === 404) {
+        return doesCarExist;// returns an object of the status and  error message
+      }
+
+      return getCarOrderProperties.then((order) => {
+        if (!order) {
+          return { code: 400, error: 'You cannot mark an unordered ad as sold' };
+        }
+
+        const { owner, carstatus } = order[0];
+        if (Number(owner) !== userId) {
+          return { code: 400, error: 'You cannot update an ad you did not create' };
+        }
+
+        if (carstatus === 'sold') {
+          return { code: 400, error: 'Status is sold. Update not performed' };
+        }
+        console.log('0', carstatus);
+        const acceptedOrder = order.find(car => car.orderstatus === 'accepted');
+
+        if (!acceptedOrder) {
+          return { code: 400, error: 'You cannot mark an unaccepted ad as sold' };
+        }
+
+        const getCarPromise = CarService.markAsSoldQuery(carId);
+        return getCarPromise.then(
+          data => data,
+        );
+      });
+    });
+  }
+
 
   static async updateCarPriceQuery(id, newPrice) {
     const queryString = 'UPDATE cars SET price = $1 WHERE id=$2 RETURNING *;';
@@ -116,12 +162,12 @@ class CarService {
     return { ...rest, bodyType, createdOn };
   }
 
-  static async markAsSoldQ(id) {
-    const queryString = 'UPDATE cars SET status = $1 WHERE id=$2 RETURNING *;';
-    const value = ['sold', id];
+  static async getCarOrderProperties(id) {
+    const queryString = 'SELECT cars.owner,cars.status as carstatus,orders.status as orderstatus FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE cars.id = $1;';
+    const value = [id];
     const { rows } = await query(queryString, value);
-
-    return rows[0];
+    if (rows.length === 0) { return false; }
+    return rows;
   }
 
   static async createCarQuery(body, userId, url) {
@@ -171,6 +217,16 @@ class CarService {
       return { ...rest, bodyType, createdOn };
     }
     return undefined;
+  }
+
+  static async markAsSoldQuery(id) {
+    const queryString = 'UPDATE cars SET status = $1 WHERE id=$2 RETURNING *;';
+    const value = ['sold', id];
+    const { rows } = await query(queryString, value);
+
+    const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
+
+    return { ...rest, bodyType, createdOn };
   }
 
   static async getDeleteCarQuery(carId) {
