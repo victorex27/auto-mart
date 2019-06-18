@@ -25,6 +25,30 @@ class CarService {
 
     return { ...rest, bodyType, createdOn };
   }
+
+  static getSingleCar(carId) {
+    const getCarPromise = CarService.getSingleCarQuery(carId);
+    return getCarPromise.then(
+      (data) => {
+        if (!data) {
+          return { code: 404, error: 'Car id does not exist' };
+        }
+        return data;
+      },
+    );
+  }
+
+  static async getSingleCarQuery(carId) {
+    // let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    let queryString = 'SELECT * FROM cars  ';
+    queryString += ' WHERE cars.id = $1';
+    const value = [carId];
+    const { rows } = await query(queryString, value);
+
+    return rows[0];
+  }
+
+
 }
 
 export default CarService;

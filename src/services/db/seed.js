@@ -32,6 +32,21 @@ const carSeed = `
         ;
        `;
 
+const orderSeed = `
+       INSERT INTO orders (buyer,car_id,amount,status) VALUES 
+       ( 1,3,1400000, 'pending'),
+       ( 2,3,1400000, 'pending'),
+       ( 3,2,1400000, 'pending'),
+       ( 2,1,1400000, 'pending'),
+       ( 3,1,1400000, 'pending'),
+       ( 3,4,1400000, 'pending'),
+       ( 1,5,1400000, 'accepted'),
+       ( 1,6,1400000, 'pending'),
+       ( 2,10,1400000, 'accepted'),
+       ( 3,13,1400000, 'accepted')
+       ;
+      `;
+
 export {
-  userSeed, carSeed,
+  userSeed, carSeed, orderSeed,
 };
