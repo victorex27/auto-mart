@@ -5,7 +5,7 @@ import server from '../../src/server';
 
 
 use(chaiHttp);
-describe('PACTH /api/v1/order/:orderId/:price', () => {
+describe('PACTH /api/v2/order/:orderId/:price', () => {
   const userCredentials = {
     email: 'aobikobe@gmail.com',
     password: 'password70',
@@ -15,7 +15,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
 
   before((done) => {
     authenticatedUser
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
         expect(res.statusCode).to.equal(200);
@@ -27,7 +27,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with an alphabetic orderId character', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/house/20000000').set('Authorization', token)
+        .patch('/api/v2/order/house/20000000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -40,7 +40,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with an negative orderId character', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/-50/20000000').set('Authorization', token)
+        .patch('/api/v2/order/-50/20000000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -53,7 +53,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with decimal orderId character', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/30.5/20000000').set('Authorization', token)
+        .patch('/api/v2/order/30.5/20000000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -65,7 +65,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with an alphabetic price', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/1/amaobi').set('Authorization', token)
+        .patch('/api/v2/order/1/amaobi').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -77,7 +77,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with a negative price', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/1/-10000').set('Authorization', token)
+        .patch('/api/v2/order/1/-10000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -90,7 +90,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order that the user did not make', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/2/2000000').set('Authorization', token)
+        .patch('/api/v2/order/2/2000000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -102,7 +102,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with a non pending status', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/7/300000').set('Authorization', token)
+        .patch('/api/v2/order/12/300000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -114,7 +114,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with an order id that does not exists', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/900/470000').set('Authorization', token)
+        .patch('/api/v2/order/900/470000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(404);
@@ -126,7 +126,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with the same price as the current price', () => {
     it('should return an object with the status and error', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/8/470000').set('Authorization', token)
+        .patch('/api/v2/order/13/470000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -138,7 +138,7 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
   describe('When a user tries to update a purchase order with valid detail', () => {
     it('should return an object with the status and data', (done) => {
       chai.request(server)
-        .patch('/api/v1/order/1/20000000').set('Authorization', token)
+        .patch('/api/v2/order/1/20000000').set('Authorization', token)
         .send()
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(200);
@@ -146,9 +146,9 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
           expect(res.body).to.have.property('data').to.have.property('id');
           expect(res.body).to.have.property('data').to.have.property('carId');
           expect(res.body).to.have.property('data').to.have.property('createdOn');
-          expect(res.body).to.have.property('data').to.have.property('oldPriceOffered');
-          expect(res.body).to.have.property('data').to.have.property('newPriceOffered');
-          expect(res.body).to.have.property('data').to.have.property('price');
+          expect(res.body).to.have.property('data').to.have.property('oldPriceOffered').equal('1400000');
+          expect(res.body).to.have.property('data').to.have.property('newPriceOffered').equal('20000000');
+          expect(res.body).to.have.property('data').to.have.property('price').equal(2.8);
           expect(res.body).to.have.property('data').to.have.property('buyer');
           done();
         });

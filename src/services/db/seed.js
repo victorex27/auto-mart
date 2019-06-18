@@ -28,7 +28,9 @@ const carSeed = `
         ( 1,'used', 'available', 11.4, 'mercedes', '2013', 'trailer','${url}'),
         ( 1,'used', 'available', 12.4, 'dodge', '2015', 'suv','${url}'),
         ( 1,'used', 'sold', 1.5, 'ferari', '2014', 'trailer','${url}'),
-        ( 1,'used', 'available', 1.6, 'maclaren', '2014', 'coupe','${url}')
+        ( 1,'used', 'available', 1.6, 'maclaren', '2014', 'coupe','${url}'),
+        ( 2,'used', 'available', 1.6, 'maclaren', '2014', 'coupe','${url}'),
+        ( 3,'used', 'available', 1.6, 'maclaren', '2014', 'coupe','${url}')
         ;
        `;
 
@@ -44,7 +46,9 @@ const orderSeed = `
        ( 1,5,1400000, 'accepted'),
        ( 1,6,1400000, 'pending'),
        ( 2,10,1400000, 'accepted'),
-       ( 3,13,1400000, 'accepted')
+       ( 3,13,1400000, 'accepted'),
+       ( 1,15,1400000, 'accepted'),
+       ( 1,16, 470000, 'pending')
        ;
       `;
 
