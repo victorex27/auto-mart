@@ -20,6 +20,13 @@ class CarService {
     );
   }
 
+  static getAllCarsByBodyType(bodyType) {
+    const getCarPromise = CarService.getAllCarsByBodyTypeQuery(bodyType);
+    return getCarPromise.then(
+      data => data,
+    );
+  }
+
   static getAllCarsByManufacturer(manufacturer) {
     const getCarPromise = CarService.getAllCarsByManufacturerQuery(manufacturer);
     return getCarPromise.then(
@@ -70,23 +77,12 @@ class CarService {
       queryString += ' AND state = $1';
       value = [state];
     }
-    // const { rows } = await query(queryString, value);
-    // const result = [];
-    // rows.forEach((row) => {
-    //   const { created_on: createdOn, body_type: bodyType, ...rest } = row;
-
-    //   result.push({ ...rest, bodyType, createdOn });
-    // });
-
-    // return result;
     return CarService.customQuery(queryString, value);
   }
 
   static async getAllCarsQuery() {
     const queryString = 'SELECT * FROM cars';
     const value = [];
-    // const { rows } = await query(queryString, value);
-    // return rows;
     return CarService.customQuery(queryString, value);
   }
 
@@ -108,6 +104,13 @@ class CarService {
     let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
     queryString += ' AND manufacturer = $1';
     const value = [manufacturer];
+    return CarService.customQuery(queryString, value);
+  }
+
+  static async getAllCarsByBodyTypeQuery(bodyType) {
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    queryString += ' AND body_type = $1';
+    const value = [bodyType];
     return CarService.customQuery(queryString, value);
   }
 
