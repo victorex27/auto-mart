@@ -27,6 +27,16 @@ class CarService {
     );
   }
 
+  static getAllCars(isAdmin) {
+    if (!isAdmin) {
+      return { code: 403, error: 'Only an admin is allowed retrieve all cars' };
+    }
+    const getCarPromise = CarService.getAllCarsQuery();
+    return getCarPromise.then(
+      data => data,
+    );
+  }
+
   static async createCarQuery(body, userId, url) {
     const queryString = 'INSERT INTO cars (owner,state,status, price, manufacturer, model, body_type, url) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *; ';
     const value = [
@@ -53,15 +63,24 @@ class CarService {
       queryString += ' AND state = $1';
       value = [state];
     }
-    const { rows } = await query(queryString, value);
-    const result = [];
-    rows.forEach((row) => {
-      const { created_on: createdOn, body_type: bodyType, ...rest } = row;
+    // const { rows } = await query(queryString, value);
+    // const result = [];
+    // rows.forEach((row) => {
+    //   const { created_on: createdOn, body_type: bodyType, ...rest } = row;
 
-      result.push({ ...rest, bodyType, createdOn });
-    });
+    //   result.push({ ...rest, bodyType, createdOn });
+    // });
 
-    return result;
+    // return result;
+    return CarService.customQuery(queryString, value);
+  }
+
+  static async getAllCarsQuery() {
+    const queryString = 'SELECT * FROM cars';
+    const value = [];
+    // const { rows } = await query(queryString, value);
+    // return rows;
+    return CarService.customQuery(queryString, value);
   }
 
   static async getSingleCarQuery(carId) {
@@ -72,6 +91,18 @@ class CarService {
     const { rows } = await query(queryString, value);
 
     return rows[0];
+  }
+
+  static async customQuery(queryString, value) {
+    const { rows } = await query(queryString, value);
+    const result = [];
+    rows.forEach((row) => {
+      const { created_on: createdOn, body_type: bodyType, ...rest } = row;
+
+      result.push({ ...rest, bodyType, createdOn });
+    });
+
+    return result;
   }
 }
 

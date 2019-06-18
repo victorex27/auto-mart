@@ -40,9 +40,9 @@ class Car {
     const error = Validator.validate(req, res);
     if (error) return error;
 
-    // const {
-    //   status, state, manufacturer,
-    // } = req.query;
+    const {
+      status, state, manufacturer,
+    } = req.query;
 
     // const min = req.query.min_price;
     // const max = req.query.max_price;
@@ -55,7 +55,7 @@ class Car {
       return res.status(400).json({ status: 400, error: 'Invalid Query Parameter was supplied' });
     }
 
-    // let carObject;
+    let carObject;
 
     // if (bodyType) {
     //   carObject = await CarService.getAllCarsByBodyType(bodyType);
@@ -65,12 +65,12 @@ class Car {
     //   carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
     // } else if (state && (state === 'used' || state === 'new')) {
     //   carObject = await CarService.getAllUnsoldAvailableCars(state);
-    // } else if (status && !state) {
-    //   carObject = await CarService.getAllUnsoldAvailableCars();
-    // } else {
-    //   carObject = await CarService.getAllCars(req.user.isAdmin);
-    // }
-    const carObject = await CarService.getAllUnsoldAvailableCars();
+    // } else 
+    if (status && !state) {
+      carObject = await CarService.getAllUnsoldAvailableCars();
+    } else {
+      carObject = await CarService.getAllCars(req.user.isAdmin);
+    }
 
     const result = Promise.resolve(carObject);
 
