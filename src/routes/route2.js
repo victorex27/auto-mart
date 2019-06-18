@@ -8,6 +8,7 @@ import {
   addressCheck, checkToken, priceCheck, carIdCheck, statusQueryCheck,
   carIdParamCheck, carIdSanitizer, manufacturerQueryCheck,
   bodyTypeQueryCheck, usedStatusQueryCheck,
+  minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
 } from '../helpers/custom-validator';
 
 
@@ -38,6 +39,7 @@ router2.post('/order', [
 router2.get('/car', [
   checkToken, statusQueryCheck, manufacturerQueryCheck,
   bodyTypeQueryCheck, usedStatusQueryCheck,
+  minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
 ], Car.getAllUnsoldAvailableCars);
 
 router2.get('/car/:carId', [
