@@ -7,6 +7,7 @@ import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
   addressCheck, checkToken, priceCheck, carIdCheck, statusQueryCheck,
   carIdParamCheck, carIdSanitizer, manufacturerQueryCheck,
+  bodyTypeQueryCheck,
 } from '../helpers/custom-validator';
 
 
@@ -36,6 +37,7 @@ router2.post('/order', [
 
 router2.get('/car', [
   checkToken, statusQueryCheck, manufacturerQueryCheck,
+  bodyTypeQueryCheck,
 ], Car.getAllUnsoldAvailableCars);
 
 router2.get('/car/:carId', [

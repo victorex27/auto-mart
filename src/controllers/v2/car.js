@@ -61,7 +61,7 @@ class Car {
     // const min = req.query.min_price;
     // const max = req.query.max_price;
 
-    // const bodyType = req.query.body_type;
+    const bodyType = req.query.body_type;
     const arrayQueryParameter = Object.keys(req.query);
 
     const found = arrayQueryParameter.every(r => ['min_price', 'max_price', 'status', 'state', 'body_type', 'manufacturer'].indexOf(r) >= 0);
@@ -71,10 +71,9 @@ class Car {
 
     let carObject;
 
-    // if (bodyType) {
-    //   carObject = await CarService.getAllCarsByBodyType(bodyType);
-    // } else
-    if (manufacturer) {
+    if (bodyType) {
+      carObject = await CarService.getAllCarsByBodyType(bodyType);
+    } else if (manufacturer) {
       carObject = await CarService.getAllCarsByManufacturer(manufacturer);
     // } else if (max && min) {
     //   carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
