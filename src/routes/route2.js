@@ -6,7 +6,7 @@ import Order from '../controllers/v2/order';
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
   addressCheck, checkToken, priceCheck, carIdCheck, statusQueryCheck,
-  carIdParamCheck, carIdSanitizer,
+  carIdParamCheck, carIdSanitizer, manufacturerQueryCheck,
 } from '../helpers/custom-validator';
 
 
@@ -35,7 +35,7 @@ router2.post('/order', [
 ], Order.makeOrder);
 
 router2.get('/car', [
-  checkToken, statusQueryCheck,
+  checkToken, statusQueryCheck, manufacturerQueryCheck,
 ], Car.getAllUnsoldAvailableCars);
 
 router2.get('/car/:carId', [
