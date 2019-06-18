@@ -1,7 +1,7 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
-import { userTable } from './migration';
-import { userSeed } from './seed';
+import { userTable, carTable } from './migration';
+import { userSeed, carSeed } from './seed';
 import '@babel/polyfill';
 
 dotenv.config();
@@ -33,14 +33,14 @@ const createTables = (table) => {
 };
 
 const dropTables = () => {
-  query('DROP TABLE users;', [])
+  query('DROP TABLE users, cars;', [])
     .then((res) => {
       console.log('table dropped');
       // pool.end();
     });
 };
 
-createTables(userTable + userSeed);
+createTables(userTable + carTable + userSeed + carSeed);
 
 export {
 

@@ -11,7 +11,27 @@ const userSeed = `
      
     `;
 
-module.exports = {
+const url = 'http://res.cloudinary.com/blueandblack/image/upload/v1558957073/lz1rztg8vkvpfyffgsrv.jpg';
 
-  userSeed,
+const carSeed = `
+        INSERT INTO cars (owner,state,status, price, manufacturer, model, body_type, url) VALUES 
+        ( 1,'new', 'available', 1.4, 'mercedes', '2014', 'trailer','${url}'),
+        ( 2,'used', 'available', 1.8, 'honda', '2015', 'coupe','${url}'),
+        ( 3,'used', 'available', 2.8, 'mercedes', '2014', 'trailer','${url}'),
+        ( 1,'new', 'sold', 1.4, 'mercedes', '2016', 'coupe','${url}'),
+        ( 3,'used', 'available', 3.2, 'mercedes', '2014', 'saloon','${url}'),
+        ( 3,'used', 'available', 4.7, 'toyota', '2018', 'saloon','${url}'),
+        ( 3,'used', 'available', 5.4, 'mercedes', '2014', 'trailer','${url}'),
+        ( 1,'used', 'sold', 1.4, 'volkswagen', '1998', 'saloon','${url}'),
+        ( 1,'used', 'available', 6.4, 'hyundai', '2014', 'mpv','${url}'),
+        ( 1,'used', 'available', 9.4, 'buggati', '2011', 'trailer','${url}'),
+        ( 1,'used', 'available', 11.4, 'mercedes', '2013', 'trailer','${url}'),
+        ( 1,'used', 'available', 12.4, 'dodge', '2015', 'suv','${url}'),
+        ( 1,'used', 'sold', 1.5, 'ferari', '2014', 'trailer','${url}'),
+        ( 1,'used', 'available', 1.6, 'maclaren', '2014', 'coupe','${url}')
+        ;
+       `;
+
+export {
+  userSeed, carSeed,
 };
