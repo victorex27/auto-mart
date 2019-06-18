@@ -10,6 +10,8 @@ let connectionUrl = process.env.DATABASE_URL;
 
 if (process.env.NODE_ENV === 'production') {
   connectionUrl = process.env.DATABASE_URL_PROD;
+} else if (process.env.NODE_ENV === 'development') {
+  connectionUrl = process.env.DATABASE_URL_DEV;
 }
 
 
@@ -39,7 +41,12 @@ const dropTables = () => {
     });
 };
 
-createTables(userTable + carTable + orderTable + userSeed + carSeed + orderSeed);
+if (process.env.NODE_ENV === 'test') {
+  createTables(userTable + carTable + orderTable + userSeed + carSeed + orderSeed);
+} else {
+  createTables(userTable + carTable + orderTable);
+}
+
 
 export {
   query, dropTables,

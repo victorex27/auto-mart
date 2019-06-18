@@ -8,6 +8,25 @@ class CarService {
     );
   }
 
+  static getSingleCar(carId) {
+    const getCarPromise = CarService.getSingleCarQuery(carId);
+    return getCarPromise.then(
+      (data) => {
+        if (!data) {
+          return { code: 404, error: 'Car id does not exist' };
+        }
+        return data;
+      },
+    );
+  }
+
+  static getAllUnsoldAvailableCars() {
+    const getCarPromise = CarService.getAvailableCarQuery();
+    return getCarPromise.then(
+      data => data,
+    );
+  }
+
   static async createCarQuery(body, userId, url) {
     const queryString = 'INSERT INTO cars (owner,state,status, price, manufacturer, model, body_type, url) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *; ';
     const value = [
@@ -26,16 +45,23 @@ class CarService {
     return { ...rest, bodyType, createdOn };
   }
 
-  static getSingleCar(carId) {
-    const getCarPromise = CarService.getSingleCarQuery(carId);
-    return getCarPromise.then(
-      (data) => {
-        if (!data) {
-          return { code: 404, error: 'Car id does not exist' };
-        }
-        return data;
-      },
-    );
+
+  static async getAvailableCarQuery(state) {
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    let value = [];
+    if (state) {
+      queryString += ' AND state = $1';
+      value = [state];
+    }
+    const { rows } = await query(queryString, value);
+    const result = [];
+    rows.forEach((row) => {
+      const { created_on: createdOn, body_type: bodyType, ...rest } = row;
+
+      result.push({ ...rest, bodyType, createdOn });
+    });
+
+    return result;
   }
 
   static async getSingleCarQuery(carId) {
@@ -47,8 +73,6 @@ class CarService {
 
     return rows[0];
   }
-
-
 }
 
 export default CarService;
