@@ -24,7 +24,7 @@ const carSeed = `
         ( 3,'used', 'available', 5.4, 'mercedes', '2014', 'trailer','${url}'),
         ( 1,'used', 'sold', 1.4, 'volkswagen', '1998', 'saloon','${url}'),
         ( 1,'used', 'available', 6.4, 'hyundai', '2014', 'mpv','${url}'),
-        ( 1,'used', 'sold', 9.4, 'buggati', '2011', 'trailer','${url}'),
+        ( 1,'used', 'available', 9.4, 'buggati', '2011', 'trailer','${url}'),
         ( 1,'used', 'available', 11.4, 'mercedes', '2013', 'trailer','${url}'),
         ( 1,'used', 'available', 12.4, 'dodge', '2015', 'suv','${url}'),
         ( 1,'used', 'sold', 1.5, 'ferari', '2014', 'trailer','${url}'),
