@@ -36,6 +36,19 @@ class Car {
     });
   }
 
+  static async getSingleCar(req, res) {
+    const error = Validator.validate(req, res);
+    if (error) return error;
+
+    const carObject = await CarService.getSingleCar(req.params.carId);
+
+    const result = Promise.resolve(carObject);
+
+    return result.then(
+      cars => Result.getResult(res, cars, false, 200),
+    );
+  }
+
   static async getAllUnsoldAvailableCars(req, res) {
     const error = Validator.validate(req, res);
     if (error) return error;
