@@ -3,7 +3,7 @@ import cloudinary from 'cloudinary';
 import formidable from 'formidable';
 import CarService from '../../services/controller/car';
 import Result from '../../helpers/result';
-// import Validator from '../../helpers/validator';
+import Validator from '../../helpers/validator';
 
 
 class Car {
@@ -35,6 +35,50 @@ class Car {
         });
     });
   }
+
+  static async getAllUnsoldAvailableCars(req, res) {
+    const error = Validator.validate(req, res);
+    if (error) return error;
+
+    // const {
+    //   status, state, manufacturer,
+    // } = req.query;
+
+    // const min = req.query.min_price;
+    // const max = req.query.max_price;
+
+    // const bodyType = req.query.body_type;
+    const arrayQueryParameter = Object.keys(req.query);
+
+    const found = arrayQueryParameter.every(r => ['min_price', 'max_price', 'status', 'state', 'body_type', 'manufacturer'].indexOf(r) >= 0);
+    if (!found && arrayQueryParameter.length > 0) {
+      return res.status(400).json({ status: 400, error: 'Invalid Query Parameter was supplied' });
+    }
+
+    // let carObject;
+
+    // if (bodyType) {
+    //   carObject = await CarService.getAllCarsByBodyType(bodyType);
+    // } else if (manufacturer) {
+    //   carObject = await CarService.getAllCarsByManufacturer(manufacturer);
+    // } else if (max && min) {
+    //   carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
+    // } else if (state && (state === 'used' || state === 'new')) {
+    //   carObject = await CarService.getAllUnsoldAvailableCars(state);
+    // } else if (status && !state) {
+    //   carObject = await CarService.getAllUnsoldAvailableCars();
+    // } else {
+    //   carObject = await CarService.getAllCars(req.user.isAdmin);
+    // }
+    const carObject = await CarService.getAllUnsoldAvailableCars();
+
+    const result = Promise.resolve(carObject);
+
+    return result.then(
+      cars => Result.getResult(res, cars, true, 200),
+    );
+  }
+
 
   static validation(dataFile, fields) {
     const type = dataFile.type.substr(6);

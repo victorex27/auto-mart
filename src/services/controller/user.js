@@ -33,7 +33,7 @@ class UserService {
     return doesUserExistPromise.then(
       (userExists) => {
         if (!userExists) {
-          return { code: 404, error: 'User Account does not exist' };
+          return { code: 404, error: 'Invalid Username and Password combination' };
         }
         const retrieveUserPromise = UserService.doCredentailsMatch(data.email, data.password);
 
@@ -76,7 +76,7 @@ class UserService {
 
     const result = bcryptjs.compareSync(password, rows[0].password);
 
-    if (!result) return { code: 401, error: 'Invalid Password' };  
+    if (!result) return { code: 401, error: 'Invalid Username and Password combination' };
     return {
       id: rows[0].id,
       email: rows[0].email,

@@ -17,7 +17,7 @@ describe('POST /api/v1/auth/signin', () => {
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(404);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('User Account does not exist');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid Username and Password combination');
           done();
         });
     });
@@ -34,7 +34,7 @@ describe('POST /api/v1/auth/signin', () => {
         .send(user)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(401);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid Password');
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Invalid Username and Password combination');
           done();
         });
     });

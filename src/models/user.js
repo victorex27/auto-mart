@@ -29,12 +29,12 @@ class User {
 
   signIn(data) {
     if (!this.doesUserExist(data.email)) {
-      return { code: 404, error: 'User Account does not exist' };
+      return { code: 404, error: 'Invalid Username and Password combination' };
     }
     const user = this.doCredentailsMatch(data.email, data.password);
 
     if (!user) {
-      return { code: 401, error: 'Invalid Password' };
+      return { code: 401, error: 'Invalid Username and Password combination' };
     }
 
     return user;

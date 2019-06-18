@@ -17,6 +17,7 @@
 --file ./test/v1/delete.specific.car.test.js
 --file ./test/v1/create.flag.test.js
 --file ./test/v1/create.car.ad.test.js
+--file ./test/v2/get.all.unsold.cars.test.js
 --file ./test/v2/make.order.test.js
 --file ./test/v2/sign.in.test.js
 --file ./test/v2/sign.up.user.test.js
