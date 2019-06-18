@@ -28,8 +28,8 @@ class Car {
         .upload(dataFile.path, { tags: 'gotemps', resource_type: 'auto' })
         .then(async (file) => {
           const carObject = await CarService.createCar(fields, req.user.id, file.url);
-          const ers = Promise.resolve(carObject);
-          return ers.then(
+          const result = Promise.resolve(carObject);
+          return result.then(
             cars => Result.getResult(res, cars, false, 201),
           );
         });

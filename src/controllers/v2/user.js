@@ -7,10 +7,10 @@ class User {
   static async create(req, res) {
     const newUser = await UserService.create(req.body);
 
-    const ers = Promise.resolve(newUser);
+    const result = Promise.resolve(newUser);
 
 
-    ers.then(
+    result.then(
       user => User.getUser(req, res, user, 201),
     );
   }
@@ -19,10 +19,10 @@ class User {
     const newUser = UserService.signIn(req.body);
 
 
-    const ers = Promise.resolve(newUser);
+    const result = Promise.resolve(newUser);
 
 
-    ers.then(
+    result.then(
       user => User.getUser(req, res, user, 200),
     );
   }

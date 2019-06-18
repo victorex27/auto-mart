@@ -1,7 +1,7 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
-import { userTable, carTable } from './migration';
-import { userSeed, carSeed } from './seed';
+import { userTable, carTable, orderTable } from './migration';
+import { userSeed, carSeed, orderSeed } from './seed';
 import '@babel/polyfill';
 
 dotenv.config();
@@ -33,17 +33,15 @@ const createTables = (table) => {
 };
 
 const dropTables = () => {
-  query('DROP TABLE users, cars;', [])
+  query('DROP TABLE users, cars, orders;', [])
     .then((res) => {
       console.log('table dropped');
-      // pool.end();
     });
 };
 
-createTables(userTable + carTable + userSeed + carSeed);
+createTables(userTable + carTable + orderTable + userSeed + carSeed + orderSeed);
 
 export {
-
   query, dropTables,
 };
 // npm install make-runnable --save
