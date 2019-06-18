@@ -92,6 +92,18 @@ class Car {
     );
   }
 
+  static async getDeleteCar(req, res) {
+    const error = Validator.validate(req, res);
+
+    if (error) return error;
+
+    const carObject = await CarService.getDeleteCar(req.params.carId, req.user.isAdmin);
+    const result = Promise.resolve(carObject);
+
+    return result.then(
+      cars => Result.getResult(res, cars, false, 200),
+    );
+  }
 
   static validation(dataFile, fields) {
     const type = dataFile.type.substr(6);

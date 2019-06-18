@@ -46,4 +46,8 @@ router2.get('/car/:carId', [
   checkToken, carIdParamCheck, carIdSanitizer,
 ], Car.getSingleCar);
 
+router2.delete('/car/:carId', [
+  checkToken, carIdParamCheck, carIdSanitizer,
+], Car.getDeleteCar);
+
 export default router2;

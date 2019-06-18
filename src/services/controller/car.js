@@ -20,6 +20,21 @@ class CarService {
     );
   }
 
+  static getDeleteCar(carId, isAdmin) {
+    if (!isAdmin) {
+      return { code: 403, error: 'Only admins are allowed to delete car adverts' };
+    }
+    const getCarPromise = CarService.getDeleteCarQuery(carId, isAdmin);
+    return getCarPromise.then(
+      (data) => {
+        if (!data) {
+          return { code: 404, error: 'Car id does not exist' };
+        }
+        return data;
+      },
+    );
+  }
+
   static getAllCarsByBodyType(bodyType) {
     const getCarPromise = CarService.getAllCarsByBodyTypeQuery(bodyType);
     return getCarPromise.then(
@@ -109,6 +124,17 @@ class CarService {
       const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
 
       return { ...rest, bodyType, createdOn };
+    }
+    return undefined;
+  }
+
+  static async getDeleteCarQuery(carId) {
+    let queryString = 'DELETE FROM cars WHERE ';
+    queryString += ' cars.id = $1 RETURNING id ;';
+    const value = [carId];
+    const { rows } = await query(queryString, value);
+    if (rows[0]) {
+      return 'delete';
     }
     return undefined;
   }
