@@ -138,7 +138,6 @@ class CarService {
         if (carstatus === 'sold') {
           return { code: 400, error: 'Status is sold. Update not performed' };
         }
-        console.log('0', carstatus);
         const acceptedOrder = order.find(car => car.orderstatus === 'accepted');
 
         if (!acceptedOrder) {

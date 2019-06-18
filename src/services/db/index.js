@@ -23,6 +23,8 @@ const query = ((text, params) => new Promise((resolve, reject) => {
   pool.query(text, params)
     .then((res) => {
       resolve(res);
+    }).catch((res) => {
+      reject(res);
     });
 }));
 

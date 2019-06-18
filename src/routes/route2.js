@@ -9,7 +9,8 @@ import {
   carIdParamCheck, carIdSanitizer, manufacturerQueryCheck,
   bodyTypeQueryCheck, usedStatusQueryCheck,
   minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
-  priceOptionalCheck,
+  priceOptionalCheck, carStatusParamCheck,
+  newPriceSanitizer, orderIdParamCheck, priceParamCheck, orderIdSanitizer,
 } from '../helpers/custom-validator';
 
 
@@ -52,8 +53,16 @@ router2.delete('/car/:carId', [
 ], Car.getDeleteCar);
 
 router2.patch('/car/:carId/:car', [
-  checkToken, carIdParamCheck,
+  checkToken, carIdParamCheck, carStatusParamCheck,
   priceOptionalCheck, carIdSanitizer,
 ], Car.update);
+
+router2.patch('/order/:orderId/:newPrice', [
+  checkToken,
+  newPriceSanitizer,
+  orderIdParamCheck,
+  priceParamCheck,
+  orderIdSanitizer,
+], Order.updateOrder);
 
 export default router2;

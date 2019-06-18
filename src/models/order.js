@@ -54,7 +54,7 @@ class Order {
     }
 
     if (order.status !== 'pending') {
-      return { code: 400, error: 'You cannot update the price a non pending purchase order' };
+      return { code: 400, error: 'You cannot update the price of a non pending purchase order' };
     }
 
     if (order.priceOffered === newPrice) {
