@@ -7,6 +7,26 @@ import Validator from '../../helpers/validator';
 
 
 class Car {
+  static async update(req, res) {
+    const error = Validator.validate(req, res);
+    if (error) return error;
+
+    const { car, carId } = req.params;
+    const status = car;
+    const newPrice = Number(car);
+    let carObject;
+
+    if (Number.isNaN(newPrice)) {
+      carObject = await CarService.markAsSold(carId, req.user.id, status);
+    } else {
+      carObject = await CarService.updateCarPrice(carId, req.user.id, newPrice);
+    }
+    const result = Promise.resolve(carObject);
+    return result.then(
+      cars => Result.getResult(res, cars, false, 200),
+    );
+  }
+
   static async postCarAd(req, res) {
     new formidable.IncomingForm().parse(req, async (err, fields, files) => {
       const { dataFile } = files;

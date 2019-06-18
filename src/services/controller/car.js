@@ -79,6 +79,51 @@ class CarService {
     );
   }
 
+  static async updateCarPrice(carId, userId, newPrice) {
+    const doesCarExistPromise = CarService.getSingleCar(carId);
+
+    return doesCarExistPromise.then((doesCarExist) => {
+      if (doesCarExist.code === 404) {
+        return doesCarExist;// returns an object of the status and  error message
+      }
+
+      const { owner, status: carstatus, price } = doesCarExist;
+      if (Number(owner) !== userId) {
+        return { code: 400, error: 'You cannot update an ad you did not create' };
+      }
+
+      if (carstatus === 'sold') {
+        return { code: 400, error: 'Car is already marked as sold. You cannot update price' };
+      }
+
+      if (price === newPrice) {
+        return { code: 400, error: 'Update not performed. New price is equal to old price' };
+      }
+
+
+      const getCarPromise = CarService.updateCarPriceQuery(carId, newPrice);
+      return getCarPromise.then(
+        newOrder => newOrder,
+      );
+    });
+  }
+
+  static async updateCarPriceQuery(id, newPrice) {
+    const queryString = 'UPDATE cars SET price = $1 WHERE id=$2 RETURNING *;';
+    const value = [newPrice, id];
+    const { rows } = await query(queryString, value);
+    const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
+    return { ...rest, bodyType, createdOn };
+  }
+
+  static async markAsSoldQ(id) {
+    const queryString = 'UPDATE cars SET status = $1 WHERE id=$2 RETURNING *;';
+    const value = ['sold', id];
+    const { rows } = await query(queryString, value);
+
+    return rows[0];
+  }
+
   static async createCarQuery(body, userId, url) {
     const queryString = 'INSERT INTO cars (owner,state,status, price, manufacturer, model, body_type, url) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *; ';
     const value = [

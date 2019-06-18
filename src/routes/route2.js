@@ -9,6 +9,7 @@ import {
   carIdParamCheck, carIdSanitizer, manufacturerQueryCheck,
   bodyTypeQueryCheck, usedStatusQueryCheck,
   minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
+  priceOptionalCheck,
 } from '../helpers/custom-validator';
 
 
@@ -49,5 +50,10 @@ router2.get('/car/:carId', [
 router2.delete('/car/:carId', [
   checkToken, carIdParamCheck, carIdSanitizer,
 ], Car.getDeleteCar);
+
+router2.patch('/car/:carId/:car', [
+  checkToken, carIdParamCheck,
+  priceOptionalCheck, carIdSanitizer,
+], Car.update);
 
 export default router2;
