@@ -58,8 +58,8 @@ class Car {
       status, state, manufacturer,
     } = req.query;
 
-    // const min = req.query.min_price;
-    // const max = req.query.max_price;
+    const min = req.query.min_price;
+    const max = req.query.max_price;
 
     const bodyType = req.query.body_type;
     const arrayQueryParameter = Object.keys(req.query);
@@ -75,8 +75,8 @@ class Car {
       carObject = await CarService.getAllCarsByBodyType(bodyType);
     } else if (manufacturer) {
       carObject = await CarService.getAllCarsByManufacturer(manufacturer);
-    // } else if (max && min) {
-    //   carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
+    } else if (max && min) {
+      carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
     } else if (state && (state === 'used' || state === 'new')) {
       carObject = await CarService.getAllUnsoldAvailableCars(state);
     } else if (status && !state) {

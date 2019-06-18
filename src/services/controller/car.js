@@ -27,6 +27,13 @@ class CarService {
     );
   }
 
+  static async getAllUnsoldAvailableCarsByRange(min, max) {
+    const getCarPromise = CarService.getAllUnsoldAvailableCarsByRangeQuery([min, max]);
+    return getCarPromise.then(
+      data => data,
+    );
+  }
+
   static getAllCarsByManufacturer(manufacturer) {
     const getCarPromise = CarService.getAllCarsByManufacturerQuery(manufacturer);
     return getCarPromise.then(
@@ -110,6 +117,13 @@ class CarService {
     let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
     queryString += ' AND manufacturer = $1';
     const value = [manufacturer];
+    return CarService.customQuery(queryString, value);
+  }
+
+  static async getAllUnsoldAvailableCarsByRangeQuery(range) {
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    queryString += ' AND price >= $1 AND price <= $2 ;';
+    const value = range;
     return CarService.customQuery(queryString, value);
   }
 
