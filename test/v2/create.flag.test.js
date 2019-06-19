@@ -5,7 +5,7 @@ import server from '../../src/server';
 
 use(chaiHttp);
 
-describe('POST /api/v1/flag', () => {
+describe('POST /api/v2/flag', () => {
   const userCredentials = {
     email: 'aobikobe@gmail.com',
     password: 'password70',
@@ -15,7 +15,7 @@ describe('POST /api/v1/flag', () => {
 
   before((done) => {
     authenticatedUser
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .send(userCredentials)
       .end((err, res) => {
         expect(res.statusCode).to.equal(200);
@@ -33,7 +33,7 @@ describe('POST /api/v1/flag', () => {
 
 
       chai.request(server)
-        .post('/api/v1/flag').set('Authorization', token)
+        .post('/api/v2/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -52,7 +52,7 @@ describe('POST /api/v1/flag', () => {
 
 
       chai.request(server)
-        .post('/api/v1/flag').set('Authorization', token)
+        .post('/api/v2/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -71,7 +71,7 @@ describe('POST /api/v1/flag', () => {
 
 
       chai.request(server)
-        .post('/api/v1/flag').set('Authorization', token)
+        .post('/api/v2/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -92,7 +92,7 @@ describe('POST /api/v1/flag', () => {
 
 
       chai.request(server)
-        .post('/api/v1/flag').set('Authorization', token)
+        .post('/api/v2/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
@@ -112,7 +112,7 @@ describe('POST /api/v1/flag', () => {
 
 
       chai.request(server)
-        .post('/api/v1/flag').set('Authorization', token)
+        .post('/api/v2/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(404);
@@ -121,6 +121,27 @@ describe('POST /api/v1/flag', () => {
         });
     });
   });
+
+  describe('When a user tries to make a flag with car id field that belongs to user', () => {
+    it('should return an object with the status and error', (done) => {
+      const data = {
+        carId: 1,
+        reason: 'pricing',
+        description: 'big description 2018',
+      };
+
+
+      chai.request(server)
+        .post('/api/v2/flag').set('Authorization', token)
+        .send(data)
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot report your own ad');
+          done();
+        });
+    });
+  });
+
 
   describe('When a user tries to make a flag with car id field that belongs to user', () => {
     it('should return an object with the status and error', (done) => {
@@ -143,28 +164,7 @@ describe('POST /api/v1/flag', () => {
   });
 
 
-  describe('When a user tries to make a flag with car id field that belongs to user', () => {
-    it('should return an object with the status and error', (done) => {
-      const data = {
-        carId: 1,
-        reason: 'pricing',
-        description: 'big description 2018',
-      };
-
-
-      chai.request(server)
-        .post('/api/v1/flag').set('Authorization', token)
-        .send(data)
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('You cannot report your own ad');
-          done();
-        });
-    });
-  });
-
-
-  describe('When a user tries to upload a new flag with valid detail', () => {
+  describe('When a user tries to upload a flag with valid detail', () => {
     it('should return an object with the status and data', (done) => {
       const data = {
         carId: 2,
@@ -174,7 +174,7 @@ describe('POST /api/v1/flag', () => {
 
 
       chai.request(server)
-        .post('/api/v1/flag').set('Authorization', token)
+        .post('/api/v2/flag').set('Authorization', token)
         .send(data)
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(201);

@@ -51,7 +51,13 @@ const orderSeed = `
        ( 1,16, 470000, 'pending')
        ;
       `;
+const flagSeed = `
+      INSERT INTO flags (car_id,user_id,reason,description) VALUES 
+      ( 1,3,'pricing', 'pending')
+      ;
+     `;
+
 
 export {
-  userSeed, carSeed, orderSeed,
+  userSeed, carSeed, orderSeed, flagSeed,
 };

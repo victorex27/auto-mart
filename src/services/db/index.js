@@ -1,7 +1,11 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
-import { userTable, carTable, orderTable } from './migration';
-import { userSeed, carSeed, orderSeed } from './seed';
+import {
+  userTable, carTable, orderTable, flagTable,
+} from './migration';
+import {
+  userSeed, carSeed, orderSeed, flagSeed,
+} from './seed';
 import '@babel/polyfill';
 
 dotenv.config();
@@ -24,6 +28,7 @@ const query = ((text, params) => new Promise((resolve, reject) => {
     .then((res) => {
       resolve(res);
     }).catch((res) => {
+      console.log(text);
       reject(res);
     });
 }));
@@ -37,16 +42,16 @@ const createTables = (table) => {
 };
 
 const dropTables = () => {
-  query('DROP TABLE users, cars, orders;', [])
+  query('DROP TABLE users, cars, orders, flags;', [])
     .then((res) => {
-      console.log('table dropped');
     });
 };
 
 if (process.env.NODE_ENV === 'test') {
-  createTables(userTable + carTable + orderTable + userSeed + carSeed + orderSeed);
+  createTables(userTable + carTable
+    + flagTable + orderTable + userSeed + carSeed + orderSeed + flagSeed);
 } else {
-  createTables(userTable + carTable + orderTable);
+  createTables(userTable + carTable + flagTable + orderTable);
 }
 
 

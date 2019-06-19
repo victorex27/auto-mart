@@ -33,4 +33,5 @@
 --file ./test/v2/update.car.price.test.js
 --file ./test/v2/update.order.test.js
 --file ./test/v2/delete.specific.car.test.js
+--file ./test/v2/create.flag.test.js
 --file ./test/v2/teardown.js

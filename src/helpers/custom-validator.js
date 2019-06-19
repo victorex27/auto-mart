@@ -63,7 +63,15 @@ export const priceCheck = check('amount').exists()
 
 
 export const reasonCheckCheck = check('reason').exists()
-  .withMessage('Reason Field is missing')
+  .withMessage('Reason Field is missing').custom((value, { req }) => {
+    const queryObj = req.body.reason;
+    const options = ['pricing', 'weird demands', 'others'];
+    if (!options.includes(queryObj)) {
+      throw new Error('Invalid Reason option');
+    }
+
+    return true;
+  })
   .trim()
   .toString();
 

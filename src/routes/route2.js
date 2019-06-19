@@ -2,6 +2,7 @@ import express from 'express';
 import User from '../controllers/v2/user';
 import Car from '../controllers/v2/car';
 import Order from '../controllers/v2/order';
+import Flag from '../controllers/v2/flag';
 
 import {
   emailCheck, passwordCheck, firstNameCheck, lastNameCheck,
@@ -11,6 +12,7 @@ import {
   minQueryCheck, maxQueryCheck, arefieldsTheSameQueryCheck,
   priceOptionalCheck, carStatusParamCheck,
   newPriceSanitizer, orderIdParamCheck, priceParamCheck, orderIdSanitizer,
+  reasonCheckCheck, descriptionCheck,
 } from '../helpers/custom-validator';
 
 
@@ -37,6 +39,9 @@ router2.post('/order', [
   priceCheck,
   carIdCheck,
 ], Order.makeOrder);
+
+router2.post('/flag', [checkToken, reasonCheckCheck,
+  descriptionCheck, carIdCheck], Flag.postFlag);
 
 router2.get('/car', [
   checkToken, statusQueryCheck, manufacturerQueryCheck,
