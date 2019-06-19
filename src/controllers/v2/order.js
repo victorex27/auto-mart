@@ -39,7 +39,13 @@ class Order {
     if (error) return error;
 
 
-    const orderObject = await OrderService.getOrder(req.user.id);
+    let orderObject;
+
+    if (req.params === 'seller') {
+      orderObject = await OrderService.getOrder(req.user.id);
+    } else {
+      orderObject = await OrderService.getHistory(req.user.id);
+    }
 
     const result = Promise.resolve(orderObject);
 

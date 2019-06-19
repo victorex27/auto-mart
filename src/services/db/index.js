@@ -28,7 +28,6 @@ const query = ((text, params) => new Promise((resolve, reject) => {
     .then((res) => {
       resolve(res);
     }).catch((res) => {
-      console.log(text);
       reject(res);
     });
 }));
