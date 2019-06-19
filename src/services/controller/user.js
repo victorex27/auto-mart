@@ -28,6 +28,7 @@ class UserService {
   }
 
   static async signIn(data) {
+
     const doesUserExistPromise = UserService.doesUserExist(data.email);
 
     return doesUserExistPromise.then(

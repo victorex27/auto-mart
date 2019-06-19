@@ -6,12 +6,20 @@
     "contact": {
       "email": "aobikobe@gmail.com"
     },
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "servers": [
     {
-      "url": "https://quiet-earth-51065.herokuapp.com/api/v1/",
-      "variables": {}
+      "url":"https://quiet-earth-51065.herokuapp.com/api/{version}",
+      "variables": {
+        "version": {
+          "enum": [
+             "v1",
+             "v2"
+          ],
+          "default": "v2"
+       }
+      }
     }
   ],
   "paths": {
@@ -221,7 +229,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/car"
+                    "$ref": "#/components/schemas/Car"
                   },
                   "description": "successful operation"
                 }
@@ -270,7 +278,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/car"
+                    "$ref": "#/components/schemas/Car"
                   },
                   "description": "successful operation"
                 }
@@ -318,7 +326,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/car"
+                  "$ref": "#/components/schemas/Car"
                 }
               }
             }
@@ -419,7 +427,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/car"
+                    "$ref": "#/components/schemas/Car"
                   },
                   "description": "successful operation"
                 }
@@ -474,6 +482,86 @@
           },
           "required": true
         },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    },
+    "/order/seller": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "getOrder",
+        "description": "Get all placed orders for users ad",
+        "operationId": "getOrder",
+        "parameters": [
+          
+        ],
+        "servers": [
+          {
+            "url":"https://quiet-earth-51065.herokuapp.com/api/v2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Order"
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearerAuth": [] 
+          }
+        ]
+      }
+    },
+    "/order/buyer": {
+      "get": {
+        "tags": [
+          "order"
+        ],
+        "summary": "getOrderHistory",
+        "description": "Get all order history made by user",
+        "operationId": "getOrderHistory",
+        "parameters": [
+          
+        ],
+        "servers": [
+          {
+            "url":"https://quiet-earth-51065.herokuapp.com/api/v2"
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",

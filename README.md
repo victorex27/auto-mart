@@ -98,6 +98,43 @@ To run sample test on deployed app Run [https://quiet-earth-51065.herokuapp.com/
 ```
 
 A url will be displayed to you were you can use the app
+## END POINTS
+
+- GET /api/v1/car
+- GET /api/v1/car?status=available
+- GET /api/v1/car?status=available&manufacturer=xxxx
+- GET /api/v1/car?status=available&min_price=xxxx&max_price=xxxx
+- GET /api/v1/car?status=available&state=new
+- GET /api/v1/car?status=available&state=used
+- GET /api/v1/car?body_type=xxxx
+- GET /api/v1/car/:carId
+- POST /api/v1/auth/signin
+- POST /api/v1/auth/signup
+- POST /api/v1/flag
+- PACTH /api/v1/order/:orderId/:price
+- PACTH /api/v1/car/:carId/:price
+- PACTH /api/v1/car/:carId/sold
+- DELETE /api/v1/car/:carId
+
+
+- GET /api/v2/car
+- GET /api/v2/car?status=available
+- GET /api/v2/car?status=available&manufacturer=xxxx
+- GET /api/v2/car?status=available&min_price=xxxx&max_price=xxxx
+- GET /api/v2/car?status=available&state=new
+- GET /api/v2/car?status=available&state=used
+- GET /api/v2/car?body_type=xxxx
+- GET /api/v2/order/seller
+- GET /api/v2/order/buyer
+- GET /api/v2/car/:carId
+- POST /api/v2/auth/signin
+- POST /api/v2/auth/signup
+- POST /api/v2/flag
+- PACTH /api/v2/order/:orderId/:price
+- PACTH /api/v2/car/:carId/:price
+- PACTH /api/v2/car/:carId/sold
+- DELETE /api/v2/car/:carId
+
 ## Documentation
 View Documentation [Auto-Mart](https://quiet-earth-51065.herokuapp.com/api-docs)
 Vist home page on [Auto-Mart](https://quiet-earth-51065.herokuapp.com/)
@@ -114,6 +151,9 @@ Vist home page on [Auto-Mart](https://quiet-earth-51065.herokuapp.com/)
 * [Chai](https://www.chaijs.com/) - Used to generate RSS Feeds
 * [Istanbul](https://istanbul.js.org/) - Javascript test coverage tool
 * [Heroku](https://www.heroku.com/) - Cloud application platform used for app deployment
+* [Postgres](https://www.postgresql.org/) - the world's most advanced open source database
+* [cloudinary](https://cloudinary.com/) - Manage web and mobile media assets with the leading cloud service
+
 ## Contributing
 
 Please raise a pull request.
