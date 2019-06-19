@@ -32,5 +32,20 @@ class Order {
       order => Result.getResult(res, order, false, 200),
     );
   }
+
+  static async getOrder(req, res) {
+    const error = Validator.validate(req, res);
+
+    if (error) return error;
+
+
+    const orderObject = await OrderService.getOrder(req.user.id);
+
+    const result = Promise.resolve(orderObject);
+
+    return result.then(
+      order => Result.getResult(res, order, true, 200),
+    );
+  }
 }
 export default Order;
