@@ -57,6 +57,10 @@ router2.get('/order/seller', [
   checkToken,
 ], Order.getOrder);
 
+router2.get('/order/buyer', [
+  checkToken,
+], Order.getOrder);
+
 router2.delete('/car/:carId', [
   checkToken, carIdParamCheck, carIdSanitizer,
 ], Car.getDeleteCar);

@@ -104,8 +104,10 @@ class OrderService {
     };
   }
 
-  static getOrder(userId) {
-    const getCarPromise = OrderService.getOrderQuery(userId);
+
+  static getHistory(userId) {
+    const queryString = 'SELECT orders.id, cars.id as carid,buyer, orders.amount,cars.price, cars.owner,orders.status,orders.created_on FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE orders.buyer = $1;';
+    const getCarPromise = OrderService.getOrderQuery(queryString, userId);
     return getCarPromise.then(
       data => data,
     );
@@ -127,9 +129,7 @@ class OrderService {
     return rows[0];
   }
 
-  static async getOrderQuery(id) {
-    // const queryString = 'SELECT cars.owner,cars.status as carstatus,orders.status as orderstatus FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE cars.id = $1;';
-    const queryString = 'SELECT orders.id, cars.id as carid,buyer, orders.amount,cars.price, cars.owner,orders.status,orders.created_on FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE cars.owner = $1;';
+  static async getOrderQuery(queryString, id) {
     const value = [id];
     const { rows } = await query(queryString, value);
     const result = [];

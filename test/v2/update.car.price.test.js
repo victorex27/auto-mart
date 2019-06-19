@@ -64,6 +64,19 @@ describe('PACTH /api/v2/car/:carId/:price', () => {
     });
   });
 
+  describe('When a user tries to perform update with the same price', () => {
+    it('should return an object with the status and error', (done) => {
+      chai.request(server)
+        .patch('/api/v2/car/14/1.6').set('Authorization', token)
+        .send()
+        .end((err, res) => {
+          expect(res.body).to.have.property('status').to.equals(400);
+          expect(res.body).to.have.property('error').to.be.a('string').equals('Update not performed. New price is equal to old price');
+          done();
+        });
+    });
+  });
+
   describe('When a user tries to update a car advert with valid detail', () => {
     it('should return an object with the status and data', (done) => {
       chai.request(server)
