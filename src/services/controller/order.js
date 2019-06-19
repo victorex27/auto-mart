@@ -1,5 +1,5 @@
 import CarService from './car';
-import { query } from '../db/index';
+import { query } from '../db';
 
 class OrderService {
   static async makeOrder(data, userId) {

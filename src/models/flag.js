@@ -18,7 +18,7 @@ class Flag {
     }
     const newFlag = {
       id: this.lastInsertId + 1,
-      user: userId,
+      userId,
       carId,
       reason: body.reason,
       description: body.description,

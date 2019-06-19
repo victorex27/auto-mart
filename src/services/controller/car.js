@@ -1,4 +1,4 @@
-import { query } from '../db/index';
+import { query } from '../db';
 
 class CarService {
   static createCar(body, userId, url) {
@@ -258,6 +258,14 @@ class CarService {
     queryString += ' AND body_type = $1';
     const value = [bodyType];
     return CarService.customQuery(queryString, value);
+  }
+
+  static async doesCarBelongToUser(carId, userId) {
+    const queryString = 'SELECT cars.id FROM users INNER JOIN cars ON cars.owner = users.id WHERE owner = $1 AND users.id = $2 LIMIT 1;';
+    const value = [carId, userId];
+    const { rows } = await query(queryString, value);
+    if (rows.length === 1) { return true; }
+    return false;
   }
 
   static async customQuery(queryString, value) {

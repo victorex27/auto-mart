@@ -33,7 +33,19 @@ CREATE TABLE IF NOT EXISTS orders
     CONSTRAINT or_buyer  FOREIGN KEY (buyer) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT,
     CONSTRAINT or_car_id FOREIGN KEY (car_id) REFERENCES cars(id) ON UPDATE CASCADE ON DELETE RESTRICT );`;
 
+
+const flagTable = `
+CREATE TABLE IF NOT EXISTS flags
+( id serial PRIMARY KEY,
+    car_id BIGINT, 
+    user_id BIGINT, 
+    reason TEXT CHECK ( reason IN ('pricing','weird demands','others') ), 
+    description TEXT NOT NULL, 
+    created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fl_user_id  FOREIGN KEY (user_id) REFERENCES users(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    CONSTRAINT fl_car_id FOREIGN KEY (car_id) REFERENCES cars(id) ON UPDATE CASCADE ON DELETE RESTRICT );`;
+
 export {
 
-  userTable, carTable, orderTable,
+  userTable, carTable, orderTable, flagTable,
 };
