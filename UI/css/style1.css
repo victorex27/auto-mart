@@ -1,71 +1,110 @@
 @import url("general.css");
 body {
-  background-image: url(../img/img4.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+  background: rgba(153,152,254,0.6);
   /* background-color: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
   color: white;
 }
 
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+}
+
+main>div:first-child {
+  flex: 0 0 50%;
+  width:100% ;
+  background-image: url(../img/landscape-1844231_1280.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(1px);
+  -webkit-filter: blur(1px);
+}
+
+main>div:last-child {
+  flex: 0 1 50%;
+}
+
+.btn>span {
+  display: inline;
+  font-size: 1em;
+}
+
+.car-image {
+  position: absolute;
+  margin: auto;
+  z-index: 2;
+  width: 50%;
+  height: 75vh;
+  top: 25%;
+  /* bottom:0; */
+  /* right: 0; */
+  left: 25%;
+  margin: auto;
+  /* background: rgba(255,255,255,0.9); */
+  /* border-radius: 50%; */
+  overflow: hidden;
+}
+
+.car-image>img {
+  height: auto;
+  width: 70%;
+}
+
+.lady-image {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  /* margin: auto; */
+  z-index: 2;
+  width: 225px;
+  height: 280px;
+  /* background: rgba(255,255,255,0.9); */
+  /* border-radius: 50%; */
+  overflow: hidden;
+}
+
+.lady-image>img {
+  height: 280px;
+  width: auto;
+}
+
+span.header {
+  display: block;
+  margin-top: -50px;
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 2em;
+  line-height: 20px;
+  letter-spacing: 15px;
+}
+
+span.sub-header {
+  display: block;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 1em;
+  line-height: 0.9em;
+  font-family: 'Lato', Helvetica, sans-serif;
+
+}
+
 .title, .site-name {
-  font-family: 'Saira Semi Condensed', 'Lato', Helvetica, sans-serif;
-  font-size: 4em;
+  font-family: 'Saira Semi Condensed','Lato', Helvetica, sans-serif;
 }
 
 .sub-title {
   font-family: 'Kanit', 'Indie Flower', cursive;
-  font-size: 1.5em;
   /* font-weight: 900; */
-}
-
-.main-div {
-  min-height: 80vh;
-  position: absolute;
-  top: 140px;
-  left: 0;
-  display: flex;
-  flex-flow: row nowrap;
-  width: 100%;
-  align-items: center;
-  /* background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
 }
 
 span.site_name {
   color: black;
   margin-right: auto;
-}
-
-main {
-  flex: 1 1 50%;
-  padding: 10px;
-  margin: auto 0;
-}
-
-main>div {
-  display: flex;
-  flex-flow: column nowrap;
-  padding-left: 20px;
-}
-
-main>div>span:nth-child(1), main>div>span:nth-child(2) {
-  flex: 1 1 auto;
-  font-size: 5em;
-}
-
-main>div>span:nth-child(3), main>div>div {
-  flex: 1 1 auto;
-}
-
-main>div>div {
-  /* width: 70%; */
-}
-
-main>div>span:nth-child(3) {
-  /* width: 60%; */
-}
-
-main>div>button {
-  flex: 1 1 auto;
 }
 
 nav span>div.form-group {
@@ -74,10 +113,17 @@ nav span>div.form-group {
 }
 
 nav {
-  flex-flow: column nowrap;
+  display: flex;
+  position: absolute;
+  top:0;
+  left:0;
+  flex-flow: row wrap;
+  justify-content: space-between;
   flex: 0 0 auto;
   height: 100px;
+  width:100%;
   padding: 20px;
+  z-index: 2;
 }
 
 nav span:nth-child(2)>form {
@@ -95,15 +141,26 @@ nav span:nth-child(2)>form button {
 }
 
 nav>span.site-name {
-  flex: 1 0 0;
-  margin-right: auto;
+  flex: 1 0 auto;
+  /* margin-right: auto; */
   font-size: 2em;
   font-weight: bold;
 }
 
+nav>span.form {
+  flex: 1 1 auto;
+ 
+}
+
+div.get-started {
+  display: flex;
+  flex: row nowrap;
+  justify-content: center;
+}
+
 button#get-started {
-  float: right;
-  width: 210px;
+  width: 140px;
+  padding: 5px;
 }
 
 /* .modal>aside {
@@ -120,20 +177,24 @@ button#get-started {
   padding: 10px;
   align-items: flex-end;
   z-index: 1000;
-  /* display: none; */
+   display: none; 
 
-}
+}*/
 
 /* .modal>aside>div {
   width: 70%;
   margin: auto;
 } */
 
-*/
 /* Responsive design*/
 
-@media screen and (max-width: 558px) {
-  main>div>span:nth-child(3), main>div>div {
-    width: 100%;
+@media (max-width: 1200px) {
+  .car-image {
+    width: 90%;
+    left: 5%;
+  }
+  .car-image>img {
+    height: auto;
+    width: 90%;
   }
 }
