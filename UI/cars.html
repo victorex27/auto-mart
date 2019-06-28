@@ -70,12 +70,12 @@
             <div>
 
                 <span> By Okolie Nnaemeka</span>
-                <span>
+                <!-- <span>
                     <button class='am am-small am-alternate-color am-prev-white am-no-margin am-no-padding am-40'
                         id='menu-button'></button>
                     <button class='am am-small am-alternate-color am-next-white am-no-margin am-no-padding am-40'
                         id='menu-button'></button>
-                </span>
+                </span> -->
 
             </div>
 
@@ -91,12 +91,7 @@
 
 
             </div>
-            <div id='is-sold-div' class='is-not-visible'>
-                <button id='sold-button' class='btn'>
-                    <span>Sold</span>
-                    <img src="img/Checkmark.ico" alt='Mark as Sold' />
-                </button>
-            </div>
+            
 
             <div id='make-purchase-order'>
 
@@ -113,7 +108,7 @@
                             <input type='number' name='po-price' id='po-price'>
                         </div>
                     </span>
-                    <span>
+                    <span class='make-purchase-order-button'>
                         <!-- <input type='number' name='po-price' id='po-price'> -->
                         <div class='form-group'>
 
@@ -149,7 +144,7 @@
                         <thead>
                             <tr>
 
-                                <th scope="col">Name</th>
+                                <th scope="col" class='table-name'>Name</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Status</th>
                                 <th scope="col"></th>
@@ -226,6 +221,12 @@
 
                 </div>
 
+            </div>
+            <div id='is-sold-div' class='is-not-visible'>
+                <button id='sold-button' class='btn'>
+                    <span>Sold</span>
+                    <img src="img/Checkmark.ico" alt='Mark as Sold' />
+                </button>
             </div>
             <div id='delete-post-div'>
 
@@ -536,7 +537,7 @@
                             </td>
                             <td data-label="Car">Bugatti<span>2016</span></td>
                             <td data-label="Seller">Amanda Aduchie</td>
-                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Amount">$11900000</td>
                             <td data-label="Status">Sold</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="button">
@@ -555,7 +556,7 @@
                             </td>
                             <td data-label="Car">Bugatti<span>2016</span></td>
                             <td data-label="Seller">Amanda Aduchie</td>
-                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Amount">$11900000</td>
                             <td data-label="Status">Sold</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="button">
@@ -574,7 +575,7 @@
                             </td>
                             <td data-label="Car">Bugatti<span>2016</span></td>
                             <td data-label="Seller">Amanda Aduchie</td>
-                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Amount">$11900000</td>
                             <td data-label="Status">Sold</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="button">
@@ -593,7 +594,7 @@
                             </td>
                             <td data-label="Car">Bugatti<span>2016</span></td>
                             <td data-label="Seller">Amanda Aduchie</td>
-                            <td data-label="Amount">$11900000 span</td>
+                            <td data-label="Amount">$11900000</td>
                             <td data-label="Status">Sold</td>
                             <td data-label="Period">03/01/2016</td>
                             <td data-label="button">
@@ -827,7 +828,7 @@
 
 
         <section class=''>
-            <button id='close-filter' class='btn btn-white mobile-view'>
+            <button id='close-filter' class='btn  mobile-view'>
                 <span>Back </span>
                 <img src="img/Long_Arrow_Left_2.ico" alt='filter list' />
             </button>
