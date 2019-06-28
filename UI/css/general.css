@@ -41,13 +41,14 @@ input[type="file"] {
 
 input[type="email"], input[type="text"], input[type="password"], input[type="number"] {
   padding: 12px 20px;
-  width: 90%;
+  width: 97%;
   height: 30px;
   line-height: 1.15;
   background-color: rgb(206, 230, 231);
   color: black;
   border: none;
   margin-bottom: 2px;
+  /* margin: 0px  2px; */
 }
 
 input[type="email"]:focus, input[type="text"]:focus, input[type="password"]:focus {
@@ -55,7 +56,7 @@ input[type="email"]:focus, input[type="text"]:focus, input[type="password"]:focu
 }
 
 textarea {
-  width: 90%;
+  width: 97%;
   height: 50px;
   padding: 12px 20px;
   border: 2px solid #ccc;
@@ -67,6 +68,7 @@ textarea {
 div.form-group {
   display: flex;
   flex-flow: column nowrap;
+  margin:10px;
 }
 
 div.form-group>label {
@@ -102,7 +104,7 @@ button.btn-primary {
 }
 
 button.btn-tertiary {
-  background-color: rgb(56, 195, 255);
+  background-color: rgb(86, 56, 255);
 }
 
 .primary-color {
@@ -165,7 +167,7 @@ button.btn-tertiary {
 
 label {
   font-weight: bolder;
-  color: rgb(56, 195, 255);
+  color: rgb(86, 56, 255);
   font-size: 1.2em;
 }
 
@@ -180,7 +182,9 @@ img {
 }
 
 .am-close {
-  background-image: url(../img/Delete.ico)
+  background-image: url(../img/Delete.ico);
+  height: 50px;
+  width: 50px;
 }
 
 .am-close-white {
@@ -245,13 +249,13 @@ span.custom-white {
   padding: 5px;
   border-radius: 5px;
   /* margin-left: 15px; */
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
 }
 
 .btn img.bigger {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 
 .btn-small {
@@ -287,6 +291,7 @@ span.custom-white {
   -o-transform-origin: top;
   -ms-transform-origin: top;
   transform-origin: top;
+  padding: 10px;
 }
 
 .overlay {
@@ -299,22 +304,28 @@ span.custom-white {
 }
 
 .modal {
-  width: 80%;
-  top: 10%;
-  left: 10%;
+  width: 60%;
+  top: 3%;
+  left: 20%;
   margin-right: auto;
   margin-left: auto;
   border: 1px solid black;
   z-index: 3;
-  -webkit-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  /* -webkit-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -o-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -ms-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -4px -4px 5px 10px rgba(50, 50, 50, 0.75);
-  box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
+  box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75); */
   background-color: rgba(255, 255, 255, 1);
-  color: rgba(217, 30, 24, 1);
+    color: rgb(86, 56, 255);
+    /* color: rgba(217, 30, 24, 1); */
   padding: 10px;
   align-items: flex-end;
+  /* max-height: 100px; */
+}
+
+.modal h2{
+  margin: 0px;
 }
 
 .slide-down {
