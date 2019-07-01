@@ -1,9 +1,6 @@
 @import url("general.css");
 body {
-  /* background-repeat: no-repeat;
-  background-size: cover; */
   background: rgba(153,152,254,0.6);
-  /* background-color: linear-gradient( rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.2)); */
   color: white;
 }
 /* correct commit message */
@@ -126,10 +123,10 @@ nav {
   z-index: 2;
 }
 
-nav span:nth-child(2)>form {
+nav span:nth-child(2)>form , div.sign_in_error{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -141,7 +138,7 @@ nav span:nth-child(2)>form button {
 }
 
 nav>span.site-name {
-  flex: 1 0 auto;
+  flex: 1 0 50%;
   /* margin-right: auto; */
   font-size: 2em;
   font-weight: bold;
@@ -163,28 +160,13 @@ button#get-started {
   padding: 5px;
 }
 
-/* .modal>aside {
-  -webkit-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
-  -o-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
-  -ms-box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: -4px -4px 5px 10px rgba(50, 50, 50, 0.75);
-  box-shadow: -4px -4px 5px 10px rgba(0, 0, 0, 0.75);
-  flex: 0 1 50%;
-  margin-left: auto; 
-  margin-right: auto; 
-  background-color: rgba(255, 255, 255, 1);
-  color: rgba(217, 30, 24, 1);
-  padding: 10px;
-  align-items: flex-end;
-  z-index: 1000;
-   display: none; 
+span.sign_in_container{
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
 
-}*/
 
-/* .modal>aside>div {
-  width: 70%;
-  margin: auto;
-} */
 
 /* Responsive design*/
 

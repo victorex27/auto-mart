@@ -8,6 +8,10 @@ const signUpFormAddress = document.querySelector('#address_su');
 const signUpErrorSpan = document.querySelector('#sign_up_error');
 const signUpLoader = document.querySelector('#sign_up_loader');
 
+const signInFormEmail = document.querySelector('#email_si');
+const signInFormPassword = document.querySelector('#password_si');
+const signInErrorSpan = document.querySelector('#sign_in_error');
+const signInLoader = document.querySelector('#sign_in_loader');
 
 const openSignUpPage = () => {
   overlay.classList.add('slide-down');
@@ -20,10 +24,14 @@ const closeSignUpPage = () => {
   // if (window.matchMedia('(max-width: 900px)').matches) {}
 };
 
-const createUser = (ev) => {
-  signUpLoader.style.display = 'inline-block';
-  const api = 'http://localhost:3000/api/v2/auth/signup';
-  // const api = 'https://quiet-earth-51065.herokuapp.com/api/v2/auth/signup/';
+const retrieveFromApi = (data) => {
+  const {
+    ev, api, body, statusCode, errorDiv, loaderDiv,
+  } = data;
+  ev.preventDefault();
+  const loaderSpan = loaderDiv;
+  const errorSpan = errorDiv;
+  loaderSpan.style.display = 'inline-block';
   const headers = new Headers();
   headers.set('Content-type', 'application/json');
   headers.set('Access-Control-Allow-Origin', '*');
@@ -34,45 +42,81 @@ const createUser = (ev) => {
     {
       method: 'POST',
       headers,
-      body: JSON.stringify({
-        email: signUpFormEmail.value,
-        firstName: signUpFormFirstName.value,
-        lastName: signUpFormLastName.value,
-        password: signUpFormPassword.value,
-        address: signUpFormAddress.value,
-      }),
+      body: JSON.stringify(body),
 
     }).then(resp => resp.json()).then((result) => {
     const { status } = result;
-    if (status === 201) {
+    if (status === statusCode) {
       const { email, token } = result.data;
 
       localStorage.setItem('email', email);
       localStorage.setItem('token', token);
-      window.location.replace('./cars.html');
+      window.location.href = './cars.html';
       return;
     }
 
     const { error } = result;
 
-    signUpErrorSpan.textContent = error;
+    errorSpan.textContent = error;
   })
     .catch(() => {
     })
     .finally(() => {
-      signUpLoader.style.display = 'none';
+      loaderSpan.style.display = 'none';
     });
+};
+
+const createUser = (ev) => {
+  const api = 'http://localhost:3000/api/v2/auth/signup';
+  // const api = 'https://quiet-earth-51065.herokuapp.com/api/v2/auth/signup';
+  const body = {
+    email: signUpFormEmail.value,
+    firstName: signUpFormFirstName.value,
+    lastName: signUpFormLastName.value,
+    password: signUpFormPassword.value,
+    address: signUpFormAddress.value,
+  };
+  const data = {
+    ev,
+    api,
+    body,
+    statusCode: 201,
+    errorDiv: signUpErrorSpan,
+    loaderDiv: signUpLoader,
+
+  };
+  retrieveFromApi(data);
+};
 
 
-  ev.preventDefault();
+const SignInUser = (ev) => {
+  const api = 'http://localhost:3000/api/v2/auth/signin';
+  // const api = 'https://quiet-earth-51065.herokuapp.com/api/v2/auth/signin';
+  const body = {
+    email: signInFormEmail.value,
+    password: signInFormPassword.value,
+  };
+  const data = {
+    ev,
+    api,
+    body,
+    statusCode: 200,
+    errorDiv: signInErrorSpan,
+    loaderDiv: signInLoader,
+
+  };
+  retrieveFromApi(data);
 };
 
 
 const startApp = () => {
   /** Show Sign up form */
   const signUpForm = document.querySelector('#sign_up_form');
+  const signInForm = document.querySelector('#sign_in_form');
   signUpErrorSpan.textContent = '';
+  signInErrorSpan.textContent = '';
   signUpForm.addEventListener('submit', createUser);
+  signInForm.addEventListener('submit', SignInUser);
 
   const getStartedButton = document.querySelector('button#get-started');
   if (!getStartedButton) return;

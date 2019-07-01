@@ -17,16 +17,26 @@
 
     <span class='site-name'>Auto Mart</span>
 
-    <span class='form'>
-      <form action="">
-        <div class='form-group'><label for="sign_up_email">Email</label> <input type="email" name="email"
-            id="sign_up_email"></div>
-        <div class='form-group'><label for="sign_up_password"> Password</label> <input type="password" name="password"
-            id="sign_up_password"></div>
-        <div class='form-group'> <button> login </button></div>
-      </form>
+    <span class='sign_in_container'>
+      <!-- <span class='form sign_in_form'> -->
+      <form method="POST" id='sign_in_form'>
+        <div class='form-group'><label for="sign_in_email">Email</label> <input type="email" name="email" id="email_si">
+        </div>
+        <div class='form-group'><label for="sign_in_password"> Password</label> <input type="password" name="password"
+            id="password_si"></div>
+        <div class='form-group'>
+          <button type='submit'> login </button>
+        </div>
+        <div class='form-group'>
 
+          <span class="loader loader-center" id='sign_in_loader'></span>
+        </div>
+
+      </form>
+      <div class='sign_in_error'> <span class='error' id='sign_in_error'></span></div>
     </span>
+    <!-- </span> -->
+
 
 
   </nav>
@@ -86,9 +96,9 @@
         <div class='form-group'><label for="address">Address</label> <textarea name="address" id="address_su" cols="10"
             rows="10"></textarea></div>
         <div class='form-group form-group-row'> <button type='submit'> Sign Up </button>
-            <span class="loader" id='sign_up_loader'></span>
+          <span class="loader" id='sign_up_loader'></span>
         </div>
-        <div> <span class='error' id='sign_up_error'> You had this error</span></div>
+        <div> <span class='error' id='sign_up_error'></span></div>
       </form>
 
     </div>
