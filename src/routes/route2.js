@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import User from '../controllers/v2/user';
 import Car from '../controllers/v2/car';
 import Order from '../controllers/v2/order';

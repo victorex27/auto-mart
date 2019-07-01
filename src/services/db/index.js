@@ -38,13 +38,13 @@ const createTables = (table) => {
   query(table, [])
     .then((res) => {
       // pool.end();
-    });
+    }).catch(() => {});
 };
 
 const dropTables = () => {
   query('DROP TABLE users, cars, orders, flags;', [])
     .then((res) => {
-    });
+    }).catch(() => {});
 };
 
 if (process.env.NODE_ENV === 'test') {

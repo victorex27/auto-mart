@@ -12,7 +12,7 @@ class User {
 
     result.then(
       user => User.getUser(req, res, user, 201),
-    );
+    ).catch(() => {});
   }
 
   static signIn(req, res) {
