@@ -161,9 +161,12 @@ button#get-started {
 }
 
 span.sign_in_container{
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   display: flex;
   flex-flow: column nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  max-width: 100%;
 }
 
 
