@@ -7,7 +7,7 @@ const poTab = document.getElementById('po_tab');
 const adminTab = document.getElementById('admin_tab');
 const aside = document.querySelector('aside');
 const main = document.querySelector('main');
-const rippleDiv = document.querySelector('#ripple');
+// const rippleDiv = document.querySelector('#ripple');
 const backButtonMobile = document.querySelector('#back-button-mobile');
 const backButtonFullScreen = document.querySelector('#back-button-fullscreen');
 const oncloseButtonClicked = () => {
@@ -16,17 +16,17 @@ const oncloseButtonClicked = () => {
   }
 };
 
-rippleDiv.addEventListener('animationend', () => {
-  rippleDiv.classList.remove('ripple');
-  main.style.opacity = '1';
-}, false);
+// rippleDiv.addEventListener('animationend', () => {
+//   rippleDiv.classList.remove('ripple');
+//   main.style.opacity = '1';
+// }, false);
 
 
 const animationStart = () => {
   main.style.opacity = '0';
 };
 
-rippleDiv.addEventListener('animationstart', animationStart, false);
+// rippleDiv.addEventListener('animationstart', animationStart, false);
 
 class Navigation {
   constructor() {
@@ -218,7 +218,7 @@ class Navigation {
   }
 
   static showRippleAnimation(currentPage) {
-    rippleDiv.classList.add('ripple');
+    // rippleDiv.classList.add('ripple');
     // main.style.opacity = '0';
     currentPage.showPage();
   }

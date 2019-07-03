@@ -16,6 +16,7 @@ if (process.env.NODE_ENV === 'production') {
   connectionUrl = process.env.DATABASE_URL_PROD;
 } 
 else if (process.env.NODE_ENV === 'development') {
+  // connectionUrl = process.env.DATABASE_URL;
   connectionUrl = process.env.DATABASE_URL_DEV;
 }
 

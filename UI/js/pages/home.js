@@ -15,10 +15,7 @@ class HomePage extends Common {
   }
 
   showPage() {
-    // this.homeDiv.style.display = 'flex';
-    // if (!window.matchMedia('(max-width: 900px)').matches) {
-    //     this.filterDiv.style.display = 'flex';
-    //   }
+    
 
     this.navigation.setPageType('home');
 
@@ -26,8 +23,6 @@ class HomePage extends Common {
   }
 
   removePage() {
-    // this.homeDiv.style.display = 'none';
-    // this.filterDiv.style.display = 'none';
 
     this.galleryHomeDiV.removePage();
   }
