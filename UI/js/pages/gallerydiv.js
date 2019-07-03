@@ -77,7 +77,9 @@ class GalleryHomeDiv {
 
 
     if (!window.matchMedia('(max-width: 900px)').matches && this.navigation.getPageType() === 'home') {
-      this.filterDiv.style.display = 'flex';
+      if (this.filterDiv) {
+        this.filterDiv.style.display = 'flex';
+      }
     }
 
     if (this.navigation.getPageType() === 'home') {
