@@ -16,9 +16,7 @@ const retrieveCarsFromApi = (api) => {
       const { data } = result;
       galleryDiv.innerHTML = '';
 
-      console.log(data);
       data.forEach((obj) => {
-        console.log(obj.status);
         // create elements to be added
         const mainDiv = document.createElement('div');
         const firstChildDiv = document.createElement('div');
@@ -93,18 +91,19 @@ class GalleryHomeDiv {
       }
 
       getAllUnsoldCars();
-      
     });
     this.navigation = navigation;
   }
 
   showPage() {
     window.scroll(0, 0);
-    // galleryDiv.style.display = 'flex';
+
+    galleryDiv.style.display = 'flex';
 
 
     if (!window.matchMedia('(max-width: 900px)').matches && this.navigation.getPageType() === 'home') {
       if (filterDiv) {
+        galleryDiv.style.display = 'grid';
         filterDiv.style.display = 'flex';
       }
     }
