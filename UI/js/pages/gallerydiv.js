@@ -1,9 +1,9 @@
 const token = localStorage.getItem('token');
 const galleryDiv = document.querySelector('main > div> div#gallery');
+const filterDiv = document.querySelector('main > section');
 const splashScreen = document.querySelector('#splash-screen');
-const getAllUnsoldCars = () => {
-  const api = 'http://localhost:3000/api/v2/car?status=available';
-
+const host = 'http://localhost:3000';
+const retrieveCarsFromApi = (api) => {
   fetch(api,
     {
       method: 'GET',
@@ -15,7 +15,10 @@ const getAllUnsoldCars = () => {
     if (status === 200) {
       const { data } = result;
       galleryDiv.innerHTML = '';
+
+      console.log(data);
       data.forEach((obj) => {
+        console.log(obj.status);
         // create elements to be added
         const mainDiv = document.createElement('div');
         const firstChildDiv = document.createElement('div');
@@ -50,9 +53,17 @@ const getAllUnsoldCars = () => {
     window.location.href = `./?msg=${error}`;
   });
 };
+
+
+const getAllUnsoldCars = () => { retrieveCarsFromApi(`${host}/api/v2/car?status=available`); };
+const getAllUnsoldCarsByMileage = (value) => { retrieveCarsFromApi(`${host}/api/v2/car?status=available&state=${value}`); };
+
 class GalleryHomeDiv {
   constructor(navigation, car) {
-    this.filterDiv = document.querySelector('main > section');
+    // select option new or old
+    const selectMileage = document.querySelector('select#mileage');
+
+
     this.notes = document.querySelectorAll('span.notification');
     this.isSoldDiv = document.querySelectorAll('span.is-sold-span');
     this.cards = document.querySelectorAll('.card');
@@ -68,17 +79,33 @@ class GalleryHomeDiv {
       },
 
     );
+    selectMileage.addEventListener('change', (ev) => {
+      ev.preventDefault();
+      const { value } = selectMileage[selectMileage.selectedIndex];
+      if (value === 'new') {
+        getAllUnsoldCarsByMileage('new');
+        return;
+      }
+
+      if (value === 'used') {
+        getAllUnsoldCarsByMileage('used');
+        return;
+      }
+
+      getAllUnsoldCars();
+      
+    });
     this.navigation = navigation;
   }
 
   showPage() {
     window.scroll(0, 0);
-    galleryDiv.style.display = 'flex';
+    // galleryDiv.style.display = 'flex';
 
 
     if (!window.matchMedia('(max-width: 900px)').matches && this.navigation.getPageType() === 'home') {
-      if (this.filterDiv) {
-        this.filterDiv.style.display = 'flex';
+      if (filterDiv) {
+        filterDiv.style.display = 'flex';
       }
     }
 
