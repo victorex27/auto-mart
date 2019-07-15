@@ -55,11 +55,29 @@ const retrieveCarsFromApi = (api) => {
 
 const getAllUnsoldCars = () => { retrieveCarsFromApi(`${host}/api/v2/car?status=available`); };
 const getAllUnsoldCarsByMileage = (value) => { retrieveCarsFromApi(`${host}/api/v2/car?status=available&state=${value}`); };
+const getAllUnsoldCarsByPriceRange = (value) => {
+  let min = 50;
+  let max = value;
+
+  if (value < 10) {
+    min = value - 1;
+  } else if (value === 10) {
+    min = 5;
+  }
+  else if (value < 50) {
+    min = value - 10;
+  } else if (value === 'unlimited') {
+    min = 50;
+    max = 10000000000;
+  }
+  retrieveCarsFromApi(`${host}/api/v2/car?status=available&min_price=${min}&max_price=${max}`);
+};
 
 class GalleryHomeDiv {
   constructor(navigation, car) {
     // select option new or old
     const selectMileage = document.querySelector('select#mileage');
+    const selectPriceRange = document.querySelector('select#price');
 
 
     this.notes = document.querySelectorAll('span.notification');
@@ -91,6 +109,12 @@ class GalleryHomeDiv {
       }
 
       getAllUnsoldCars();
+    });
+
+    selectPriceRange.addEventListener('change', (ev) => {
+      ev.preventDefault();
+      const { value } = selectPriceRange[selectPriceRange.selectedIndex];
+      getAllUnsoldCarsByPriceRange(value);
     });
     this.navigation = navigation;
   }
