@@ -107,6 +107,8 @@ A url will be displayed to you were you can use the app
 - GET /api/v1/car?status=available&state=new
 - GET /api/v1/car?status=available&state=used
 - GET /api/v1/car?body_type=xxxx
+- GET /api/v1/order/seller
+- GET /api/v1/order/buyer
 - GET /api/v1/car/:carId
 - POST /api/v1/auth/signin
 - POST /api/v1/auth/signup
@@ -115,25 +117,6 @@ A url will be displayed to you were you can use the app
 - PACTH /api/v1/car/:carId/:price
 - PACTH /api/v1/car/:carId/sold
 - DELETE /api/v1/car/:carId
-
-
-- GET /api/v2/car
-- GET /api/v2/car?status=available
-- GET /api/v2/car?status=available&manufacturer=xxxx
-- GET /api/v2/car?status=available&min_price=xxxx&max_price=xxxx
-- GET /api/v2/car?status=available&state=new
-- GET /api/v2/car?status=available&state=used
-- GET /api/v2/car?body_type=xxxx
-- GET /api/v2/order/seller
-- GET /api/v2/order/buyer
-- GET /api/v2/car/:carId
-- POST /api/v2/auth/signin
-- POST /api/v2/auth/signup
-- POST /api/v2/flag
-- PACTH /api/v2/order/:orderId/:price
-- PACTH /api/v2/car/:carId/:price
-- PACTH /api/v2/car/:carId/sold
-- DELETE /api/v2/car/:carId
 
 ## Documentation
 View Documentation [Auto-Mart](https://quiet-earth-51065.herokuapp.com/api-docs)

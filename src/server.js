@@ -4,7 +4,6 @@ import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './swagger.json';
 import router1 from './routes/route1';
-import router2 from './routes/route2';
 
 
 dotenv.config();
@@ -17,7 +16,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use('/api/v1', router1);
-app.use('/api/v2', router2);
 
 const options = {
   validatorUrl: null,
