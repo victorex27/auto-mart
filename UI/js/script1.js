@@ -67,8 +67,8 @@ const retrieveFromApi = (data) => {
 };
 
 const createUser = (ev) => {
-  const api = 'http://localhost:3000/api/v2/auth/signup';
-  // const api = 'https://quiet-earth-51065.herokuapp.com/api/v2/auth/signup';
+  const api = 'http://localhost:3000/api/v1/auth/signup';
+  // const api = 'https://quiet-earth-51065.herokuapp.com/api/v1/auth/signup';
   const body = {
     email: signUpFormEmail.value,
     firstName: signUpFormFirstName.value,
@@ -90,8 +90,8 @@ const createUser = (ev) => {
 
 
 const SignInUser = (ev) => {
-  const api = 'http://localhost:3000/api/v2/auth/signin';
-  // const api = 'https://quiet-earth-51065.herokuapp.com/api/v2/auth/signin';
+  const api = 'http://localhost:3000/api/v1/auth/signin';
+  // const api = 'https://quiet-earth-51065.herokuapp.com/api/v1/auth/signin';
   const body = {
     email: signInFormEmail.value,
     password: signInFormPassword.value,

@@ -1,38 +1,34 @@
-
 import url from 'url';
 import cloudinary from 'cloudinary';
 import formidable from 'formidable';
-import CarModel from '../../models/car';
+import CarService from '../../services/controller/v1/car';
 import Result from '../../helpers/result';
 import Validator from '../../helpers/validator';
 
 
 class Car {
-  static markAsSold(req, res) {
+  static async update(req, res) {
     const error = Validator.validate(req, res);
     if (error) return error;
 
     const { car, carId } = req.params;
     const status = car;
     const newPrice = Number(car);
+    let carObject;
 
     if (Number.isNaN(newPrice)) {
-      return Result.getResult(res, CarModel.markAsSold(carId, req.user.id, status), false, 200);
+      carObject = await CarService.markAsSold(carId, req.user.id, status);
+    } else {
+      carObject = await CarService.updateCarPrice(carId, req.user.id, newPrice);
     }
-
-    return Result.getResult(res, CarModel.updateCarPrice(carId, req.user.id, newPrice), false, 200);
+    const result = Promise.resolve(carObject);
+    return result.then(
+      cars => Result.getResult(res, cars, false, 200),
+    );
   }
 
-  static getSingleCar(req, res) {
-    const error = Validator.validate(req, res);
-
-    if (error) return error;
-
-    return Result.getResult(res, CarModel.getSingleCar(req.params.carId), false, 200);
-  }
-
-  static postCarAd(req, res) {
-    new formidable.IncomingForm().parse(req, (err, fields, files) => {
+  static async postCarAd(req, res) {
+    new formidable.IncomingForm().parse(req, async (err, fields, files) => {
       const { dataFile } = files;
       if (!dataFile) {
         return res.status(400).json({ status: 400, error: 'Invalid File name parameter supplied' });
@@ -50,28 +46,32 @@ class Car {
       });
       return cloudinary.v2.uploader
         .upload(dataFile.path, { tags: 'gotemps', resource_type: 'auto' })
-        .then(file => Result.getResult(res,
-          CarModel.createCar(fields, req.user.id, file.url),
-          false,
-          201));
+        .then(async (file) => {
+          const carObject = await CarService.createCar(fields, req.user.id, file.url);
+          const result = Promise.resolve(carObject);
+          return result.then(
+            cars => Result.getResult(res, cars, false, 201),
+          );
+        });
     });
   }
 
-  static getDeleteCar(req, res) {
+  static async getSingleCar(req, res) {
     const error = Validator.validate(req, res);
-
     if (error) return error;
 
-    return Result.getResult(res,
-      CarModel.getDeleteCar(req.params.carId, req.user.isAdmin),
-      false,
-      200);
+    const carObject = await CarService.getSingleCar(req.params.carId);
+
+    const result = Promise.resolve(carObject);
+
+    return result.then(
+      cars => Result.getResult(res, cars, false, 200),
+    );
   }
 
 
-  static getAllUnsoldAvailableCars(req, res) {
+  static async getAllUnsoldAvailableCars(req, res) {
     const error = Validator.validate(req, res);
-
     if (error) return error;
 
     const {
@@ -89,28 +89,40 @@ class Car {
       return res.status(400).json({ status: 400, error: 'Invalid Query Parameter was supplied' });
     }
 
+    let carObject;
+
     if (bodyType) {
-      return Result.getResult(res, CarModel.getAllCarsByBodyType(bodyType), true, 200);
+      carObject = await CarService.getAllCarsByBodyType(bodyType);
+    } else if (manufacturer) {
+      carObject = await CarService.getAllCarsByManufacturer(manufacturer);
+    } else if (max && min) {
+      carObject = await CarService.getAllUnsoldAvailableCarsByRange(min, max);
+    } else if (state && (state === 'used' || state === 'new')) {
+      carObject = await CarService.getAllUnsoldAvailableCars(state);
+    } else if (status && !state) {
+      carObject = await CarService.getAllUnsoldAvailableCars();
+    } else {
+      carObject = await CarService.getAllCars(req.user.isAdmin);
     }
 
+    const result = Promise.resolve(carObject);
 
-    if (manufacturer) {
-      return Result.getResult(res, CarModel.getAllCarsByManufacturer(manufacturer), true, 200);
-    }
+    return result.then(
+      cars => Result.getResult(res, cars, true, 200),
+    );
+  }
 
+  static async getDeleteCar(req, res) {
+    const error = Validator.validate(req, res);
 
-    if (max && min) {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCarsByRange(min, max), true, 200);
-    }
+    if (error) return error;
 
-    if (state && (state === 'used' || state === 'new')) {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(state), true, 200);
-    }
+    const carObject = await CarService.getDeleteCar(req.params.carId, req.user.isAdmin);
+    const result = Promise.resolve(carObject);
 
-    if (status) {
-      return Result.getResult(res, CarModel.getAllUnsoldAvailableCars(), true, 200);
-    }
-    return Result.getResult(res, CarModel.getAllCars(req.user.isAdmin), true, 200);
+    return result.then(
+      cars => Result.getResult(res, cars, false, 200),
+    );
   }
 
   static validation(dataFile, fields) {

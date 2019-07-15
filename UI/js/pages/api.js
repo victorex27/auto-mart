@@ -1,7 +1,7 @@
 import Navigation from './navigation.js';
 
 const token = localStorage.getItem('token');
-const host = 'http://localhost:3000/api/v2/';
+const host = 'http://localhost:3000/api/v1/';
 const splashScreen = document.querySelector('#splash-screen');
 
 const retrieveDataFromApi = (api, obj) => {
@@ -32,11 +32,10 @@ const retrieveDataFromApi = (api, obj) => {
         singleCarName.textContent = data.manufacturer + data.model;
         singleCarManufacturer.textContent = data.manufacturer;
 
-      //   singleCarColor.textContent = data.color;
+        //   singleCarColor.textContent = data.color;
         singleCarMileage.textContent = data.state;
         singleCarPrice.textContent = data.price;
         singleCarBody.textContent = data.bodyType;
-        
       }
 
       splashScreen.style.display = 'none';

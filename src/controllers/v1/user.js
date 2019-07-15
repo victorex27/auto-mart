@@ -1,19 +1,30 @@
 import jwt from 'jsonwebtoken';
 import { validationResult } from 'express-validator/check';
-import UserModel from '../../models/user';
+import UserService from '../../services/controller/v1/user';
 
 
 class User {
-  static create(req, res) {
-    const newUser = UserModel.create(req.body);
+  static async create(req, res) {
+    const newUser = await UserService.create(req.body);
 
-    User.getUser(req, res, newUser, 201);
+    const result = Promise.resolve(newUser);
+
+
+    result.then(
+      user => User.getUser(req, res, user, 201),
+    ).catch(() => {});
   }
 
   static signIn(req, res) {
-    const newUser = UserModel.signIn(req.body);
+    const newUser = UserService.signIn(req.body);
 
-    User.getUser(req, res, newUser, 200);
+
+    const result = Promise.resolve(newUser);
+
+
+    result.then(
+      user => User.getUser(req, res, user, 200),
+    );
   }
 
   static getUser(req, res, userModel, status) {
@@ -33,7 +44,6 @@ class User {
 
     return res.status(status).json({ status, data: { token, ...userModel } });
   }
-
 }
 
 export default User;
