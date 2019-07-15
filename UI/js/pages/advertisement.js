@@ -1,4 +1,6 @@
 import Common from './common.js';
+import Navigation from './navigation.js';
+
 const div = document.querySelector('div#advert');
 class Advertisement extends Common {
   constructor(navigation, car) {
@@ -28,7 +30,7 @@ class Advertisement extends Common {
 
       (button) => {
         button.addEventListener('click', (ev) => {
-          navigation.setCurrentPage(car);
+          Navigation.setCurrentPage(car);
           ev.preventDefault();
         });
       },
@@ -38,7 +40,7 @@ class Advertisement extends Common {
   }
 
   showPage() {
-    this.navigation.setPageType('adv');
+    Navigation.setPageType('adv');
     this.advDiv.style.display = 'flex';
     this.advDiv.classList.remove('is-not-visible');
     div.style.display = 'block';

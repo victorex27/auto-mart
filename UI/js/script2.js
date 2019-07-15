@@ -38,7 +38,7 @@ const onmenuButtonClicked = () => {
 };
 
 const onBackButtonClicked = () => {
-  navigation.setLastPage();
+  Navigation.setLastPage();
 };
 
 const oncloseButtonClicked = () => {
@@ -64,48 +64,31 @@ filterListButton.addEventListener('click', onFilterListButtonClicked);
 closeFilterButton.addEventListener('click', onCloseFilterButtonClicked);
 const startApp = () => {
   const car = new Car(navigation);
-  const galleryDiv = new GalleryDiv(navigation, car);
 
-  const homePage = new HomePage(navigation, galleryDiv);
+  const homePage = new HomePage();
   const purchaseOrderPage = new PurchaseOrderPage(navigation, car);
   const advertisement = new Advertisement(navigation, car);
   const adminPage = new AdminPage(navigation, car);
 
-  navigation.setCurrentPage(homePage);
+  Navigation.setCurrentPage(homePage);
 
   // when home tab is clicked
   homeTab.addEventListener('click', () => {
-    navigation.setCurrentPage(homePage);
+    Navigation.setCurrentPage(homePage);
   });
 
 
   advTab.addEventListener('click', () => {
-    navigation.setCurrentPage(advertisement);
+    Navigation.setCurrentPage(advertisement);
   });
 
   poTab.addEventListener('click', () => {
-    navigation.setCurrentPage(purchaseOrderPage);
+    Navigation.setCurrentPage(purchaseOrderPage);
   });
 
   adminTab.addEventListener('click', () => {
-    navigation.setCurrentPage(adminPage);
+    Navigation.setCurrentPage(adminPage);
   });
 };
-
-// window.addEventListener('resize', () => {
-//   if (window.innerWidth > 600) {
-//     section.classList.remove('section-smallscreen');
-//     aside.classList.remove('aside-smallscreen');
-//     section.classList.remove('mobile-view');
-//     section.classList.add('section-fullscreen');
-//     aside.classList.add('aside-fullscreen');
-//   } else {
-//     section.classList.remove('section-fullscreen');
-//     aside.classList.remove('aside-fullscreen');
-//     section.classList.add('mobile-view');
-//     aside.classList.add('mobile-view');
-//     aside.classList.add('aside-smallscreen');
-//   }
-// });
 
 startApp();

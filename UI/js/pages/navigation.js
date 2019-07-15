@@ -6,8 +6,6 @@ const advTab = document.getElementById('adv_tab');
 const poTab = document.getElementById('po_tab');
 const adminTab = document.getElementById('admin_tab');
 const aside = document.querySelector('aside');
-const main = document.querySelector('main');
-// const rippleDiv = document.querySelector('#ripple');
 const backButtonMobile = document.querySelector('#back-button-mobile');
 const backButtonFullScreen = document.querySelector('#back-button-fullscreen');
 const oncloseButtonClicked = () => {
@@ -16,35 +14,19 @@ const oncloseButtonClicked = () => {
   }
 };
 
-// rippleDiv.addEventListener('animationend', () => {
-//   rippleDiv.classList.remove('ripple');
-//   main.style.opacity = '1';
-// }, false);
-
-
-const animationStart = () => {
-  main.style.opacity = '0';
-};
-
-// rippleDiv.addEventListener('animationstart', animationStart, false);
-
+const backlog = [];
+let oldTab = homeTab;
+oldTab.classList.add('current');
 class Navigation {
-  constructor() {
-    // backlog to track page last visited page
-    this.backlog = [];
-    this.oldTab = homeTab;
-    this.oldTab.classList.add('current');
-  }
-
-  onChangeActiveTab(newTab) {
-    this.oldTab.classList.remove('current');
+  static onChangeActiveTab(newTab) {
+    oldTab.classList.remove('current');
     newTab.classList.add('current');
-    this.oldTab = newTab;
+    oldTab = newTab;
   }
 
-  setCurrentPage(currentPage) {
-    const sizeOfBacklog = this.backlog.length;
-    const lastPage = this.backlog[sizeOfBacklog - 1];
+  static setCurrentPage(currentPage) {
+    const sizeOfBacklog = backlog.length;
+    const lastPage = backlog[sizeOfBacklog - 1];
     if (sizeOfBacklog > 0) {
       if (lastPage instanceof Common && lastPage !== currentPage) {
         lastPage.removePage();
@@ -56,24 +38,25 @@ class Navigation {
         let pageTitle;
         switch (lastPage.getName()) {
           case 'home':
+
             pageTitle = 'Make Purchase Order';
-            this.onChangeActiveTab(homeTab);
+            Navigation.onChangeActiveTab(homeTab);
 
             break;
           case 'po':
 
             pageTitle = 'Update Purchase Order';
-            this.onChangeActiveTab(poTab);
+            Navigation.onChangeActiveTab(poTab);
 
             break;
           case 'admin':
             pageTitle = 'View Adverts';
-            this.onChangeActiveTab(adminTab);
+            Navigation.onChangeActiveTab(adminTab);
             break;
 
           case 'adv':
             pageTitle = 'Update Ad';
-            this.onChangeActiveTab(advTab);
+            Navigation.onChangeActiveTab(advTab);
 
             break;
 
@@ -83,10 +66,10 @@ class Navigation {
         }
         document.querySelector('h1').innerHTML = pageTitle;
       } else {
-        this.setPageTitle(currentPage);
+        Navigation.setPageTitle(currentPage);
       }
       Navigation.showRippleAnimation(currentPage);
-      this.backlog.push(currentPage);
+      backlog.push(currentPage);
     }
     if (sizeOfBacklog > 0) {
       if (window.matchMedia('(max-width: 900px)').matches) {
@@ -96,17 +79,14 @@ class Navigation {
       }
     }
     oncloseButtonClicked();
-
-
-    // rippleDiv.style.webkitAnimationName = 'ripple';
-    // rippleDiv.style.AnimationName = 'ripple';
+    currentPage.showPage();
   }
 
-  setLastPage() {
-    const sizeOfBacklog = this.backlog.length;
-    const lastPage = this.backlog[sizeOfBacklog - 1];
-    const currentPage = this.backlog[sizeOfBacklog - 2];
-    const nextPage = this.backlog[sizeOfBacklog - 3];
+  static setLastPage() {
+    const sizeOfBacklog = backlog.length;
+    const lastPage = backlog[sizeOfBacklog - 1];
+    const currentPage = backlog[sizeOfBacklog - 2];
+    const nextPage = backlog[sizeOfBacklog - 3];
     let pageTitle = 'home';
     if (currentPage instanceof Common) {
       lastPage.removePage();
@@ -114,11 +94,11 @@ class Navigation {
         switch (currentPage.getName()) {
           case 'home':
             pageTitle = 'Home';
-            this.onChangeActiveTab(homeTab);
+            Navigation.onChangeActiveTab(homeTab);
             break;
           case 'po':
             pageTitle = 'Purchase Order';
-            this.onChangeActiveTab(poTab);
+            Navigation.onChangeActiveTab(poTab);
 
             break;
           case 'admin':
@@ -138,21 +118,21 @@ class Navigation {
         switch (nextPage.getName()) {
           case 'home':
             pageTitle = 'Make Purchase Order';
-            this.onChangeActiveTab(homeTab);
+            Navigation.onChangeActiveTab(homeTab);
             break;
           case 'po':
             pageTitle = 'Update Purchase order';
-            this.onChangeActiveTab(poTab);
+            Navigation.onChangeActiveTab(poTab);
 
             break;
           case 'admin':
             pageTitle = 'View adverts';
-            this.onChangeActiveTab(adminTab);
+            Navigation.onChangeActiveTab(adminTab);
             break;
 
           case 'adv':
             pageTitle = 'Update your ads';
-            this.onChangeActiveTab(advTab);
+            Navigation.onChangeActiveTab(advTab);
             break;
 
           default:
@@ -161,13 +141,13 @@ class Navigation {
         }
       } else if (sizeOfBacklog === 2) {
         pageTitle = 'home';
-        this.onChangeActiveTab(homeTab);
+        Navigation.onChangeActiveTab(homeTab);
       }
 
       document.querySelector('h1').innerHTML = pageTitle;
 
 
-      this.backlog.pop();
+      backlog.pop();
     }
 
     if (sizeOfBacklog === 2) {
@@ -180,34 +160,34 @@ class Navigation {
     Navigation.showRippleAnimation(currentPage);
   }
 
-  setPageType(type) {
-    this.type = type;
+  static setPageType(type) {
+    Navigation.type = type;
   }
 
-  getPageType() {
-    return this.type;
+  static getPageType() {
+    return Navigation.type;
   }
 
-  setPageTitle(page) {
+  static setPageTitle(page) {
     let pageTitle;
     switch (page.getName()) {
       case 'home':
         pageTitle = 'home';
-        this.onChangeActiveTab(homeTab);
+        Navigation.onChangeActiveTab(homeTab);
         break;
       case 'po':
         pageTitle = 'purchase Order';
-        this.onChangeActiveTab(poTab);
+        Navigation.onChangeActiveTab(poTab);
 
         break;
       case 'admin':
         pageTitle = 'admin';
-        this.onChangeActiveTab(adminTab);
+        Navigation.onChangeActiveTab(adminTab);
         break;
 
       case 'adv':
         pageTitle = 'your Ads';
-        this.onChangeActiveTab(advTab);
+        Navigation.onChangeActiveTab(advTab);
         break;
 
       default:
@@ -218,8 +198,6 @@ class Navigation {
   }
 
   static showRippleAnimation(currentPage) {
-    // rippleDiv.classList.add('ripple');
-    // main.style.opacity = '0';
     currentPage.showPage();
   }
 }

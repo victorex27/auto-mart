@@ -1,12 +1,15 @@
+import { retrieveCarFromApi } from './api.js';
 import Common from './common.js';
+import Navigation from './navigation.js';
+
 
 const overlay = document.querySelector('.overlay');
 
 class Car extends Common {
-  constructor(navigation) {
+  constructor(id) {
     super();
     this.name = 'car';
-    this.navigation = navigation;
+    this.id = id;
     this.makePurchaseOrderButton = document.getElementById('make-purchase-order-button');
     this.updatePurchaseOrderButton = document.getElementById('update-purchase-order-button');
     this.updateAdvertButton = document.getElementById('update-advert-button');
@@ -41,15 +44,18 @@ class Car extends Common {
   }
 
 
-  showPage() {
+  async showPage() {
     window.scroll(0, 0);
+    retrieveCarFromApi(`car/${this.id}`);
+
+
     this.carDiv.style.display = 'flex';
     this.carDiv.classList.remove('is-not-visible');
     this.deletePostDiv.style.display = 'none';
     this.verifyPurchaseOrderDiv.style.display = 'none';
     this.status.style.display = 'none';
 
-    switch (this.navigation.getPageType()) {
+    switch (Navigation.getPageType()) {
       case 'po':
         this.showPoPage();
         break;
@@ -71,7 +77,7 @@ class Car extends Common {
     this.makePurchaseOrderDiv.style.display = 'block';
 
 
-    switch (this.navigation.getPageType) {
+    switch (Navigation.getPageType) {
       case 'po':
         this.removePoPage();
         break;

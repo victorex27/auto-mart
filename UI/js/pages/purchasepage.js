@@ -1,4 +1,5 @@
 import Common from './common.js';
+import Navigation from './navigation.js';
 
 const div = document.querySelector('div#purchase-order');
 class PurchaseOrderPage extends Common {
@@ -13,7 +14,7 @@ class PurchaseOrderPage extends Common {
 
       (button) => {
         button.addEventListener('click', (ev) => {
-          navigation.setCurrentPage(car);
+          Navigation.setCurrentPage(car);
           ev.preventDefault();
         });
       },
@@ -23,7 +24,7 @@ class PurchaseOrderPage extends Common {
 
 
   showPage() {
-    this.navigation.setPageType('po');
+    Navigation.setPageType('po');
     div.style.display = 'block';
   }
 
