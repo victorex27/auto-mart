@@ -1,13 +1,12 @@
 import Common from './common.js';
-
+import Navigation from './navigation.js';
+import GalleryHomeDiv from './gallerydiv.js';
 
 class HomePage extends Common {
-  constructor(navigation, galleryHomeDiv) {
+  constructor() {
     super();
     this.name = 'home';
-    // Get gallery plus filter div
-    this.galleryHomeDiV = galleryHomeDiv;
-    this.navigation = navigation;
+    GalleryHomeDiv.initailize();
   }
 
   getName() {
@@ -15,16 +14,13 @@ class HomePage extends Common {
   }
 
   showPage() {
+    Navigation.setPageType('home');
     
-
-    this.navigation.setPageType('home');
-
-    this.galleryHomeDiV.showPage();
+    GalleryHomeDiv.showPage();
   }
 
   removePage() {
-
-    this.galleryHomeDiV.removePage();
+    GalleryHomeDiv.removePage();
   }
 }
 

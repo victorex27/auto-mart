@@ -1,4 +1,5 @@
 import Common from './common.js';
+import Navigation from './navigation.js';
 
 const div = document.querySelector('div#admin-page');
 class AdminPage extends Common {
@@ -11,7 +12,7 @@ class AdminPage extends Common {
 
       (button) => {
         button.addEventListener('click', (ev) => {
-          navigation.setCurrentPage(car);
+          Navigation.setCurrentPage(car);
           ev.preventDefault();
         });
       },
@@ -20,7 +21,7 @@ class AdminPage extends Common {
   }
 
   showPage() {
-    this.navigation.setPageType('admin');
+    Navigation.setPageType('admin');
     div.style.display = 'block';
   }
 
