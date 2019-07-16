@@ -30,7 +30,7 @@ class Car {
   static async postCarAd(req, res) {
     const conType = req.headers['content-type'];
     // console.log('contype', conType );
-    if (conType.indexOf('application/x-www-form-urlencoded') === 0 ) {
+    if (conType.indexOf('application/x-www-form-urlencoded') === 0) {
       const validation = Car.validation(undefined, req.body);
       if (validation.error) {
         return res.status(400).json({ status: 400, error: validation.error });
@@ -41,10 +41,9 @@ class Car {
         cars => Result.getResult(res, cars, false, 201),
       );
     }
-    if (conType.indexOf('multipart/form-data') === -1 ) {
+    if (conType.indexOf('multipart/form-data') === -1) {
       return res.status(400).json({ status: 400, error: 'form-data should be used' });
     }
-
 
 
     new formidable.IncomingForm().parse(req, async (err, fields, files) => {
