@@ -34,9 +34,9 @@ describe('GET /api/v1/order/buyer', () => {
           if (res.body.data.length !== 0) {
             res.body.data.forEach((element) => {
               expect(element).to.have.property('id');
-              expect(element).to.have.property('carId');
-              expect(element).to.have.property('createdOn');
-              expect(element).to.have.property('priceOffered');
+              expect(element).to.have.property('car_id');
+              expect(element).to.have.property('created_on');
+              expect(element).to.have.property('price_offered');
               expect(element).to.have.property('price');
               expect(element).to.have.property('buyer');
             });

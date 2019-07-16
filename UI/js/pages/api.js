@@ -35,7 +35,7 @@ const retrieveDataFromApi = (api, obj) => {
         //   singleCarColor.textContent = data.color;
         singleCarMileage.textContent = data.state;
         singleCarPrice.textContent = data.price;
-        singleCarBody.textContent = data.bodyType;
+        singleCarBody.textContent = data.body_type;
       }
 
       splashScreen.style.display = 'none';

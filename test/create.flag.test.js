@@ -27,7 +27,7 @@ describe('POST /api/v1/flag', () => {
   describe('When a user tries to make a flag without reason', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 2,
+        car_id: 2,
         description: 'big description 2018',
       };
 
@@ -46,7 +46,7 @@ describe('POST /api/v1/flag', () => {
   describe('When a user tries to make a flag without description', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 2,
+        car_id: 2,
         reason: 'pricing',
       };
 
@@ -62,7 +62,7 @@ describe('POST /api/v1/flag', () => {
     });
   });
 
-  describe('When a user tries to make a flag with no carId field', () => {
+  describe('When a user tries to make a flag with no car_id field', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         reason: 'pricing',
@@ -85,7 +85,7 @@ describe('POST /api/v1/flag', () => {
   describe('When a user tries to make a flag with a car id that is not an a postive integer', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 'amaobi',
+        car_id: 'amaobi',
         reason: 'pricing',
         description: 'big description 2018',
       };
@@ -105,7 +105,7 @@ describe('POST /api/v1/flag', () => {
   describe('When a user tries to make a flag with a car id that does not exist', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 99,
+        car_id: 99,
         reason: 'pricing',
         description: 'big description 2018',
       };
@@ -125,7 +125,7 @@ describe('POST /api/v1/flag', () => {
   describe('When a user tries to make a flag with car id field that belongs to user', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 1,
+        car_id: 1,
         reason: 'pricing',
         description: 'big description 2018',
       };
@@ -146,7 +146,7 @@ describe('POST /api/v1/flag', () => {
   describe('When a user tries to make a flag with car id field that belongs to user', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 2,
+        car_id: 2,
         reason: 'super reason',
         description: 'big description 2018',
       };
@@ -167,7 +167,7 @@ describe('POST /api/v1/flag', () => {
   describe('When a user tries to upload a flag with valid detail', () => {
     it('should return an object with the status and data', (done) => {
       const data = {
-        carId: 2,
+        car_id: 2,
         reason: 'pricing',
         description: 'big description 2018',
       };
@@ -180,9 +180,9 @@ describe('POST /api/v1/flag', () => {
           expect(res.body).to.have.property('status').to.equals(201);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
-          expect(res.body).to.have.property('data').to.have.property('userId');
-          expect(res.body).to.have.property('data').to.have.property('createdOn');
-          expect(res.body).to.have.property('data').to.have.property('carId');
+          expect(res.body).to.have.property('data').to.have.property('user_id');
+          expect(res.body).to.have.property('data').to.have.property('created_on');
+          expect(res.body).to.have.property('data').to.have.property('car_id');
           expect(res.body).to.have.property('data').to.have.property('reason');
           expect(res.body).to.have.property('data').to.have.property('description');
           done();

@@ -13,6 +13,7 @@ const carTable = `CREATE TABLE IF NOT EXISTS cars
         created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         state TEXT CHECK ( state IN ('new','used') ),
         status TEXT CHECK ( status IN ('sold','available') ),
+        deleted Boolean DEFAULT false,
         price FLOAT,
         manufacturer VARCHAR(40) NOT NULL,
         model VARCHAR(40) NOT NULL,

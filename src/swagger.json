@@ -131,9 +131,9 @@
                   "state",
                   "price",
                   "model",
-                  "bodyType",
+                  "body_type",
                   "manufacturer",
-                  "dataFile"
+                  "data_file"
                 ],
                 "type": "object",
                 "properties": {
@@ -147,13 +147,13 @@
                   },"model": {
                     "type": "string",
                     "description": "Model of car ad we want to create"
-                  },"bodyType": {
+                  },"body_type": {
                     "type": "string",
                     "description": "Body type of car ad we want to create"
                   },"manufacturer": {
                     "type": "string",
                     "description": "Manufacturer of car ad we want to create"
-                  },"dataFile": {
+                  },"data_file": {
                     "type": "file",
                     "description": "Picture of car ad we want to create"
                   }
@@ -601,7 +601,7 @@
                 "required": [
                   "email",
                   "password",
-                  "firstName",
+                  "first_name",
                   "lastName"
                 ],
                 "type": "object",
@@ -614,7 +614,7 @@
                     "type": "string",
                     "description": "Password of user that we want to create"
                   },
-                  "firstName": {
+                  "first_name": {
                     "type": "string",
                     "description": "First name of user that we want to create"
                   },
@@ -800,7 +800,7 @@
           "priceOffered": {
             "type": "integer"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           },
@@ -828,7 +828,7 @@
           "price": {
             "type": "integer"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           },
@@ -858,7 +858,7 @@
           "password": {
             "type": "string"
           },
-          "firstName": {
+          "first_name": {
             "type": "string"
           },
           "lastName": {
@@ -867,14 +867,14 @@
           "token": {
             "type": "string"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           },
           "status": {
             "$ref": "#/components/schemas/Status"
           },
-          "isAdmin": {
+          "is_admin": {
             "type": "boolean",
             "example": false
           }
@@ -900,7 +900,7 @@
               "password": {
                 "type": "string"
               },
-              "firstName": {
+              "first_name": {
                 "type": "string"
               },
               "lastName": {
@@ -909,11 +909,11 @@
               "token": {
                 "type": "string"
               },
-              "createdOn": {
+              "created_on": {
                 "type": "string",
                 "format": "date-time"
               },
-              "isAdmin": {
+              "is_admin": {
                 "type": "boolean",
                 "example": false
               }
@@ -940,7 +940,7 @@
           "description": {
             "type": "string"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           }

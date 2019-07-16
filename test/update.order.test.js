@@ -144,10 +144,10 @@ describe('PACTH /api/v1/order/:orderId/:price', () => {
           expect(res.body).to.have.property('status').to.equals(200);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
-          expect(res.body).to.have.property('data').to.have.property('carId');
-          expect(res.body).to.have.property('data').to.have.property('createdOn');
-          expect(res.body).to.have.property('data').to.have.property('oldPriceOffered').equal('1400000');
-          expect(res.body).to.have.property('data').to.have.property('newPriceOffered').equal('20000000');
+          expect(res.body).to.have.property('data').to.have.property('car_id');
+          expect(res.body).to.have.property('data').to.have.property('created_on');
+          expect(res.body).to.have.property('data').to.have.property('old_price_offered').equal('1400000');
+          expect(res.body).to.have.property('data').to.have.property('new_price_offered').equal('20000000');
           expect(res.body).to.have.property('data').to.have.property('price').equal(2.8);
           expect(res.body).to.have.property('data').to.have.property('buyer');
           done();

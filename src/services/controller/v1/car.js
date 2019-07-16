@@ -24,7 +24,7 @@ class CarService {
     if (!isAdmin) {
       return { code: 403, error: 'Only admins are allowed to delete car adverts' };
     }
-    const getCarPromise = CarService.getDeleteCarQuery(carId, isAdmin);
+    const getCarPromise = CarService.getDeleteCarQuery(carId);
     return getCarPromise.then(
       (data) => {
         if (!data) {
@@ -154,15 +154,15 @@ class CarService {
 
 
   static async updateCarPriceQuery(id, newPrice) {
-    const queryString = 'UPDATE cars SET price = $1 WHERE id=$2 RETURNING *;';
+    const queryString = 'UPDATE cars SET price = $1 WHERE id=$2 AND deleted=false RETURNING *;';
     const value = [newPrice, id];
     const { rows } = await query(queryString, value);
-    const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
-    return { ...rest, bodyType, createdOn };
+    const { ...rest } = rows[0];
+    return { ...rest };
   }
 
   static async getCarOrderProperties(id) {
-    const queryString = 'SELECT cars.owner,cars.status as carstatus,orders.status as orderstatus FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE cars.id = $1;';
+    const queryString = 'SELECT cars.owner,cars.status as carstatus,orders.status as orderstatus FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE cars.id = $1  AND  deleted=false ;';
     const value = [id];
     const { rows } = await query(queryString, value);
     if (rows.length === 0) { return false; }
@@ -178,18 +178,18 @@ class CarService {
       body.price,
       body.manufacturer,
       body.model,
-      body.bodyType,
+      body.body_type,
       url,
     ];
     const { rows } = await query(queryString, value);
-    const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
+    const { ...rest } = rows[0];
 
-    return { ...rest, bodyType, createdOn };
+    return { ...rest };
   }
 
 
   static async getAvailableCarQuery(state) {
-    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' AND  deleted=false ';
     let value = [];
     if (state) {
       queryString += ' AND state = $1';
@@ -199,40 +199,39 @@ class CarService {
   }
 
   static async getAllCarsQuery() {
-    const queryString = 'SELECT * FROM cars';
+    const queryString = 'SELECT * FROM cars WHERE deleted=false ';
     const value = [];
     return CarService.customQuery(queryString, value);
   }
 
   static async getSingleCarQuery(carId) {
-    // let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
-    let queryString = 'SELECT * FROM cars  ';
-    queryString += ' WHERE cars.id = $1';
+    // let queryString = 'SELECT * FROM cars WHERE status=\'available\' AND  deleted=false  ';
+    const queryString = 'SELECT * FROM cars  WHERE cars.id = $1 AND deleted=false';
     const value = [carId];
     const { rows } = await query(queryString, value);
     if (rows[0]) {
-      const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
+      const { ...rest } = rows[0];
 
-      return { ...rest, bodyType, createdOn };
+      return { ...rest };
     }
     return undefined;
   }
 
   static async markAsSoldQuery(id) {
-    const queryString = 'UPDATE cars SET status = $1 WHERE id=$2 RETURNING *;';
+    const queryString = 'UPDATE cars SET status = $1 WHERE id=$2 AND  deleted=false RETURNING *;';
     const value = ['sold', id];
     const { rows } = await query(queryString, value);
 
-    const { created_on: createdOn, body_type: bodyType, ...rest } = rows[0];
+    const { ...rest } = rows[0];
 
-    return { ...rest, bodyType, createdOn };
+    return { ...rest };
   }
 
   static async getDeleteCarQuery(carId) {
-    let queryString = 'DELETE FROM cars WHERE ';
-    queryString += ' cars.id = $1 RETURNING id ;';
+    const queryString = 'UPDATE cars SET deleted=true WHERE cars.id = $1 AND deleted=false RETURNING id ;';
     const value = [carId];
     const { rows } = await query(queryString, value);
+
     if (rows[0]) {
       return 'delete';
     }
@@ -240,28 +239,28 @@ class CarService {
   }
 
   static async getAllCarsByManufacturerQuery(manufacturer) {
-    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' AND  deleted=false ';
     queryString += ' AND manufacturer = $1';
     const value = [manufacturer];
     return CarService.customQuery(queryString, value);
   }
 
   static async getAllUnsoldAvailableCarsByRangeQuery(range) {
-    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' AND  deleted=false ';
     queryString += ' AND price >= $1 AND price <= $2 ;';
     const value = range;
     return CarService.customQuery(queryString, value);
   }
 
   static async getAllCarsByBodyTypeQuery(bodyType) {
-    let queryString = 'SELECT * FROM cars WHERE status=\'available\' ';
+    let queryString = 'SELECT * FROM cars WHERE status=\'available\' AND  deleted=false';
     queryString += ' AND body_type = $1';
     const value = [bodyType];
     return CarService.customQuery(queryString, value);
   }
 
   static async doesCarBelongToUser(carId, userId) {
-    const queryString = 'SELECT cars.id FROM users INNER JOIN cars ON cars.owner = users.id WHERE owner = $1 AND users.id = $2 LIMIT 1;';
+    const queryString = 'SELECT cars.id FROM users INNER JOIN cars ON cars.owner = users.id WHERE owner = $1 AND users.id = $2 AND  deleted=false  LIMIT 1;';
     const value = [carId, userId];
     const { rows } = await query(queryString, value);
     if (rows.length === 1) { return true; }
@@ -272,9 +271,9 @@ class CarService {
     const { rows } = await query(queryString, value);
     const result = [];
     rows.forEach((row) => {
-      const { created_on: createdOn, body_type: bodyType, ...rest } = row;
+      const { ...rest } = row;
 
-      result.push({ ...rest, bodyType, createdOn });
+      result.push({ ...rest });
     });
 
     return result;

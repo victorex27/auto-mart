@@ -3,7 +3,9 @@ import { query } from '../../db';
 
 class FlagService {
   static createFlag(userId, body) {
-    const { carId, reason, description } = body;
+    const { reason, description } = body;
+
+    const carId = body.car_id;
 
     const doesCarExistPromise = CarService.getSingleCar(carId);
     const doesCarBelongToUser = CarService.doesCarBelongToUser(carId, userId);
@@ -29,14 +31,11 @@ class FlagService {
     const value = [user, car, reason, description];
     const { rows } = await query(queryString, value);
     const {
-      car_id: carId, created_on: createdOn, user_id: userId, ...rest
+      ...rest
     } = rows[0];
 
 
     return {
-      carId,
-      userId,
-      createdOn,
       ...rest,
     };
   }

@@ -38,7 +38,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('State Field is missing');
@@ -62,7 +62,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('State Field must be new or old');
@@ -85,7 +85,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Price Field does not exist');
@@ -109,7 +109,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Price Field must be a positive number');
@@ -132,7 +132,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Model Field does not exist');
@@ -155,7 +155,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Body Type Field does not exist');
@@ -178,7 +178,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Manufacturer Field is missing');
@@ -202,7 +202,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', '')
+        .attach('data_file', '')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string');
@@ -211,7 +211,7 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car ad with missing dataFile field', () => {
+  describe('When a user tries to make a car ad with missing data_file field', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
         state: 'new',
@@ -250,7 +250,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img2.jpg')
+        .attach('data_file', 'test/img/img2.jpg')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('File Size should not exceed 400KB');
@@ -274,7 +274,7 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/song.mp3')
+        .attach('data_file', 'test/img/song.mp3')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(400);
           expect(res.body).to.have.property('error').to.be.a('string').equals('Allowed File type [\'png\', \'jpg\', \'jpeg\', \'gif\']');
@@ -300,20 +300,20 @@ describe('POST /api/v1/car', () => {
         .post('/api/v1/car').set('Authorization', token)
         .field('Content-Type', 'multipart/form-data')
         .field(data)
-        .attach('dataFile', 'test/img/img1.jpg')
+        .attach('data_file', 'test/img/img1.jpg')
         .type('form')
         .end((err, res) => {
           expect(res.body).to.have.property('status').to.equals(201);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
           expect(res.body).to.have.property('data').to.have.property('owner');
-          expect(res.body).to.have.property('data').to.have.property('createdOn');
+          expect(res.body).to.have.property('data').to.have.property('created_on');
           expect(res.body).to.have.property('data').to.have.property('state');
           expect(res.body).to.have.property('data').to.have.property('status').to.be.equals('available');
           expect(res.body).to.have.property('data').to.have.property('price');
           expect(res.body).to.have.property('data').to.have.property('manufacturer');
           expect(res.body).to.have.property('data').to.have.property('model');
-          expect(res.body).to.have.property('data').to.have.property('bodyType');
+          expect(res.body).to.have.property('data').to.have.property('body_type');
           expect(res.body).to.have.property('data').to.have.property('url');
           done();
         });

@@ -162,7 +162,7 @@ describe('PACTH /api/v1/car/:carId/sold', () => {
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
           expect(res.body).to.have.property('data').to.have.property('owner');
-          expect(res.body).to.have.property('data').to.have.property('createdOn');
+          expect(res.body).to.have.property('data').to.have.property('created_on');
           expect(res.body).to.have.property('data').to.have.property('state');
           expect(res.body).to.have.property('data').to.have.property('status').to.equals('sold');
           expect(res.body).to.have.property('data').to.have.property('price');

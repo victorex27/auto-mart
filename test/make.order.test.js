@@ -27,7 +27,7 @@ describe('POST /api/v1/order', () => {
   describe('When a user tries to make a purchase order for a car id that does not exist', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 900,
+        car_id: 900,
         amount: 1400000,
       };
 
@@ -45,7 +45,7 @@ describe('POST /api/v1/order', () => {
   describe('When a user tries to make a purchase order with a non positive integer price', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 2,
+        car_id: 2,
         amount: 'amaobi',
       };
 
@@ -81,7 +81,7 @@ describe('POST /api/v1/order', () => {
   describe('When a user tries to make a purchase order with a non positive integer car id', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 'ama',
+        car_id: 'ama',
         amount: 1400000,
       };
 
@@ -100,7 +100,7 @@ describe('POST /api/v1/order', () => {
   describe('When a user tries to make a purchase order with no amount', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 2,
+        car_id: 2,
       };
 
 
@@ -118,7 +118,7 @@ describe('POST /api/v1/order', () => {
   describe('When a user tries to make a purchase order from user\'s posted adv', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 1,
+        car_id: 1,
         amount: 1290598,
       };
 
@@ -137,7 +137,7 @@ describe('POST /api/v1/order', () => {
   describe('When a user tries to make a purchase order that already exists', () => {
     it('should return an object with the status and error', (done) => {
       const data = {
-        carId: 3,
+        car_id: 3,
         amount: 1290598,
       };
 
@@ -156,7 +156,7 @@ describe('POST /api/v1/order', () => {
   describe('When a user tries to make a purchase order with valid detail', () => {
     it('should return an object with the status and data', (done) => {
       const data = {
-        carId: 7,
+        car_id: 7,
         amount: 1400000,
       };
 
@@ -169,9 +169,9 @@ describe('POST /api/v1/order', () => {
           expect(res.body).to.have.property('status').to.equals(201);
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
-          expect(res.body).to.have.property('data').to.have.property('carId');
-          expect(res.body).to.have.property('data').to.have.property('createdOn');
-          expect(res.body).to.have.property('data').to.have.property('priceOffered');
+          expect(res.body).to.have.property('data').to.have.property('car_id');
+          expect(res.body).to.have.property('data').to.have.property('created_on');
+          expect(res.body).to.have.property('data').to.have.property('price_offered');
           expect(res.body).to.have.property('data').to.have.property('price');
           expect(res.body).to.have.property('data').to.have.property('buyer');
           done();

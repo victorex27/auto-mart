@@ -113,7 +113,7 @@ describe('GET /api/v1/car?status=available&min_price=xxxx&max_price=xxxx', () =>
             res.body.data.forEach((element) => {
               expect(element).to.have.property('id');
               expect(element).to.have.property('owner');
-              expect(element).to.have.property('createdOn');
+              expect(element).to.have.property('created_on');
               expect(element).to.have.property('state');
               expect(element).to.have.property('status').to.equals('available');
               expect(element).to.have.property('price');
@@ -139,7 +139,7 @@ describe('GET /api/v1/car?status=available&min_price=xxxx&max_price=xxxx', () =>
             res.body.data.forEach((element) => {
               expect(element).to.have.property('id');
               expect(element).to.have.property('owner');
-              expect(element).to.have.property('createdOn');
+              expect(element).to.have.property('created_on');
               expect(element).to.have.property('state');
               expect(element).to.have.property('status').to.equals('available');
               expect(element).to.have.property('price');
