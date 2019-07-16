@@ -55,7 +55,7 @@
             }
           },
           {
-            "name": "min",
+            "name": "min_price",
             "in": "query",
             "description": "Minimum price of cars",
             "required": false,
@@ -65,7 +65,7 @@
             }
           },
           {
-            "name": "max",
+            "name": "max_price",
             "in": "query",
             "description": "Maximum type of cars",
             "required": false,
@@ -462,12 +462,12 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "required": [
-                  "carId",
+                  "car_id",
                   "amount"
                 ],
                 "type": "object",
                 "properties": {
-                  "carId": {
+                  "car_id": {
                     "type": "integer",
                     "description": "Id of car "
                   },
@@ -602,7 +602,7 @@
                   "email",
                   "password",
                   "first_name",
-                  "lastName"
+                  "last_name"
                 ],
                 "type": "object",
                 "properties": {
@@ -618,7 +618,7 @@
                     "type": "string",
                     "description": "First name of user that we want to create"
                   },
-                  "lastName": {
+                  "last_name": {
                     "type": "string",
                     "description": "Last name of user that we want to create"
                   },
@@ -727,13 +727,13 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "required": [
-                  "carId",
+                  "car_id",
                   "reason",
                   "description"
                 ],
                 "type": "object",
                 "properties": {
-                  "carId": {
+                  "car_id": {
                     "type": "integer",
                     "description": "Id of car "
                   },
@@ -861,7 +861,7 @@
           "first_name": {
             "type": "string"
           },
-          "lastName": {
+          "last_name": {
             "type": "string"
           },
           "token": {
@@ -903,7 +903,7 @@
               "first_name": {
                 "type": "string"
               },
-              "lastName": {
+              "last_name": {
                 "type": "string"
               },
               "token": {
