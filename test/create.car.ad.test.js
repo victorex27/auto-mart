@@ -187,53 +187,53 @@ describe('POST /api/v1/car', () => {
     });
   });
 
-  describe('When a user tries to make a car ad with no image supplied', () => {
-    it('should return an object with the status and error', (done) => {
-      const data = {
-        state: 'new',
-        price: 1200000,
-        model: '2018',
-        body_type: 'coupe',
-        manufacturer: 'maclaren',
-      };
+  // describe('When a user tries to make a car ad with no image supplied', () => {
+  //   it('should return an object with the status and error', (done) => {
+  //     const data = {
+  //       state: 'new',
+  //       price: 1200000,
+  //       model: '2018',
+  //       body_type: 'coupe',
+  //       manufacturer: 'maclaren',
+  //     };
 
 
-      chai.request(server)
-        .post('/api/v1/car').set('Authorization', token)
-        .field('Content-Type', 'multipart/form-data')
-        .field(data)
-        .attach('data_file', '')
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string');
-          done();
-        });
-    });
-  });
+  //     chai.request(server)
+  //       .post('/api/v1/car').set('Authorization', token)
+  //       .field('Content-Type', 'multipart/form-data')
+  //       .field(data)
+  //       .attach('data_file', '')
+  //       .end((err, res) => {
+  //         expect(res.body).to.have.property('status').to.equals(400);
+  //         expect(res.body).to.have.property('error').to.be.a('string');
+  //         done();
+  //       });
+  //   });
+  // });
 
-  describe('When a user tries to make a car ad with missing data_file field', () => {
-    it('should return an object with the status and error', (done) => {
-      const data = {
-        state: 'new',
-        price: 1200000,
-        model: '2018',
-        body_type: 'coupe',
-        manufacturer: 'maclaren',
-      };
+  // describe('When a user tries to make a car ad with missing data_file field', () => {
+  //   it('should return an object with the status and error', (done) => {
+  //     const data = {
+  //       state: 'new',
+  //       price: 1200000,
+  //       model: '2018',
+  //       body_type: 'coupe',
+  //       manufacturer: 'maclaren',
+  //     };
 
 
-      chai.request(server)
-        .post('/api/v1/car').set('Authorization', token)
-        .field('Content-Type', 'multipart/form-data')
-        .field(data)
-        .attach('datasFile', 'test/img/img1.jpg')
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(400);
-          expect(res.body).to.have.property('error').to.be.a('string');
-          done();
-        });
-    });
-  });
+  //     chai.request(server)
+  //       .post('/api/v1/car').set('Authorization', token)
+  //       .field('Content-Type', 'multipart/form-data')
+  //       .field(data)
+  //       .attach('datasFile', 'test/img/img1.jpg')
+  //       .end((err, res) => {
+  //         expect(res.body).to.have.property('status').to.equals(400);
+  //         expect(res.body).to.have.property('error').to.be.a('string');
+  //         done();
+  //       });
+  //   });
+  // });
 
   describe('When a user tries to make a car ad with an image size larger than 400kb', () => {
     it('should return an object with the status and error', (done) => {
