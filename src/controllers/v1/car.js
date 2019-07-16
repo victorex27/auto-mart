@@ -30,29 +30,38 @@ class Car {
   static async postCarAd(req, res) {
     new formidable.IncomingForm().parse(req, async (err, fields, files) => {
       const dataFile = files.data_file;
-      if (!dataFile) {
-        return res.status(400).json({ status: 400, error: 'Invalid File name parameter supplied' });
-      }
+      // if (!dataFile) {
+      //   return res.status(400)
+      // .json({ status: 400, error: 'Invalid File name parameter supplied' });
+      // }
+
       const validation = Car.validation(dataFile, fields);
       if (validation.error) {
         return res.status(400).json({ status: 400, error: validation.error });
       }
-      const cloudinaryUrl = url.parse(process.env.CLOUDINARY_URL);
+      if (dataFile) {
+        const cloudinaryUrl = url.parse(process.env.CLOUDINARY_URL);
 
-      cloudinary.config({
-        cloud_name: cloudinaryUrl.host,
-        api_key: cloudinaryUrl.auth.split(':')[0],
-        api_secret: cloudinaryUrl.auth.split(':')[1],
-      });
-      return cloudinary.v2.uploader
-        .upload(dataFile.path, { tags: 'gotemps', resource_type: 'auto' })
-        .then(async (file) => {
-          const carObject = await CarService.createCar(fields, req.user.id, file.url);
-          const result = Promise.resolve(carObject);
-          return result.then(
-            cars => Result.getResult(res, cars, false, 201),
-          );
+        cloudinary.config({
+          cloud_name: cloudinaryUrl.host,
+          api_key: cloudinaryUrl.auth.split(':')[0],
+          api_secret: cloudinaryUrl.auth.split(':')[1],
         });
+        return cloudinary.v2.uploader
+          .upload(dataFile.path, { tags: 'gotemps', resource_type: 'auto' })
+          .then(async (file) => {
+            const carObject = await CarService.createCar(fields, req.user.id, file.url);
+            const result = Promise.resolve(carObject);
+            return result.then(
+              cars => Result.getResult(res, cars, false, 201),
+            );
+          });
+      }
+      const carObject = await CarService.createCar(fields, req.user.id, '');
+      const result = Promise.resolve(carObject);
+      return result.then(
+        cars => Result.getResult(res, cars, false, 201),
+      );
     });
   }
 
@@ -126,14 +135,15 @@ class Car {
   }
 
   static validation(dataFile, fields) {
-    const type = dataFile.type.substr(6);
+    if (dataFile) {
+      const type = dataFile.type.substr(6);
 
-    if (!['png', 'jpg', 'jpeg', 'gif'].includes(type)) {
-      return { error: 'Allowed File type [\'png\', \'jpg\', \'jpeg\', \'gif\']' };
-    }
-
-    if (dataFile.size > 409600) {
-      return { error: 'File Size should not exceed 400KB' };
+      if (!['png', 'jpg', 'jpeg', 'gif'].includes(type)) {
+        return { error: 'Allowed File type [\'png\', \'jpg\', \'jpeg\', \'gif\']' };
+      }
+      if (dataFile.size > 409600) {
+        return { error: 'File Size should not exceed 400KB' };
+      }
     }
 
     if (!fields.state) {
