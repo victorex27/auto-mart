@@ -70,9 +70,9 @@ class CarService {
   }
 
   static getAllCars(isAdmin) {
-    if (!isAdmin) {
-      return { code: 403, error: 'Only an admin is allowed retrieve all cars' };
-    }
+    // if (!isAdmin) {
+    //   return { code: 403, error: 'Only an admin is allowed retrieve all cars' };
+    // }
     const getCarPromise = CarService.getAllCarsQuery();
     return getCarPromise.then(
       data => data,
