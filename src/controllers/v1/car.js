@@ -28,6 +28,12 @@ class Car {
   }
 
   static async postCarAd(req, res) {
+    const conType = req.headers['content-type'];
+    // console.log('contype', conType);
+    if (conType === 'application/x-www-form-urlencoded') {
+      return res.status(400).json({ status: 400, error: 'form-data should be used' });
+    }
+
     new formidable.IncomingForm().parse(req, async (err, fields, files) => {
       const dataFile = files.data_file;
       // if (!dataFile) {
