@@ -96,9 +96,9 @@ class CarService {
         return { code: 400, error: 'Car is already marked as sold. You cannot update price' };
       }
 
-      if (price === newPrice) {
-        return { code: 400, error: 'Update not performed. New price is equal to old price' };
-      }
+      // if (price === newPrice) {
+      //   return { code: 400, error: 'Update not performed. New price is equal to old price' };
+      // }
 
 
       const getCarPromise = CarService.updateCarPriceQuery(carId, newPrice);

@@ -16,13 +16,13 @@ class OrderService {
 
       return doesOrderExist.then(
         (order) => {
-          if (order) {
-            return { code: 400, error: 'Purchase Order already exists' };
-          }
+          // if (order) {
+          //   return { code: 400, error: 'Purchase Order already exists' };
+          // }
 
-          if (Number(owner) === userId) {
-            return { code: 400, error: 'You cannot make a purchase order for your stock' };
-          }
+          // if (Number(owner) === userId) {
+          //   return { code: 400, error: 'You cannot make a purchase order for your stock' };
+          // }
 
           const getCarPromise = OrderService.makeOrderQuery(userId, carId, amount);
           return getCarPromise.then(
@@ -57,9 +57,9 @@ class OrderService {
       }
 
 
-      if (newPrice === Number(amount)) {
-        return { code: 400, error: 'Current Price is the same as supplied price' };
-      }
+      // if (newPrice === Number(amount)) {
+      //   return { code: 400, error: 'Current Price is the same as supplied price' };
+      // }
 
       const getCarPromise = OrderService.updateOrderQuery(orderId, amount, newPrice, price);
       return getCarPromise.then(
