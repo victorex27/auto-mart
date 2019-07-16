@@ -29,7 +29,7 @@ describe('POST /api/v1/car', () => {
       const data = {
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -53,7 +53,7 @@ describe('POST /api/v1/car', () => {
         state: 45,
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -76,7 +76,7 @@ describe('POST /api/v1/car', () => {
       const data = {
         state: 'new',
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -100,7 +100,7 @@ describe('POST /api/v1/car', () => {
         state: 'new',
         price: 'amaobi',
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -123,7 +123,7 @@ describe('POST /api/v1/car', () => {
       const data = {
         state: 'new',
         price: 1200000,
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -170,7 +170,7 @@ describe('POST /api/v1/car', () => {
         state: 'new',
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
       };
 
 
@@ -193,7 +193,7 @@ describe('POST /api/v1/car', () => {
         state: 'new',
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -217,7 +217,7 @@ describe('POST /api/v1/car', () => {
         state: 'new',
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -241,7 +241,7 @@ describe('POST /api/v1/car', () => {
         state: 'new',
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -265,7 +265,7 @@ describe('POST /api/v1/car', () => {
         state: 'new',
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 
@@ -291,7 +291,7 @@ describe('POST /api/v1/car', () => {
         state: 'new',
         price: 1200000,
         model: '2018',
-        bodyType: 'coupe',
+        body_type: 'coupe',
         manufacturer: 'maclaren',
       };
 

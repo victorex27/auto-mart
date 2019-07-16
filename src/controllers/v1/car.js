@@ -156,7 +156,7 @@ class Car {
       return { error: 'Price Field must be a positive number' };
     }
 
-    if (!fields.bodyType) {
+    if (!fields.body_type) {
       return { error: 'Body Type Field does not exist' };
     }
 
