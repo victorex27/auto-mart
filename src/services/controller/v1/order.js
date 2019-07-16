@@ -3,7 +3,8 @@ import { query } from '../../db';
 
 class OrderService {
   static async makeOrder(data, userId) {
-    const { carId, amount } = data;
+    const { amount } = data;
+    const carId = data.car_id;
     const doesCarExistPromise = CarService.getSingleCar(carId);
     const doesOrderExist = OrderService.doesOrderExist(carId, userId);
     return doesCarExistPromise.then((doesCarExist) => {
@@ -68,19 +69,17 @@ class OrderService {
   }
 
 
-  static async makeOrderQuery(userId, carid, amount) {
+  static async makeOrderQuery(userId, carId, amount) {
     const queryString = 'INSERT INTO orders (buyer, car_id, amount ) VALUES ($1,$2,$3) RETURNING *;';
-    const value = [userId, carid, amount];
+    const value = [userId, carId, amount];
     const { rows } = await query(queryString, value);
 
     const {
-      car_id: carId, created_on: createdOn, amount: priceOffered, ...rest
+      amount: priceOffered, ...rest
     } = rows[0];
 
     return {
-      carId,
-      priceOffered,
-      createdOn,
+      price_offered: priceOffered,
       ...rest,
     };
   }
@@ -90,23 +89,21 @@ class OrderService {
     const value = [orderId, newPrice];
     const { rows } = await query(queryString, value);
     const {
-      car_id: carId, created_on: createdOn, amount: newPriceOffered, ...rest
+      amount: newPriceOffered, ...rest
     } = rows[0];
 
 
     return {
-      carId,
-      oldPriceOffered,
-      newPriceOffered,
+      old_price_offered: oldPriceOffered,
+      new_price_offered: newPriceOffered,
       price,
-      createdOn,
       ...rest,
     };
   }
 
 
   static getHistory(userId) {
-    const queryString = 'SELECT orders.id, cars.id as carid,buyer, orders.amount,cars.price, cars.owner,orders.status,orders.created_on FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE orders.buyer = $1;';
+    const queryString = 'SELECT orders.id, cars.id as car_id,buyer, orders.amount,cars.price, cars.owner,orders.status,orders.created_on FROM orders INNER JOIN cars ON cars.id = orders.car_id WHERE orders.buyer = $1;';
     const getCarPromise = OrderService.getOrderQuery(queryString, userId);
     return getCarPromise.then(
       data => data,
@@ -135,13 +132,12 @@ class OrderService {
     const result = [];
     rows.forEach((row) => {
       const {
-        carid: carId,
         amount: priceOffered,
-        created_on: createdOn, body_type: bodyType, ...rest
+        ...rest
       } = row;
 
       result.push({
-        ...rest, bodyType, createdOn, carId, priceOffered,
+        ...rest, price_offered: priceOffered,
       });
     });
 

@@ -49,7 +49,7 @@ describe('GET /api/v1/car?status=available&state=new', () => {
             res.body.data.forEach((element) => {
               expect(element).to.have.property('id');
               expect(element).to.have.property('owner');
-              expect(element).to.have.property('createdOn');
+              expect(element).to.have.property('created_on');
               expect(element).to.have.property('state').to.equals('new');
               expect(element).to.have.property('status').to.equals('available');
               expect(element).to.have.property('price');

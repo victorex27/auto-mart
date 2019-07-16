@@ -55,7 +55,7 @@
             }
           },
           {
-            "name": "min",
+            "name": "min_price",
             "in": "query",
             "description": "Minimum price of cars",
             "required": false,
@@ -65,7 +65,7 @@
             }
           },
           {
-            "name": "max",
+            "name": "max_price",
             "in": "query",
             "description": "Maximum type of cars",
             "required": false,
@@ -131,9 +131,9 @@
                   "state",
                   "price",
                   "model",
-                  "bodyType",
+                  "body_type",
                   "manufacturer",
-                  "dataFile"
+                  "data_file"
                 ],
                 "type": "object",
                 "properties": {
@@ -147,13 +147,13 @@
                   },"model": {
                     "type": "string",
                     "description": "Model of car ad we want to create"
-                  },"bodyType": {
+                  },"body_type": {
                     "type": "string",
                     "description": "Body type of car ad we want to create"
                   },"manufacturer": {
                     "type": "string",
                     "description": "Manufacturer of car ad we want to create"
-                  },"dataFile": {
+                  },"data_file": {
                     "type": "file",
                     "description": "Picture of car ad we want to create"
                   }
@@ -462,12 +462,12 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "required": [
-                  "carId",
+                  "car_id",
                   "amount"
                 ],
                 "type": "object",
                 "properties": {
-                  "carId": {
+                  "car_id": {
                     "type": "integer",
                     "description": "Id of car "
                   },
@@ -601,8 +601,8 @@
                 "required": [
                   "email",
                   "password",
-                  "firstName",
-                  "lastName"
+                  "first_name",
+                  "last_name"
                 ],
                 "type": "object",
                 "properties": {
@@ -614,11 +614,11 @@
                     "type": "string",
                     "description": "Password of user that we want to create"
                   },
-                  "firstName": {
+                  "first_name": {
                     "type": "string",
                     "description": "First name of user that we want to create"
                   },
-                  "lastName": {
+                  "last_name": {
                     "type": "string",
                     "description": "Last name of user that we want to create"
                   },
@@ -727,13 +727,13 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "required": [
-                  "carId",
+                  "car_id",
                   "reason",
                   "description"
                 ],
                 "type": "object",
                 "properties": {
-                  "carId": {
+                  "car_id": {
                     "type": "integer",
                     "description": "Id of car "
                   },
@@ -800,7 +800,7 @@
           "priceOffered": {
             "type": "integer"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           },
@@ -828,7 +828,7 @@
           "price": {
             "type": "integer"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           },
@@ -858,23 +858,23 @@
           "password": {
             "type": "string"
           },
-          "firstName": {
+          "first_name": {
             "type": "string"
           },
-          "lastName": {
+          "last_name": {
             "type": "string"
           },
           "token": {
             "type": "string"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           },
           "status": {
             "$ref": "#/components/schemas/Status"
           },
-          "isAdmin": {
+          "is_admin": {
             "type": "boolean",
             "example": false
           }
@@ -900,20 +900,20 @@
               "password": {
                 "type": "string"
               },
-              "firstName": {
+              "first_name": {
                 "type": "string"
               },
-              "lastName": {
+              "last_name": {
                 "type": "string"
               },
               "token": {
                 "type": "string"
               },
-              "createdOn": {
+              "created_on": {
                 "type": "string",
                 "format": "date-time"
               },
-              "isAdmin": {
+              "is_admin": {
                 "type": "boolean",
                 "example": false
               }
@@ -940,7 +940,7 @@
           "description": {
             "type": "string"
           },
-          "createdOn": {
+          "created_on": {
             "type": "string",
             "format": "date-time"
           }

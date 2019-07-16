@@ -23,31 +23,23 @@ export const passwordCheck = check('password').exists()
   .withMessage('Password Field must contain at least one number')
   .trim();
 
-const stringCheck = (field) => {
-  let name;
+export const lastNameCheck = check('last_name')
+  . exists()
+  . withMessage('Last Name Field is missing')
+  . isLength({ min: 1 })
+  . withMessage('Last Name Field cannot be empty');
+export const firstNameCheck = check('first_name')
+  . exists()
+  . withMessage('First Name Field is missing')
+  . isLength({ min: 1 })
+  . withMessage('First Name Field cannot be empty');
+export const addressCheck = check('address')
+  . exists()
+  . withMessage('Address Field is missing')
+  . isLength({ min: 1 })
+  . withMessage('Address Field cannot be empty');
 
-  switch (field) {
-    case 'firstName':
-      name = 'First Name';
-      break;
-    case 'address':
-      name = 'Address';
-      break;
-    default:
-      name = 'Last Name';
-      break;
-  }
-
-  return check(field).exists()
-    .withMessage(`${name} Field is missing`)
-    .isLength({ min: 1 })
-    .withMessage(`${name} Field cannot be empty`);
-};
-export const lastNameCheck = stringCheck('lastName');
-export const firstNameCheck = stringCheck('firstName');
-export const addressCheck = stringCheck('address');
-
-export const carIdCheck = check('carId').exists()
+export const carIdCheck = check('car_id').exists()
   .withMessage('No car id supplied')
   .isInt({ min: 1 })
   .withMessage('Car id must be a positive integer')

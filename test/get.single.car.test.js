@@ -86,7 +86,7 @@ describe('GET /api/v1/car/:carId', () => {
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('id');
           expect(res.body).to.have.property('data').to.have.property('owner');
-          expect(res.body).to.have.property('data').to.have.property('createdOn');
+          expect(res.body).to.have.property('data').to.have.property('created_on');
           expect(res.body).to.have.property('data').to.have.property('state');
           expect(res.body).to.have.property('data').to.have.property('status').to.equals('available');
           expect(res.body).to.have.property('data').to.have.property('price');

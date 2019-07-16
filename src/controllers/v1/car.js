@@ -29,7 +29,7 @@ class Car {
 
   static async postCarAd(req, res) {
     new formidable.IncomingForm().parse(req, async (err, fields, files) => {
-      const { dataFile } = files;
+      const dataFile = files.data_file;
       if (!dataFile) {
         return res.status(400).json({ status: 400, error: 'Invalid File name parameter supplied' });
       }
@@ -156,7 +156,7 @@ class Car {
       return { error: 'Price Field must be a positive number' };
     }
 
-    if (!fields.bodyType) {
+    if (!fields.body_type) {
       return { error: 'Body Type Field does not exist' };
     }
 

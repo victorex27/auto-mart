@@ -9,7 +9,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with an Email account that already exists', () => {
     it('should return an error status', (done) => {
       const user = {
-        email: 'aobikobe@gmail.com', firstName: 'Amaobi', lastName: 'Obikobe', password: 'paswword54', address: '30,ijoko road, sango ota, ogun state',
+        email: 'aobikobe@gmail.com', first_name: 'Amaobi', last_name: 'Obikobe', password: 'paswword54', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -26,7 +26,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs up with no email address supplied', () => {
     it('should return an error status', (done) => {
       const user = {
-        email: '', firstName: 'Amaobi', lastName: 'Obikobe', password: 'paswword54', address: '30,ijoko road, sango ota, ogun state',
+        email: '', first_name: 'Amaobi', last_name: 'Obikobe', password: 'paswword54', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -42,7 +42,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with an invalid email type', () => {
     it('should return an error status', (done) => {
       const user = {
-        email: 'amaobi', firstName: 'Amaobi', lastName: 'Obikobe', password: 'paswword54', address: '30,ijoko road, sango ota, ogun state',
+        email: 'amaobi', first_name: 'Amaobi', last_name: 'Obikobe', password: 'paswword54', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -59,7 +59,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with a password less than 6 char', () => {
     it('should return an error status', (done) => {
       const user = {
-        email: 'aobikobe1@gmail.com', firstName: 'Amaobi', lastName: 'Obikobe', password: 'pasww', address: '30,ijoko road, sango ota, ogun state',
+        email: 'aobikobe1@gmail.com', first_name: 'Amaobi', last_name: 'Obikobe', password: 'pasww', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -76,7 +76,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with a password that does not contain at least a number', () => {
     it('should return an error status', (done) => {
       const user = {
-        email: 'aobikobe1@gmail.com', firstName: 'Amaobi', lastName: 'Obikobe', password: 'paswword', address: '30,ijoko road, sango ota, ogun state',
+        email: 'aobikobe1@gmail.com', first_name: 'Amaobi', last_name: 'Obikobe', password: 'paswword', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -93,7 +93,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with a password that does not contain at least an alphabet', () => {
     it('should return an error status', (done) => {
       const user = {
-        email: 'aobikobe1@gmail.com', firstName: 'Amaobi', lastName: 'Obikobe', password: '12345678', address: '30,ijoko road, sango ota, ogun state',
+        email: 'aobikobe1@gmail.com', first_name: 'Amaobi', last_name: 'Obikobe', password: '12345678', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -107,10 +107,10 @@ describe('POST /api/v1/auth/signup', () => {
     });
   });
 
-  describe('When a new User Signs Up with no firstname ', () => {
+  describe('When a new User Signs Up with no first_name ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        email: 'aobikobe1@gmail.com', firstName: '', lastName: 'Obikobe', password: 'password65', address: '30,ijoko road, sango ota, ogun state',
+        email: 'aobikobe1@gmail.com', first_name: '', last_name: 'Obikobe', password: 'password65', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -123,10 +123,10 @@ describe('POST /api/v1/auth/signup', () => {
         });
     });
   });
-  describe('When a new User Signs Up with no lastname ', () => {
+  describe('When a new User Signs Up with no last_name ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        email: 'aobikobe1@gmail.com', firstName: 'Amaobi', lastName: '', password: 'password54', address: '30,ijoko road, sango ota, ogun state',
+        email: 'aobikobe1@gmail.com', first_name: 'Amaobi', last_name: '', password: 'password54', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -143,7 +143,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with an empty address field ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        email: 'aobikobe11@gmail.com', firstName: 'Amaobi', lastName: 'Victor', password: 'password54', address: '',
+        email: 'aobikobe11@gmail.com', first_name: 'Amaobi', last_name: 'Victor', password: 'password54', address: '',
       };
 
       chai.request(server)
@@ -160,7 +160,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with no email field ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        firstName: 'Amaobi', lastName: 'Victor', password: 'password54', address: '',
+        first_name: 'Amaobi', last_name: 'Victor', password: 'password54', address: '',
       };
 
       chai.request(server)
@@ -177,7 +177,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with no first name field ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        email: 'aobikobe11@gmail.com', lastName: 'Victor', password: 'password54', address: '',
+        email: 'aobikobe11@gmail.com', last_name: 'Victor', password: 'password54', address: '',
       };
 
       chai.request(server)
@@ -194,7 +194,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with no last name field ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        email: 'aobikobe11@gmail.com', firstName: 'Amaobi', password: 'password54', address: '',
+        email: 'aobikobe11@gmail.com', first_name: 'Amaobi', password: 'password54', address: '',
       };
 
       chai.request(server)
@@ -211,7 +211,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with no password field ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        email: 'aobikobe11@gmail.com', firstName: 'Amaobi', lastName: 'Victor', address: '',
+        email: 'aobikobe11@gmail.com', first_name: 'Amaobi', last_name: 'Victor', address: '',
       };
 
       chai.request(server)
@@ -228,7 +228,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with no address field ', () => {
     it('should return an object with the status and error', (done) => {
       const user = {
-        email: 'aobikobe11@gmail.com', firstName: 'Amaobi', lastName: 'Victor', password: 'password54',
+        email: 'aobikobe11@gmail.com', first_name: 'Amaobi', last_name: 'Victor', password: 'password54',
       };
 
       chai.request(server)
@@ -245,7 +245,7 @@ describe('POST /api/v1/auth/signup', () => {
   describe('When a new User Signs Up with an acceptable detail', () => {
     it('should return an object with the status and data', (done) => {
       const user = {
-        email: 'augsomto@gmail.com', firstName: 'Amaobi', lastName: 'Obikobe', password: 'passwoh6rd54', address: '30,ijoko road, sango ota, ogun state',
+        email: 'augsomto@gmail.com', first_name: 'Amaobi', last_name: 'Obikobe', password: 'passwoh6rd54', address: '30,ijoko road, sango ota, ogun state',
       };
 
       chai.request(server)
@@ -256,8 +256,8 @@ describe('POST /api/v1/auth/signup', () => {
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('token');
           expect(res.body).to.have.property('data').to.have.property('email');
-          expect(res.body).to.have.property('data').to.have.property('firstName');
-          expect(res.body).to.have.property('data').to.have.property('lastName');
+          expect(res.body).to.have.property('data').to.have.property('first_name');
+          expect(res.body).to.have.property('data').to.have.property('last_name');
           done();
         });
     });

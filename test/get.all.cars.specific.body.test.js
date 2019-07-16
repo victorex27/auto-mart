@@ -89,10 +89,10 @@ describe('GET /api/v1/car?body_type=coupe', () => {
             res.body.data.forEach((element) => {
               expect(element).to.have.property('id');
               expect(element).to.have.property('owner');
-              expect(element).to.have.property('createdOn');
+              expect(element).to.have.property('created_on');
               expect(element).to.have.property('state');
               expect(element).to.have.property('status');
-              expect(element).to.have.property('bodyType');
+              expect(element).to.have.property('body_type');
               expect(element).to.have.property('price');
               expect(element).to.have.property('manufacturer');
             });

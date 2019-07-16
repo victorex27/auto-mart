@@ -54,8 +54,8 @@ describe('POST /api/v1/auth/signin', () => {
           expect(res.body).to.have.property('data').to.be.a('object');
           expect(res.body).to.have.property('data').to.have.property('token');
           expect(res.body).to.have.property('data').to.have.property('email');
-          expect(res.body).to.have.property('data').to.have.property('firstName');
-          expect(res.body).to.have.property('data').to.have.property('lastName');
+          expect(res.body).to.have.property('data').to.have.property('first_name');
+          expect(res.body).to.have.property('data').to.have.property('last_name');
           done();
         });
     });

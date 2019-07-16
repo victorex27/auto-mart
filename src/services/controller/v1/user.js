@@ -5,7 +5,8 @@ import { query } from '../../db';
 class UserService {
   static async create(data) {
     const doesUserExistPromise = UserService.doesUserExist(data.email);
-
+    const firstName = data.first_name;
+    const lastName = data.last_name;
     return doesUserExistPromise.then(
       (userExists) => {
         if (userExists) {
@@ -17,10 +18,10 @@ class UserService {
           id => ({
             id,
             email: data.email,
-            firstName: data.firstName,
-            lastName: data.lastName,
+            first_name: firstName,
+            last_name: lastName,
             address: data.address,
-            isAdmin: false,
+            is_admin: false,
           }),
         );
       },
@@ -28,7 +29,6 @@ class UserService {
   }
 
   static async signIn(data) {
-
     const doesUserExistPromise = UserService.doesUserExist(data.email);
 
     return doesUserExistPromise.then(
@@ -48,11 +48,13 @@ class UserService {
   static async createUser(data) {
     const salt = bcryptjs.genSaltSync(10);
     const hash = bcryptjs.hashSync(data.password, salt);
+    const firstName = data.first_name;
+    const lastName = data.last_name;
     const { rows } = await query('INSERT INTO users (email,password,first_name,last_name,address,is_admin) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id;',
       [data.email,
         hash,
-        data.firstName,
-        data.lastName,
+        firstName,
+        lastName,
         data.address,
         false,
       ]);
@@ -81,10 +83,10 @@ class UserService {
     return {
       id: rows[0].id,
       email: rows[0].email,
-      firstName: rows[0].first_name,
-      lastName: rows[0].last_name,
+      first_name: rows[0].first_name,
+      last_name: rows[0].last_name,
       address: rows[0].address,
-      isAdmin: rows[0].is_admin,
+      is_admin: rows[0].is_admin,
     };
   }
 }
