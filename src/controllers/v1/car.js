@@ -29,8 +29,8 @@ class Car {
 
   static async postCarAd(req, res) {
     const conType = req.headers['content-type'];
-    // console.log('contype', conType);
-    if (conType === 'application/x-www-form-urlencoded') {
+    // console.log('contype', conType.indexOf('multipart/form-data') );
+    if (conType.indexOf('multipart/form-data') === -1 ) {
       return res.status(400).json({ status: 400, error: 'form-data should be used' });
     }
 
