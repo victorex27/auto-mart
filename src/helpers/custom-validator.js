@@ -212,12 +212,12 @@ export const checkToken = (req, res, next) => {
       const result = jwt.verify(token, process.env.YOUR_SECRET_KEY);
       req.user = result;
     } catch (e) {
-      return res.status(403).json({ status: 403, error: 'Forbidden' });
+      return res.status(401).json({ status: 401, error: 'Unauthorized' });
     }
 
     next();
   } else {
     // If header is undefined
-    return res.status(403).json({ status: 403, error: 'Forbidden' });
+    return res.status(401).json({ status: 401, error: 'Unauthorized' });
   }
 };
