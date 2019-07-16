@@ -70,16 +70,16 @@ describe('GET /api/v1/car/', () => {
       });
   });
 
-  describe('When a user that is not an admin tries to retrieve all cars', () => {
-    it('should return an object with the status and error', (done) => {
-      chai.request(server)
-        .get('/api/v1/car').set('Authorization', token)
-        .send()
-        .end((err, res) => {
-          expect(res.body).to.have.property('status').to.equals(403);
-          expect(res.body).to.have.property('error').to.be.a('string').equals('Only an admin is allowed retrieve all cars');
-          done();
-        });
-    });
-  });
+  // describe('When a user that is not an admin tries to retrieve all cars', () => {
+  //   it('should return an object with the status and error', (done) => {
+  //     chai.request(server)
+  //       .get('/api/v1/car').set('Authorization', token)
+  //       .send()
+  //       .end((err, res) => {
+  //         expect(res.body).to.have.property('status').to.equals(403);
+  //         expect(res.body).to.have.property('error').to.be.a('string').equals('Only an admin is allowed retrieve all cars');
+  //         done();
+  //       });
+  //   });
+  // });
 });
