@@ -1,7 +1,7 @@
 import Navigation from './navigation.js';
 
 const token = localStorage.getItem('token');
-const host = 'http://localhost:3000/api/v1/';
+const host = 'https://quiet-earth-51065.herokuapp.com/api/v1/';
 const splashScreen = document.querySelector('#splash-screen');
 
 const retrieveDataFromApi = (api, obj) => {
